@@ -1,14 +1,20 @@
 
 package GUI;
 
-import Clases.FachadaLogica;
+import Clases.FabricaLogica;
+import Clases.ILogica;
 
 
 public class FrmRegistrarHabitat extends javax.swing.JFrame {
-   FachadaLogica logica;
-
+   ILogica  logica;
+   
+   
+   
     public FrmRegistrarHabitat() 
     {
+        
+        logica= FabricaLogica.crearInstancia();
+      
         initComponents();
     }
     

@@ -17,7 +17,8 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public void recuperaDatosHabitat() {
-       
+      
     }
+    
     
 }
