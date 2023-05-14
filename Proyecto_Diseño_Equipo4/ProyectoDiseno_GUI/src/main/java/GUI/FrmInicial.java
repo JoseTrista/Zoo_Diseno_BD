@@ -29,6 +29,8 @@ public class FrmInicial extends javax.swing.JFrame {
         selecHabitat = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         selecRegistraroActualizarEspecie = new javax.swing.JButton();
+        selecRegistrarActualizarItinerario = new javax.swing.JButton();
+        selecRegistrarQueja = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,43 +51,71 @@ public class FrmInicial extends javax.swing.JFrame {
             }
         });
 
+        selecRegistrarActualizarItinerario.setText("Registra / Actualizar itinerario");
+        selecRegistrarActualizarItinerario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecRegistrarActualizarItinerarioActionPerformed(evt);
+            }
+        });
+
+        selecRegistrarQueja.setText("Registrar queja");
+        selecRegistrarQueja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecRegistrarQuejaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(157, 157, 157)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addComponent(selecHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selecRegistraroActualizarEspecie))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selecRegistraroActualizarEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selecHabitat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addGap(3, 3, 3)
+                        .addComponent(selecRegistrarActualizarItinerario, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(selecRegistrarQueja)
+                .addGap(116, 116, 116))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(95, 95, 95)
+                .addGap(61, 61, 61)
                 .addComponent(selecHabitat)
                 .addGap(18, 18, 18)
                 .addComponent(selecRegistraroActualizarEspecie)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(selecRegistrarActualizarItinerario)
+                .addGap(18, 18, 18)
+                .addComponent(selecRegistrarQueja)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(73, 73, 73))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(51, 51, 51))
         );
 
         pack();
@@ -110,8 +140,34 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
 
+<<<<<<< HEAD
     public void muestraError() {
 
+=======
+    private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
+   
+        FrmItinerarios frmIti = new FrmItinerarios();
+        frmIti.setVisible(true);
+        this.dispose();
+        
+        
+        
+        
+    }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed
+
+    private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
+        
+        
+        FrmRegistrarQueja frmQueja = new FrmRegistrarQueja();
+        frmQueja.setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_selecRegistrarQuejaActionPerformed
+
+    public void muestraError(){
+        
+>>>>>>> 6381972cb9d43934314d653699f8b43dd5c3feb3
     }
 
     /**
@@ -153,6 +209,8 @@ public class FrmInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton selecHabitat;
+    private javax.swing.JButton selecRegistrarActualizarItinerario;
+    private javax.swing.JButton selecRegistrarQueja;
     private javax.swing.JButton selecRegistraroActualizarEspecie;
     // End of variables declaration//GEN-END:variables
 }
