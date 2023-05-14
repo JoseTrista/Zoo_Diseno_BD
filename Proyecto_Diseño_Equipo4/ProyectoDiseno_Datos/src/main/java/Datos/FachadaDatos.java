@@ -1,6 +1,11 @@
 
 package Datos;
 
+import Dominio.Clima;
+import Dominio.Continente;
+import Dominio.TipoVegetacion;
+import java.util.List;
+
 public class FachadaDatos implements IDatos
 {
     private ContinenteDAO continente;
@@ -9,18 +14,22 @@ public class FachadaDatos implements IDatos
     private HabitatDAO habitat;
     
     @Override
-    public void recuperarClima() {
-       clima.recuperaClima();
+    public List<Clima> recuperarClima() {
+     clima=new ClimaDAO();
+     return  clima.buscarTodos();
+       
     }
 
     @Override
-    public void recuperarContinente() {
-       continente.recuperarContinente();
+    public List<Continente> recuperarContinente() {
+          continente=new ContinenteDAO();
+       return  continente.buscarTodos();
     }
 
     @Override
-    public void recuperarVegetacion() {
-       vegetacion.recuperaVegetacion();
+    public List<TipoVegetacion> recuperarVegetacion() {
+          vegetacion=new VegetacionDAO();
+       return  vegetacion.buscarTodos();
     }
 
     @Override

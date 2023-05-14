@@ -1,22 +1,44 @@
-
 package GUI;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
-
+import Dominio.Clima;
+import Dominio.Continente;
+import Dominio.TipoVegetacion;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 public class FrmRegistrarHabitat extends javax.swing.JFrame {
-   ILogica  logica;
-   
-   
-   
-    public FrmRegistrarHabitat() 
-    {
-        
-        logica= FabricaLogica.crearInstancia();
-      
+
+    ILogica logica;
+    private DefaultListModel<Continente> disponiblesListModel = new DefaultListModel<>();
+    private DefaultListModel<Continente> seleccionadosListModel = new DefaultListModel<>();
+
+    public FrmRegistrarHabitat() {
+
+        logica = FabricaLogica.crearInstancia();
+
         initComponents();
+
+        listaDisponibles.setModel(disponiblesListModel);
+        listaSeleccionados.setModel(seleccionadosListModel);
+
     }
+
+    
+     public FrmRegistrarHabitat(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
+
+        logica = FabricaLogica.crearInstancia();
+
+        initComponents();
+        
+        listaDisponibles.setModel(disponiblesListModel);
+        listaSeleccionados.setModel(seleccionadosListModel);
+         despliegaDatosRecuperados(clima, continentes, vege);
+
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,11 +57,13 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         selecGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        cboAmerica = new javax.swing.JCheckBox();
-        cboAsia = new javax.swing.JCheckBox();
-        cboEuropa = new javax.swing.JCheckBox();
-        cboAfrica = new javax.swing.JCheckBox();
-        cboOceania = new javax.swing.JCheckBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaDisponibles = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaSeleccionados = new javax.swing.JList<>();
+        agregar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,9 +82,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
         jLabel4.setText("Vegetación");
 
-        cmbClima.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmbVegetacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVegetacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVegetacionActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Continentes");
 
@@ -82,15 +108,25 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
         jLabel7.setText("Registrar hábitat");
 
-        cboAmerica.setText("America");
+        jScrollPane1.setViewportView(listaDisponibles);
 
-        cboAsia.setText("Asia");
+        jScrollPane2.setViewportView(listaSeleccionados);
 
-        cboEuropa.setText("Europa");
+        agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
-        cboAfrica.setText("Africa");
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
 
-        cboOceania.setText("Oceanía");
+        jLabel8.setText("Disponibles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,26 +135,13 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cboAmerica, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboAsia, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboEuropa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboAfrica, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cboOceania, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5))
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel2))
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,34 +150,51 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbVegetacion, 0, 116, Short.MAX_VALUE)
-                            .addComponent(cmbClima, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbClima, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(110, 110, 110)
+                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(agregar)
+                                    .addGap(133, 133, 133)
+                                    .addComponent(eliminar))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(74, 74, 74)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVerificar)
-                            .addComponent(jLabel7)))
+                            .addComponent(txtHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(96, 96, 96))
+                        .addGap(144, 144, 144)
+                        .addComponent(btnVerificar)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel7)
                 .addGap(28, 28, 28)
+                .addComponent(jLabel7)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(btnVerificar)
-                .addGap(31, 31, 31)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel2)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -165,20 +205,20 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cmbVegetacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addComponent(cboAmerica)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboAsia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboEuropa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboAfrica)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboOceania)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(agregar)
+                    .addComponent(eliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(selecGuardar)
                     .addComponent(btnLimpiar))
@@ -190,47 +230,85 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selecGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecGuardarActionPerformed
-       logica.guardarHabitat();
+        logica.guardarHabitat();
     }//GEN-LAST:event_selecGuardarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        txtHabitat.setText("");
-        cmbClima.setSelectedIndex(0);
-        cmbVegetacion.setSelectedIndex(0);
-        cboAmerica.setSelected(false);
-        cboAfrica.setSelected(false);
-        cboOceania.setSelected(false);
-        cboEuropa.setSelected(false);
-        cboAsia.setSelected(false);
+//        txtHabitat.setText("");
+//        cmbClima.setSelectedIndex(0);
+//        cmbVegetacion.setSelectedIndex(0);
+//        cboAmerica.setSelected(false);
+//        cboAfrica.setSelected(false);
+//        cboOceania.setSelected(false);
+//        cboEuropa.setSelected(false);
+//        cboAsia.setSelected(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-       logica.verificaNombreHabitat();
+        logica.verificaNombreHabitat();
     }//GEN-LAST:event_btnVerificarActionPerformed
-     
-    public void despliegaDatosRecuperados(){
-        
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        int i = listaDisponibles.getSelectedIndex();
+        if (i != -1) {
+
+            seleccionadosListModel.addElement(disponiblesListModel.getElementAt(i));
+
+            disponiblesListModel.remove(i);
+
+        }
+
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        int i = listaSeleccionados.getSelectedIndex();
+        if (i != -1) {
+
+            disponiblesListModel.addElement(seleccionadosListModel.getElementAt(i));
+
+            seleccionadosListModel.remove(i);
+        }
+
+
+    }//GEN-LAST:event_eliminarActionPerformed
+
+    private void cmbVegetacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVegetacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbVegetacionActionPerformed
+
+    public void despliegaDatosRecuperados(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
+        for (int i = 0; i < clima.size(); i++) {
+            cmbClima.addItem(clima.get(i));
+        }
+       
+        for (int i = 0; i < vege.size(); i++) {
+            cmbVegetacion.addItem(vege.get(i));
+        }
+        for (int i = 0; i < continentes.size(); i++) {
+            disponiblesListModel.addElement(continentes.get(i));
+        }
     }
-    
-    public void muestraDatosHabitat(){
-        
+
+    public void muestraDatosHabitat() {
+
     }
-    
-    public void activaCampos(){
-        
+
+    public void activaCampos() {
+
     }
-    
-    public void verificaCamposLlenos(){
-        
+
+    public void verificaCamposLlenos() {
+
     }
-    
-    public void muestraError(){
-        
+
+    public void muestraError() {
+
     }
-    
-    public void muestraMensajeExitoso(){
-        
+
+    public void muestraMensajeExitoso() {
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -267,15 +345,12 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVerificar;
-    private javax.swing.JCheckBox cboAfrica;
-    private javax.swing.JCheckBox cboAmerica;
-    private javax.swing.JCheckBox cboAsia;
-    private javax.swing.JCheckBox cboEuropa;
-    private javax.swing.JCheckBox cboOceania;
-    private javax.swing.JComboBox<String> cmbClima;
-    private javax.swing.JComboBox<String> cmbVegetacion;
+    private javax.swing.JComboBox<Clima> cmbClima;
+    private javax.swing.JComboBox<TipoVegetacion> cmbVegetacion;
+    private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,6 +358,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<Continente> listaDisponibles;
+    private javax.swing.JList<Continente> listaSeleccionados;
     private javax.swing.JButton selecGuardar;
     private javax.swing.JTextField txtHabitat;
     // End of variables declaration//GEN-END:variables

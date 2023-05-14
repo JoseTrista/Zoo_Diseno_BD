@@ -6,7 +6,7 @@ package Datos;
  * @author IVAN
  */
 public class FabricaDatos {
-     public static IDatos crearInstancia(){
+     public static IDatos dameInstancia(){
         return new FachadaDatos();
     }
 }

@@ -27,6 +27,10 @@ public class Continente {
     public Continente() {
     }
 
+    public Continente(String nombreContinente) {
+        this.nombreContinente = nombreContinente;
+    }
+
     /**
      *
      * Constructor que recibe los valores de id y nombre del continente.
@@ -128,6 +132,6 @@ public class Continente {
      */
     @Override
     public String toString() {
-        return "Continente{" + "id=" + id + ", nombreContinente=" + nombreContinente + '}';
+        return nombreContinente;
     }
 }

@@ -1,9 +1,11 @@
 package Clases;
 
+import java.util.List;
+
 
 public interface ILogica
 {    
-    public void recuperaDatosHabitat();
+    public List<Object> recuperaDatosHabitat();
     
     public void verificaNombreHabitat();
     

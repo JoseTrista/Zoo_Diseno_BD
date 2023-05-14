@@ -59,6 +59,10 @@ public class TipoVegetacion {
         this.nombre = nombre;
     }
 
+    public TipoVegetacion(String nombre) {
+        this.nombre = nombre;
+    }
+
     /**
      *
      * Constructor que crea un nuevo objeto TipoVegetacion con un id y nombre
@@ -129,7 +133,7 @@ public class TipoVegetacion {
      */
     @Override
     public String toString() {
-        return "TipoVegetacion{" + "id=" + id + ", nombre=" + nombre + '}';
+        return  nombre;
     }
 
 }

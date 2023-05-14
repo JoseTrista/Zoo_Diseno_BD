@@ -1,14 +1,19 @@
 
 package Datos;
 
+import Dominio.Clima;
+import Dominio.Continente;
+import Dominio.TipoVegetacion;
+import java.util.List;
+
 
 public interface IDatos 
 {
-    public void recuperarClima();
+    public List<Clima> recuperarClima();
     
-    public void recuperarContinente();
+    public List<Continente>recuperarContinente();
     
-    public void recuperarVegetacion();
+    public List<TipoVegetacion> recuperarVegetacion();
     
     public void verificarHabitat();
     

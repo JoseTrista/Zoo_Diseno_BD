@@ -1,3 +1,17 @@
+Dominio\CuidadorEspecie.class
+Dominio\Itinerario.class
+Dominio\NivelEspecie.class
+Dominio\QuejaRecorrido.class
+Dominio\TipoVegetacion.class
+Dominio\Dias.class
+Dominio\Horario.class
+Dominio\ZonaDelParque.class
+Dominio\Clima.class
+Dominio\Animal.class
+Dominio\Continente.class
 Dominio\Cuidador.class
+Dominio\Habitat.class
 Dominio\Guia.class
 Dominio\Empleados.class
+Dominio\Especie.class
+Dominio\Recorrido.class

@@ -76,6 +76,10 @@ public class Clima {
      *
      * Constructor sin argumentos de la clase Clima.
      */
+    public Clima(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Clima() {
     }
 
@@ -129,7 +133,7 @@ public class Clima {
      */
     @Override
     public String toString() {
-        return "Clima{" + "id=" + id + ", nombre=" + nombre + '}';
+        return nombre;
     }
 
 }

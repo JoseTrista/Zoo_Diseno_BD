@@ -11,10 +11,21 @@
             <artifactId>ProyectoDiseno_Domininio</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        
+        <!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>3.12.13</version>
+        </dependency>
+
     </dependencies>
+   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
+    
 </project>

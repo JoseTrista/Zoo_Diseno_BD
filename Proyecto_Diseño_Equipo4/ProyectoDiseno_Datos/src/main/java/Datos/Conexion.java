@@ -5,18 +5,29 @@
  */
 package Datos;
 
-import java.sql.Connection;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+
+public class Conexion {
+
+    private static MongoDatabase instancia;
 
 
-public class Conexion 
-{
-    private static Conexion instancia = null;
-    
-       public static Conexion getInstance() {
-      if (instancia == null) {
-         instancia = new Conexion();
-      }
-      return instancia;
-   }
-
+    public static MongoDatabase getInstance() {
+        if (instancia == null) {
+            CodecRegistry co = fromRegistries(
+            MongoClientSettings.getDefaultCodecRegistry(),
+            fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+            MongoClientSettings setting = MongoClientSettings.builder().codecRegistry(co).build();
+            MongoClient conexion = MongoClients.create(setting);
+            instancia = conexion.getDatabase("zoologico");
+        }
+        return instancia;
+    }
 }

@@ -1,12 +1,13 @@
 
 package Datos;
 
+import com.mongodb.client.MongoDatabase;
 import java.util.List;
 
 
 public class HabitatDAO 
 {
-   private Conexion conexion;
+   private MongoDatabase conexion;
    public void buscaHabitat()
    {
        conexion = Conexion.getInstance();

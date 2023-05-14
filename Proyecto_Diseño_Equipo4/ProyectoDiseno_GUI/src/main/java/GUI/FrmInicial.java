@@ -1,12 +1,18 @@
-
 package GUI;
 
+import Clases.FabricaLogica;
+import Clases.ILogica;
+import Dominio.Clima;
+import Dominio.Continente;
+import Dominio.TipoVegetacion;
+import java.util.List;
 
 public class FrmInicial extends javax.swing.JFrame {
 
-    public FrmInicial() 
-    {   
-            
+    ILogica logica;
+
+    public FrmInicial() {
+        logica = FabricaLogica.crearInstancia();
         initComponents();
     }
 
@@ -87,10 +93,15 @@ public class FrmInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selecHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecHabitatActionPerformed
-       //RecuperaDatosHabitat y Muestra en FrmRegistrarHabitat
-       FrmRegistrarHabitat frmRegistro = new FrmRegistrarHabitat();
-       frmRegistro.setVisible(true);
-       this.dispose();
+        List<Object> lista = logica.recuperaDatosHabitat();
+        List<Continente> continente=(List<Continente>) lista.get(1);
+        
+        List<TipoVegetacion> vegetacion=(List<TipoVegetacion>) lista.get(2);
+        List<Clima> climas=(List<Clima>) lista.get(0);
+       
+        FrmRegistrarHabitat frmRegistro = new FrmRegistrarHabitat(climas,continente,vegetacion);
+        frmRegistro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_selecHabitatActionPerformed
 
     private void selecRegistraroActualizarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistraroActualizarEspecieActionPerformed
@@ -99,9 +110,10 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
 
-    public void muestraError(){
-        
+    public void muestraError() {
+
     }
+
     /**
      * @param args the command line arguments
      */

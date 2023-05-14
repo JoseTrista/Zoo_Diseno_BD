@@ -1,7 +1,10 @@
 Datos\Conexion.class
+Datos\DAOBase.class
 Datos\FachadaDatos.class
 Datos\ClimaDAO.class
+Datos\NewMain.class
 Datos\ContinenteDAO.class
 Datos\VegetacionDAO.class
+Datos\FabricaDatos.class
 Datos\HabitatDAO.class
 Datos\IDatos.class
