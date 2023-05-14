@@ -5,6 +5,7 @@ import Datos.FabricaDatos;
 import Datos.IDatos;
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Habitat;
 import Dominio.TipoVegetacion;
 import java.util.List;
 
@@ -12,8 +13,10 @@ public class ControlHabitat  {
     public IDatos datos;
             
             
-    public void verficicaHabitat(){
-        
+    public Habitat verificaHabitat(String nombre){
+        Habitat habitat = new Habitat();
+        habitat = datos.verificarHabitat(nombre);
+        return habitat;
     }
     
     public void guardarHabitat(){

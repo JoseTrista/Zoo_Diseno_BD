@@ -1,6 +1,7 @@
 
 package Datos;
 
+import Dominio.Habitat;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
 
@@ -8,9 +9,10 @@ import java.util.List;
 public class HabitatDAO 
 {
    private MongoDatabase conexion;
-   public void buscaHabitat()
+   public Habitat buscaHabitat(String nombre)
    {
        conexion = Conexion.getInstance();
+       return null;
    }
     
    public void guardarHabitat()

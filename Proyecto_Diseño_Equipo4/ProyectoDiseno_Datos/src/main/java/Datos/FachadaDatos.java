@@ -3,6 +3,7 @@ package Datos;
 
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Habitat;
 import Dominio.TipoVegetacion;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
-    public void verificarHabitat() {
-        habitat.buscaHabitat();
+    public Habitat verificarHabitat(String nombre) {
+        Habitat hb = new Habitat();
+        hb = habitat.buscaHabitat(nombre);
+        return hb;
     }
 
     @Override

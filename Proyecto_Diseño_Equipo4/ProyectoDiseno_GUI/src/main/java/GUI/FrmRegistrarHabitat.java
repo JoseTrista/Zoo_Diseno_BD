@@ -7,6 +7,7 @@ import Dominio.Continente;
 import Dominio.TipoVegetacion;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
 public class FrmRegistrarHabitat extends javax.swing.JFrame {
@@ -35,8 +36,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         
         listaDisponibles.setModel(disponiblesListModel);
         listaSeleccionados.setModel(seleccionadosListModel);
-         despliegaDatosRecuperados(clima, continentes, vege);
-
+        despliegaDatosRecuperados(clima, continentes, vege);
     }
 
     
@@ -207,8 +207,8 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +245,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-        logica.verificaNombreHabitat();
+        if(this.txtHabitat.getText().equals("")){
+           JOptionPane.showMessageDialog(this, "Ingrese nombre de el habitat a verificar");
+       }else{
+           logica.verificaNombreHabitat(txtHabitat.getText());
+       }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
@@ -306,7 +310,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }
 
     public void muestraMensajeExitoso() {
-
+       JOptionPane.showMessageDialog(this, "Habitat Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

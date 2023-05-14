@@ -140,35 +140,19 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
 
-<<<<<<< HEAD
-    public void muestraError() {
+    public void muestraError() {}
 
-=======
     private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
-   
         FrmItinerarios frmIti = new FrmItinerarios();
         frmIti.setVisible(true);
         this.dispose();
-        
-        
-        
-        
     }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed
 
     private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
-        
-        
         FrmRegistrarQueja frmQueja = new FrmRegistrarQueja();
         frmQueja.setVisible(true);
         this.dispose();
-        
-        
     }//GEN-LAST:event_selecRegistrarQuejaActionPerformed
-
-    public void muestraError(){
-        
->>>>>>> 6381972cb9d43934314d653699f8b43dd5c3feb3
-    }
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,6 @@
 package Clases;
 
+import Dominio.Habitat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,10 @@ public class FachadaLogica implements ILogica {
     private ControlHabitat ch;
 
     @Override
-    public void verificaNombreHabitat() {
-        ch.verficicaHabitat();
+    public Habitat verificaNombreHabitat(String nombre) {
+        Habitat hb = new Habitat();
+        hb = ch.verificaHabitat(nombre);
+        return hb;
     }
 
     @Override
