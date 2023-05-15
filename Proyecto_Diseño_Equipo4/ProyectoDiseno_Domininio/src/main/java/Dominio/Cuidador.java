@@ -28,7 +28,7 @@ public class Cuidador extends Empleados {
      * @param telefono Número de teléfono del cuidador.
      * @param fechaIngreso Fecha de ingreso del cuidador
      */
-    public Cuidador(String nombre, String direccion, int telefono, Date fechaIngreso) {
+    public Cuidador(String nombre, String direccion, String telefono, Date fechaIngreso) {
         super(nombre, direccion, telefono, fechaIngreso);
     }
 
@@ -42,7 +42,7 @@ public class Cuidador extends Empleados {
      * @param telefono Número de teléfono del cuidador.
      * @param fechaIngreso Fecha de ingreso del cuidador .
      */
-    public Cuidador(ObjectId id, String nombre, String direccion, int telefono, Date fechaIngreso) {
+    public Cuidador(ObjectId id, String nombre, String direccion, String telefono, Date fechaIngreso) {
         super(id, nombre, direccion, telefono, fechaIngreso);
     }
 

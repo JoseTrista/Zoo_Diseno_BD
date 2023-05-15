@@ -27,7 +27,7 @@ public class Empleados {
     /**
      * Atributo que representa el telefono del empleado
      */
-    private int telefono;
+    private String telefono;
 
     /**
      * Atributo que representa la fecha de ingreso del empleado
@@ -80,7 +80,7 @@ public class Empleados {
      *
      * @return El número de teléfono del empleado.
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -90,7 +90,7 @@ public class Empleados {
      *
      * @param telefono El nuevo número de teléfono del empleado.
      */
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -187,7 +187,7 @@ public class Empleados {
      * @param telefono El número de teléfono del empleado.
      * @param fechaIngreso La fecha de ingreso del empleado.
      */
-    public Empleados(String nombre, String direccion, int telefono, Date fechaIngreso) {
+    public Empleados(String nombre, String direccion, String telefono, Date fechaIngreso) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -204,7 +204,7 @@ public class Empleados {
      * @param telefono El número de teléfono del empleado.
      * @param fechaIngreso La fecha de ingreso del empleado.
      */
-    public Empleados(ObjectId id, String nombre, String direccion, int telefono, Date fechaIngreso) {
+    public Empleados(ObjectId id, String nombre, String direccion, String telefono, Date fechaIngreso) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;

@@ -29,21 +29,21 @@ public class Guia extends Empleados {
      * @param telefono El número de teléfono del guía.
      * @param fechaIngreso La fecha de ingreso del guía.
      */
-    public Guia(String nombre, String direccion, int telefono, Date fechaIngreso) {
+    public Guia(String nombre, String direccion, String telefono, Date fechaIngreso) {
         super(nombre, direccion, telefono, fechaIngreso);
     }
 
-    /**
-     *
-     * Constructor para crear un objeto Guia con un ID específico.
-     *
-     * @param id El ID del guía.
-     * @param nombre El nombre del guía.
-     * @param direccion La dirección del guía.
-     * @param telefono El número de teléfono del guía.
-     * @param fechaIngreso La fecha de ingreso del guía.
-     */
-    public Guia(ObjectId id, String nombre, String direccion, int telefono, Date fechaIngreso) {
-        super(id, nombre, direccion, telefono, fechaIngreso);
-    }
+//    /**
+//     *
+//     * Constructor para crear un objeto Guia con un ID específico.
+//     *
+//     * @param id El ID del guía.
+//     * @param nombre El nombre del guía.
+//     * @param direccion La dirección del guía.
+//     * @param telefono El número de teléfono del guía.
+//     * @param fechaIngreso La fecha de ingreso del guía.
+//     */
+//    public Guia(ObjectId id, String nombre, String direccion, int telefono, Date fechaIngreso) {
+//        super(id, nombre, direccion, telefono, fechaIngreso);
+//    }
 }

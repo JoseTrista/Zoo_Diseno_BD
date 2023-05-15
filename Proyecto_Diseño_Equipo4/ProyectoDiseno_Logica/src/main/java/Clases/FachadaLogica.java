@@ -7,7 +7,7 @@ import java.util.List;
 public class FachadaLogica implements ILogica {
 
     ControlHabitat ch = new ControlHabitat();
-
+    ControlItinerario ci = new ControlItinerario();
     @Override
     public Habitat verificaNombreHabitat(String nombre) {
         Habitat hb = new Habitat();
@@ -28,6 +28,30 @@ public class FachadaLogica implements ILogica {
         datosARecuperar.add(ch.RecuperaClima());
         datosARecuperar.add(ch.RecuperaContinente());
         datosARecuperar.add(ch.RecuperaVegetacion());
+        return datosARecuperar;
+    }
+
+    @Override
+    public void buscarItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void verificaNombreItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void guardaItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Object> recuperaZonasyGuias() {
+        ci=new ControlItinerario();
+        List<Object> datosARecuperar = new ArrayList<>();
+        datosARecuperar.add(ci.recuperaZonas());
+        datosARecuperar.add(ci.recuperaGuias());
         return datosARecuperar;
     }
 

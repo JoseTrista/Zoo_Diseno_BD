@@ -11,4 +11,12 @@ public interface ILogica
     public Habitat verificaNombreHabitat(String nombre);
     
     public boolean guardarHabitat(Habitat habitat);      
+    
+    public List<Object> recuperaZonasyGuias();
+    
+    public void buscarItinerario();
+    
+    public void verificaNombreItinerario();
+    
+    public void guardaItinerario();
 }

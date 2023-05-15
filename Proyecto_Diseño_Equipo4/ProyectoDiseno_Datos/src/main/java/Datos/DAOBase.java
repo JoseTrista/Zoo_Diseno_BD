@@ -21,5 +21,5 @@ public abstract class DAOBase<T> {
 
     public abstract List<T> buscarTodos();
     
-      public abstract MongoCollection<T> obtenerColeccion();
+    public abstract MongoCollection<T> obtenerColeccion();
 }

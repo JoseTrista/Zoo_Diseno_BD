@@ -1,10 +1,13 @@
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\IDatos.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\FabricaDatos.java
-C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\DAOBase.java
-C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\FachadaDatos.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\HabitatDAO.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\ContinenteDAO.java
-C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\ClimaDAO.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\NewMain.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\DAOBase.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\FachadaDatos.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\GuiaDAO.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\ClimaDAO.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\ZonadelParqueDAO.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\VegetacionDAO.java
 C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\Conexion.java
+C:\Users\jctri\OneDrive\Documentos\Zoo_Diseno_BD\Proyecto_Diseño_Equipo4\ProyectoDiseno_Datos\src\main\java\Datos\ItinerarioDAO.java

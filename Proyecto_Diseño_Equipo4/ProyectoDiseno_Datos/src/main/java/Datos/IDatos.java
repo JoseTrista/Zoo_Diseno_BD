@@ -3,8 +3,11 @@ package Datos;
 
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Guia;
 import Dominio.Habitat;
+import Dominio.Itinerario;
 import Dominio.TipoVegetacion;
+import Dominio.ZonaDelParque;
 import java.util.List;
 
 
@@ -19,4 +22,12 @@ public interface IDatos
     public Habitat verificarHabitat(String nombre);
     
     public boolean guardaHabitat(Habitat habitat);
+    
+    public List<Guia> recuperaGuias();
+    
+    public List<ZonaDelParque> recuperaZonas();
+    
+    public Itinerario buscarItinerario(String nombre);
+    
+    public Itinerario guardaItinerario(Itinerario itinerario);
 }

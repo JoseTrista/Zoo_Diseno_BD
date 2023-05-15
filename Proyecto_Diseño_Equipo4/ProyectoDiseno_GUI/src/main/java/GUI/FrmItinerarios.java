@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import Dominio.Guia;
+import Dominio.ZonaDelParque;
+import java.util.List;
+
 /**
  *
  * @author jctri
@@ -243,6 +247,15 @@ public class FrmItinerarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void  muestraDatosRecuperados(List<Guia> guia, List<ZonaDelParque> zona){
+        for (int i = 0; i < guia.size(); i++) {
+            
+        }
+       
+        for (int i = 0; i < zona.size(); i++) {
+            
+        }
+    }
     /**
      * @param args the command line arguments
      */
