@@ -238,6 +238,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
             hb.setContinentes(listaSeleccionados.getSelectedValuesList());
             hb.setNombre(txtHabitat.getText());
             logica.guardarHabitat(hb);
+            muestraMensajeExitoso();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
         }
