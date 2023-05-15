@@ -3,6 +3,8 @@ package Datos;
 
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Cuidador;
+import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.Itinerario;
@@ -15,6 +17,8 @@ public class FachadaDatos implements IDatos
     private ContinenteDAO continente;
     private ClimaDAO clima;
     private VegetacionDAO vegetacion; 
+    private CuidadorDAO cuidador;
+    private HabitatDAO habitat;
     private HabitatDAO habitat2 = new HabitatDAO();
     
     @Override
@@ -66,6 +70,28 @@ public class FachadaDatos implements IDatos
 
     @Override
     public Itinerario guardaItinerario(Itinerario itinerario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Cuidador> recuperaCuidadores(Cuidador cuidador) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+    @Override
+    public Especie verificaEspecie(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean guardaEspecie(Especie especie) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Habitat> recuperaHabitat(Habitat habitat) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

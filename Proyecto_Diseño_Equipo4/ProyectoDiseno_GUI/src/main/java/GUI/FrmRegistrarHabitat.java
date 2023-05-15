@@ -6,6 +6,7 @@ import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Habitat;
 import Dominio.TipoVegetacion;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -16,8 +17,8 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     ILogica logica;
     private DefaultListModel<Continente> disponiblesListModel = new DefaultListModel<>();
     private DefaultListModel<Continente> seleccionadosListModel = new DefaultListModel<>();
-    Habitat hb= new Habitat();
-    
+    Habitat hb = new Habitat();
+
     public FrmRegistrarHabitat() {
 
         logica = FabricaLogica.crearInstancia();
@@ -29,19 +30,17 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
     }
 
-    
-     public FrmRegistrarHabitat(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
+    public FrmRegistrarHabitat(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
 
         logica = FabricaLogica.crearInstancia();
 
         initComponents();
-        
+
         listaDisponibles.setModel(disponiblesListModel);
         listaSeleccionados.setModel(seleccionadosListModel);
         despliegaDatosRecuperados(clima, continentes, vege);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -233,29 +232,41 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
             if (hb == null) {
                 hb = new Habitat();
             }
+            if (logica.verificaNombreHabitat(txtHabitat.getText()) != null) {
+                muestraError();
+                return;
+            }
+            List<Continente> seleccionados = new ArrayList<>();
+            for (int i = 0; i < seleccionadosListModel.size(); i++) {
+                seleccionados.add(seleccionadosListModel.get(i));
+            }
             hb.setClima2((Clima) cmbClima.getSelectedItem());
             hb.setVegetacion2((TipoVegetacion) cmbVegetacion.getSelectedItem());
-            hb.setContinentes(listaSeleccionados.getSelectedValuesList());
+            hb.setContinentes(seleccionados);
             hb.setNombre(txtHabitat.getText());
             logica.guardarHabitat(hb);
             muestraMensajeExitoso();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
         }
+
+
     }//GEN-LAST:event_selecGuardarActionPerformed
 
+
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-        if(this.txtHabitat.getText().equals("")){
-           JOptionPane.showMessageDialog(this, "Ingrese nombre de el habitat a verificar");
-       }else{
-             hb = logica.verificaNombreHabitat(txtHabitat.getText());
-             System.out.println(hb);
-            if(hb!=null){
+        if (this.txtHabitat.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de el habitat a verificar");
+        } else {
+            reiniciaContinentes();
+            hb = logica.verificaNombreHabitat(txtHabitat.getText());
+            System.out.println(hb);
+            if (hb != null) {
                 muestraDatosHabitat(hb);
-            }else{
+            } else {
                 activaCampos();
             }
-       }
+        }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
@@ -290,7 +301,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         for (int i = 0; i < clima.size(); i++) {
             cmbClima.addItem(clima.get(i));
         }
-       
+
         for (int i = 0; i < vege.size(); i++) {
             cmbVegetacion.addItem(vege.get(i));
         }
@@ -303,38 +314,44 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         cmbClima.setSelectedItem(habitat.getClima2());
         cmbVegetacion.setSelectedItem(habitat.getVegetacion2());
 
-        // Limpiar las listas de continentes disponibles y seleccionados
-        disponiblesListModel.clear();
-        seleccionadosListModel.clear();
-
-//        // Agregar los continentes disponibles
-//        List<Continente> disponibles = habitat.getContinentes();
-//        for (Continente continente : disponibles) {
-//            disponiblesListModel.addElement(continente);
-//        }
-
-        // Agregar los continentes seleccionados
-        List<Continente> seleccionados = habitat.getContinentes();
-        for (Continente continente : seleccionados) {
-            seleccionadosListModel.addElement(continente);
+//        // Limpiar las listas de continentes disponibles y seleccionados
+//        disponiblesListModel.clear();
+//        seleccionadosListModel.clear();
+        // Agregar los continentes disponibles
+        
+       
+        List<Continente> continentesHabitat = habitat.getContinentes();
+        for (Continente continente : continentesHabitat) {
+            for (int i = 0; i < disponiblesListModel.size(); i++) {
+                if (disponiblesListModel.get(i).equals(continente)) {
+                    seleccionadosListModel.addElement(continente);
+                    disponiblesListModel.removeElement(continente);
+                }
+            }
         }
-      cmbClima.setEnabled(false);
-      cmbVegetacion.setEnabled(false);
-      listaDisponibles.setEnabled(false);
-      listaSeleccionados.setEnabled(false);
-      btnagregar.setEnabled(false);
-      btneliminar.setEnabled(false);
-      selecGuardar.setEnabled(false);
+
+//        // Agregar los continentes seleccionados
+//        List<Continente> seleccionados = habitat.getContinentes();
+//        for (Continente continente : seleccionados) {
+//            seleccionadosListModel.addElement(continente);
+//        }
+        cmbClima.setEnabled(false);
+        cmbVegetacion.setEnabled(false);
+        listaDisponibles.setEnabled(false);
+        listaSeleccionados.setEnabled(false);
+        btnagregar.setEnabled(false);
+        btneliminar.setEnabled(false);
+        selecGuardar.setEnabled(false);
     }
 
     public void activaCampos() {
-      cmbClima.setEnabled(true);
-      cmbVegetacion.setEnabled(true);
-      listaDisponibles.setEnabled(true);
-      listaSeleccionados.setEnabled(true);
-      btnagregar.setEnabled(true);
-      btneliminar.setEnabled(true);
-      selecGuardar.setEnabled(true);
+        cmbClima.setEnabled(true);
+        cmbVegetacion.setEnabled(true);
+        listaDisponibles.setEnabled(true);
+        listaSeleccionados.setEnabled(true);
+        btnagregar.setEnabled(true);
+        btneliminar.setEnabled(true);
+        selecGuardar.setEnabled(true);
     }
 
     public boolean verificaCamposLlenos() {
@@ -344,17 +361,27 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         if (nombre.isEmpty() || clima == null || vegetacion == null || seleccionadosListModel.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
     public void muestraError() {
-
+        JOptionPane.showMessageDialog(this, "Habitat existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void muestraMensajeExitoso() {
-       JOptionPane.showMessageDialog(this, "Habitat Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Habitat Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void reiniciaContinentes() {
+       
+       while(!seleccionadosListModel.isEmpty()){
+             disponiblesListModel.addElement(seleccionadosListModel.getElementAt(0));
+
+                seleccionadosListModel.remove(0);
+             
+       }
     }
 
     /**
@@ -387,7 +414,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmRegistrarHabitat().setVisible(true);
+                //       new FrmRegistrarHabitat().setVisible(true);
             }
         });
     }

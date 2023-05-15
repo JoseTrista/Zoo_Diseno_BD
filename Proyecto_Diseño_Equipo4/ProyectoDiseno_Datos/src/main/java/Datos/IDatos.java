@@ -3,6 +3,8 @@ package Datos;
 
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Cuidador;
+import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.Itinerario;
@@ -30,4 +32,13 @@ public interface IDatos
     public Itinerario buscarItinerario(String nombre);
     
     public Itinerario guardaItinerario(Itinerario itinerario);
+    
+    public List<Cuidador> recuperaCuidadores(Cuidador cuidador);
+    
+    public List<Habitat> recuperaHabitat(Habitat habitat);
+    
+    public Especie verificaEspecie(String nombre);
+    
+    public boolean guardaEspecie(Especie especie);
+
 }
