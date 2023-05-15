@@ -12,13 +12,11 @@ import org.bson.types.ObjectId;
 
 public class ContinenteDAO <T> extends DAOBase<Continente>
 {
-    
     private MongoDatabase conexion;
 
     public void recuperarContinente() {
        conexion = Conexion.getInstance();
     }
-    
   
     @Override
     public void guardar(Continente entidad) {
