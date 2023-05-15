@@ -10,5 +10,5 @@ public interface ILogica
     
     public Habitat verificaNombreHabitat(String nombre);
     
-    public void guardarHabitat();      
+    public boolean guardarHabitat(Habitat habitat);      
 }

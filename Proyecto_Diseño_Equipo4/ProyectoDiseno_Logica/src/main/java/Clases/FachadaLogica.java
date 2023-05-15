@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FachadaLogica implements ILogica {
 
-    private ControlHabitat ch;
+    ControlHabitat ch = new ControlHabitat();
 
     @Override
     public Habitat verificaNombreHabitat(String nombre) {
@@ -16,8 +16,9 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public void guardarHabitat() {
-        ch.guardarHabitat();
+    public boolean guardarHabitat(Habitat habitat) {
+        ch.guardarHabitat(habitat);
+        return true;
     }
 
     @Override

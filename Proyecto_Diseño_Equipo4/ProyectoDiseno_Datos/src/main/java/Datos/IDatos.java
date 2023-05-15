@@ -18,5 +18,5 @@ public interface IDatos
     
     public Habitat verificarHabitat(String nombre);
     
-    public void guardaHabitat();
+    public boolean guardaHabitat(Habitat habitat);
 }

@@ -75,6 +75,7 @@ public class Clima {
     /**
      *
      * Constructor sin argumentos de la clase Clima.
+     * @param nombre
      */
     public Clima(String nombre) {
         this.nombre = nombre;

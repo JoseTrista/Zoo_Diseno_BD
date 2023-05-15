@@ -21,6 +21,25 @@ public class Habitat {
      */
     private String nombre;
 
+    private Clima clima2;
+    private TipoVegetacion vegetacion2;
+
+    public Clima getClima2() {
+        return clima2;
+    }
+
+    public void setClima2(Clima clima2) {
+        this.clima2 = clima2;
+    }
+
+    public TipoVegetacion getVegetacion2() {
+        return vegetacion2;
+    }
+
+    public void setVegetacion2(TipoVegetacion vegetacion2) {
+        this.vegetacion2 = vegetacion2;
+    }
+    
     /**
      * Lista de climas asociados al hábitat.
      */
@@ -52,6 +71,13 @@ public class Habitat {
      */
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public Habitat(String nombre, Clima clima2, TipoVegetacion vegetacion2) {
+        this.nombre = nombre;
+        this.clima2 = clima2;
+        this.vegetacion2 = vegetacion2;
+        this.continentes = new ArrayList<>();
     }
 
     /**
@@ -149,6 +175,13 @@ public class Habitat {
      * Constructor por defecto de la clase
      */
     public Habitat() {
+    }
+
+    public Habitat(String nombre) {
+        this.nombre = nombre;
+        this.clima = new ArrayList<>();
+        this.continentes = new ArrayList<>();
+        this.vegetacion = new ArrayList<>();
     }
 
     /**

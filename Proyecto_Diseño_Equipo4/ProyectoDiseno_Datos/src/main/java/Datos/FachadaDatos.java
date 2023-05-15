@@ -12,7 +12,7 @@ public class FachadaDatos implements IDatos
     private ContinenteDAO continente;
     private ClimaDAO clima;
     private VegetacionDAO vegetacion; 
-    private HabitatDAO habitat;
+    private HabitatDAO habitat2 = new HabitatDAO();
     
     @Override
     public List<Clima> recuperarClima() {
@@ -36,13 +36,14 @@ public class FachadaDatos implements IDatos
     @Override
     public Habitat verificarHabitat(String nombre) {
         Habitat hb = new Habitat();
-        hb = habitat.buscaHabitat(nombre);
+        hb = habitat2.buscaHabitat(nombre);
         return hb;
     }
 
     @Override
-    public void guardaHabitat() {
-       habitat.guardarHabitat();
+    public boolean guardaHabitat(Habitat habitat) {
+        habitat2.guardarHabitat(habitat);
+        return true;
     }
 
 }

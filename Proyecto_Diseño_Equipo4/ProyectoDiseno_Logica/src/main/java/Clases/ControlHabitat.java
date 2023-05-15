@@ -2,6 +2,7 @@
 package Clases;
 
 import Datos.FabricaDatos;
+import Datos.FachadaDatos;
 import Datos.IDatos;
 import Dominio.Clima;
 import Dominio.Continente;
@@ -10,7 +11,7 @@ import Dominio.TipoVegetacion;
 import java.util.List;
 
 public class ControlHabitat  { 
-    public IDatos datos;
+    public IDatos datos = new FachadaDatos();
             
             
     public Habitat verificaHabitat(String nombre){
@@ -19,8 +20,9 @@ public class ControlHabitat  {
         return habitat;
     }
     
-    public void guardarHabitat(){
-        //Accede a datos mediante la fachada
+    public boolean guardarHabitat(Habitat habitat){
+        datos.guardaHabitat(habitat);
+        return true;
     }
     
     public List<Clima> RecuperaClima(){

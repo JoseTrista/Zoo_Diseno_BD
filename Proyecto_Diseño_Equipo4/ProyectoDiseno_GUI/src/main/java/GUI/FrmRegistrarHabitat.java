@@ -4,6 +4,7 @@ import Clases.FabricaLogica;
 import Clases.ILogica;
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Habitat;
 import Dominio.TipoVegetacion;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -15,7 +16,8 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     ILogica logica;
     private DefaultListModel<Continente> disponiblesListModel = new DefaultListModel<>();
     private DefaultListModel<Continente> seleccionadosListModel = new DefaultListModel<>();
-
+    Habitat hb= new Habitat();
+    
     public FrmRegistrarHabitat() {
 
         logica = FabricaLogica.crearInstancia();
@@ -55,14 +57,13 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         selecGuardar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaDisponibles = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaSeleccionados = new javax.swing.JList<>();
-        agregar = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
+        btnagregar = new javax.swing.JButton();
+        btneliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,6 +83,9 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
         jLabel4.setText("Vegetación");
 
+        cmbClima.setEnabled(false);
+
+        cmbVegetacion.setEnabled(false);
         cmbVegetacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbVegetacionActionPerformed(evt);
@@ -93,36 +97,34 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jLabel6.setText("Seleccionados");
 
         selecGuardar.setText("Guardar");
+        selecGuardar.setEnabled(false);
         selecGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecGuardarActionPerformed(evt);
             }
         });
 
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Registrar hábitat");
 
+        listaDisponibles.setEnabled(false);
         jScrollPane1.setViewportView(listaDisponibles);
 
+        listaSeleccionados.setEnabled(false);
         jScrollPane2.setViewportView(listaSeleccionados);
 
-        agregar.setText("Agregar");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        btnagregar.setText("Agregar");
+        btnagregar.setEnabled(false);
+        btnagregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
+                btnagregarActionPerformed(evt);
             }
         });
 
-        eliminar.setText("Eliminar");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
+        btneliminar.setText("Eliminar");
+        btneliminar.setEnabled(false);
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
+                btneliminarActionPerformed(evt);
             }
         });
 
@@ -152,21 +154,16 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                             .addComponent(cmbVegetacion, 0, 116, Short.MAX_VALUE)
                             .addComponent(cmbClima, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110)
-                                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(agregar)
-                                    .addGap(133, 133, 133)
-                                    .addComponent(eliminar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(74, 74, 74)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnagregar)
+                                .addGap(133, 133, 133)
+                                .addComponent(btneliminar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel5))
@@ -182,6 +179,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                         .addGap(144, 144, 144)
                         .addComponent(btnVerificar)))
                 .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(173, 173, 173))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,13 +217,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregar)
-                    .addComponent(eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selecGuardar)
-                    .addComponent(btnLimpiar))
-                .addGap(28, 28, 28))
+                    .addComponent(btnagregar)
+                    .addComponent(btneliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addComponent(selecGuardar)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -230,29 +229,35 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void selecGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecGuardarActionPerformed
-        logica.guardarHabitat();
+        if (verificaCamposLlenos()) {
+            if (hb == null) {
+                hb = new Habitat();
+            }
+            hb.setClima2((Clima) cmbClima.getSelectedItem());
+            hb.setVegetacion2((TipoVegetacion) cmbVegetacion.getSelectedItem());
+            hb.setContinentes(listaSeleccionados.getSelectedValuesList());
+            hb.setNombre(txtHabitat.getText());
+            logica.guardarHabitat(hb);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
+        }
     }//GEN-LAST:event_selecGuardarActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-//        txtHabitat.setText("");
-//        cmbClima.setSelectedIndex(0);
-//        cmbVegetacion.setSelectedIndex(0);
-//        cboAmerica.setSelected(false);
-//        cboAfrica.setSelected(false);
-//        cboOceania.setSelected(false);
-//        cboEuropa.setSelected(false);
-//        cboAsia.setSelected(false);
-    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         if(this.txtHabitat.getText().equals("")){
            JOptionPane.showMessageDialog(this, "Ingrese nombre de el habitat a verificar");
        }else{
-           logica.verificaNombreHabitat(txtHabitat.getText());
+             hb = logica.verificaNombreHabitat(txtHabitat.getText());
+             System.out.println(hb);
+            if(hb!=null){
+                muestraDatosHabitat(hb);
+            }else{
+                activaCampos();
+            }
        }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+    private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         int i = listaDisponibles.getSelectedIndex();
         if (i != -1) {
 
@@ -262,9 +267,9 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_agregarActionPerformed
+    }//GEN-LAST:event_btnagregarActionPerformed
 
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         int i = listaSeleccionados.getSelectedIndex();
         if (i != -1) {
 
@@ -274,7 +279,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_eliminarActionPerformed
+    }//GEN-LAST:event_btneliminarActionPerformed
 
     private void cmbVegetacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVegetacionActionPerformed
         // TODO add your handling code here:
@@ -293,16 +298,54 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         }
     }
 
-    public void muestraDatosHabitat() {
+    public void muestraDatosHabitat(Habitat habitat) {
+        cmbClima.setSelectedItem(habitat.getClima2());
+        cmbVegetacion.setSelectedItem(habitat.getVegetacion2());
 
+        // Limpiar las listas de continentes disponibles y seleccionados
+        disponiblesListModel.clear();
+        seleccionadosListModel.clear();
+
+//        // Agregar los continentes disponibles
+//        List<Continente> disponibles = habitat.getContinentes();
+//        for (Continente continente : disponibles) {
+//            disponiblesListModel.addElement(continente);
+//        }
+
+        // Agregar los continentes seleccionados
+        List<Continente> seleccionados = habitat.getContinentes();
+        for (Continente continente : seleccionados) {
+            seleccionadosListModel.addElement(continente);
+        }
+      cmbClima.setEnabled(false);
+      cmbVegetacion.setEnabled(false);
+      listaDisponibles.setEnabled(false);
+      listaSeleccionados.setEnabled(false);
+      btnagregar.setEnabled(false);
+      btneliminar.setEnabled(false);
+      selecGuardar.setEnabled(false);
     }
 
     public void activaCampos() {
-
+      cmbClima.setEnabled(true);
+      cmbVegetacion.setEnabled(true);
+      listaDisponibles.setEnabled(true);
+      listaSeleccionados.setEnabled(true);
+      btnagregar.setEnabled(true);
+      btneliminar.setEnabled(true);
+      selecGuardar.setEnabled(true);
     }
 
-    public void verificaCamposLlenos() {
-
+    public boolean verificaCamposLlenos() {
+        String nombre = txtHabitat.getText();
+        Clima clima = (Clima) cmbClima.getSelectedItem();
+        TipoVegetacion vegetacion = (TipoVegetacion) cmbVegetacion.getSelectedItem();
+        if (nombre.isEmpty() || clima == null || vegetacion == null || seleccionadosListModel.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public void muestraError() {
@@ -349,12 +392,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton agregar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnVerificar;
+    private javax.swing.JButton btnagregar;
+    private javax.swing.JButton btneliminar;
     private javax.swing.JComboBox<Clima> cmbClima;
     private javax.swing.JComboBox<TipoVegetacion> cmbVegetacion;
-    private javax.swing.JButton eliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
