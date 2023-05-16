@@ -19,6 +19,7 @@ public class FachadaDatos implements IDatos {
     private CuidadorDAO cuidador;
     private HabitatDAO habitat;
     private HabitatDAO habitat2 = new HabitatDAO();
+    private Itinerario itinerario;
     private GuiaDAO guia;
     private ZonadelParqueDAO zona;
     private EspecieDAO espe;
@@ -27,7 +28,6 @@ public class FachadaDatos implements IDatos {
     public List<Clima> recuperarClima() {
         clima = new ClimaDAO();
         return clima.buscarTodos();
-
     }
 
     @Override
@@ -47,6 +47,12 @@ public class FachadaDatos implements IDatos {
         Habitat hb = new Habitat();
         hb = habitat2.buscaHabitat(nombre);
         return hb;
+    }
+    
+    public Itinerario verificarItinerario(String nombre){
+        //Itinerario it = new ItinerarioDAO();
+        //return it.(nombre);
+        return null;
     }
 
     @Override

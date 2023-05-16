@@ -54,8 +54,8 @@ public class FachadaLogica implements ILogica {
     public List<Object> recuperaZonasyGuias() {
         ci = new ControlItinerario();
         List<Object> datosARecuperar = new ArrayList<>();
-        datosARecuperar.add(ci.recuperaZonas());
         datosARecuperar.add(ci.recuperaGuias());
+        datosARecuperar.add(ci.recuperaZonas());
         return datosARecuperar;
     }
 

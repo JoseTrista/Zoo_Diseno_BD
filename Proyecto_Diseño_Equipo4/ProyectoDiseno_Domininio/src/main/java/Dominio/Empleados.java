@@ -212,4 +212,9 @@ public class Empleados {
         this.fechaIngreso = fechaIngreso;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }
