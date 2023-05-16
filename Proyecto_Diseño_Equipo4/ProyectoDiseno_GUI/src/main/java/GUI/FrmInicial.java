@@ -4,6 +4,8 @@ import Clases.FabricaLogica;
 import Clases.ILogica;
 import Dominio.Clima;
 import Dominio.Continente;
+import Dominio.Cuidador;
+import Dominio.Habitat;
 import Dominio.TipoVegetacion;
 import java.util.List;
 
@@ -123,23 +125,28 @@ public class FrmInicial extends javax.swing.JFrame {
 
     private void selecHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecHabitatActionPerformed
         List<Object> lista = logica.recuperaDatosHabitat();
-        List<Continente> continente=(List<Continente>) lista.get(1);
-        
-        List<TipoVegetacion> vegetacion=(List<TipoVegetacion>) lista.get(2);
-        List<Clima> climas=(List<Clima>) lista.get(0);
-       
-        FrmRegistrarHabitat frmRegistro = new FrmRegistrarHabitat(climas,continente,vegetacion);
+        List<Continente> continente = (List<Continente>) lista.get(1);
+
+        List<TipoVegetacion> vegetacion = (List<TipoVegetacion>) lista.get(2);
+        List<Clima> climas = (List<Clima>) lista.get(0);
+
+        FrmRegistrarHabitat frmRegistro = new FrmRegistrarHabitat(climas, continente, vegetacion);
         frmRegistro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecHabitatActionPerformed
 
     private void selecRegistraroActualizarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistraroActualizarEspecieActionPerformed
-        FrmRegistrar_ActualizarEspecie frmEspecie = new FrmRegistrar_ActualizarEspecie();
+        List<Object> lista = logica.recuperaDatosHabitat();
+        List<Cuidador> listCuidador = (List<Cuidador>) lista.get(0);
+        List<Habitat> listHabitat = (List<Habitat>) lista.get(1);
+
+        FrmRegistrar_ActualizarEspecie frmEspecie = new FrmRegistrar_ActualizarEspecie(listCuidador, listHabitat);
         frmEspecie.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
 
-    public void muestraError() {}
+    public void muestraError() {
+    }
 
     private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
         FrmItinerarios frmIti = new FrmItinerarios();

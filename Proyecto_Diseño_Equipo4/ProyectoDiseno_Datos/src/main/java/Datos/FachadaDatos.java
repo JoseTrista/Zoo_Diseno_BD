@@ -1,4 +1,3 @@
-
 package Datos;
 
 import Dominio.Clima;
@@ -12,32 +11,32 @@ import Dominio.TipoVegetacion;
 import Dominio.ZonaDelParque;
 import java.util.List;
 
-public class FachadaDatos implements IDatos
-{
+public class FachadaDatos implements IDatos {
+
     private ContinenteDAO continente;
     private ClimaDAO clima;
-    private VegetacionDAO vegetacion; 
+    private VegetacionDAO vegetacion;
     private CuidadorDAO cuidador;
     private HabitatDAO habitat;
     private HabitatDAO habitat2 = new HabitatDAO();
-    
+
     @Override
     public List<Clima> recuperarClima() {
-     clima=new ClimaDAO();
-     return  clima.buscarTodos();
-       
+        clima = new ClimaDAO();
+        return clima.buscarTodos();
+
     }
 
     @Override
     public List<Continente> recuperarContinente() {
-          continente=new ContinenteDAO();
-       return  continente.buscarTodos();
+        continente = new ContinenteDAO();
+        return continente.buscarTodos();
     }
 
     @Override
     public List<TipoVegetacion> recuperarVegetacion() {
-          vegetacion=new VegetacionDAO();
-       return  vegetacion.buscarTodos();
+        vegetacion = new VegetacionDAO();
+        return vegetacion.buscarTodos();
     }
 
     @Override
@@ -74,11 +73,10 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
-    public List<Cuidador> recuperaCuidadores(Cuidador cuidador) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Cuidador> recuperaCuidadores() {
+        cuidador = new CuidadorDAO();
+        return cuidador.buscarTodos();
     }
-
-   
 
     @Override
     public Especie verificaEspecie(String nombre) {
@@ -91,8 +89,9 @@ public class FachadaDatos implements IDatos
     }
 
     @Override
-    public List<Habitat> recuperaHabitat(Habitat habitat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Habitat> recuperaHabitats() {
+        habitat = new HabitatDAO();
+        return habitat.buscarTodos();
     }
 
 }

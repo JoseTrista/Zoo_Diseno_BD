@@ -8,6 +8,8 @@ public class FachadaLogica implements ILogica {
 
     ControlHabitat ch = new ControlHabitat();
     ControlItinerario ci = new ControlItinerario();
+    ControlEspecie ce = new ControlEspecie();
+
     @Override
     public Habitat verificaNombreHabitat(String nombre) {
         Habitat hb = new Habitat();
@@ -23,7 +25,7 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public List<Object> recuperaDatosHabitat() {
-        ch=new ControlHabitat();
+        ch = new ControlHabitat();
         List<Object> datosARecuperar = new ArrayList<>();
         datosARecuperar.add(ch.RecuperaClima());
         datosARecuperar.add(ch.RecuperaContinente());
@@ -48,11 +50,19 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public List<Object> recuperaZonasyGuias() {
-        ci=new ControlItinerario();
+        ci = new ControlItinerario();
         List<Object> datosARecuperar = new ArrayList<>();
         datosARecuperar.add(ci.recuperaZonas());
         datosARecuperar.add(ci.recuperaGuias());
         return datosARecuperar;
     }
 
+    @Override
+    public List<Object> recuperaCuidadoresyHabitats() {
+        ce = new ControlEspecie();
+        List<Object> datosARecuperar = new ArrayList<>();
+        datosARecuperar.add(ce.RecuperaCuidadores());
+        datosARecuperar.add(ch.RecuperaHabitats());
+        return datosARecuperar;
+    }
 }

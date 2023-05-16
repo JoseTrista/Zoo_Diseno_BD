@@ -10,7 +10,9 @@ public interface ILogica
     
     public Habitat verificaNombreHabitat(String nombre);
     
-    public boolean guardarHabitat(Habitat habitat);      
+    public boolean guardarHabitat(Habitat habitat);   
+    
+    public List<Object> recuperaCuidadoresyHabitats();
     
     public List<Object> recuperaZonasyGuias();
     

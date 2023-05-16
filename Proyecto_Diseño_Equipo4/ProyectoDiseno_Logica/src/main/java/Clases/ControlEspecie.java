@@ -15,11 +15,10 @@ import java.util.List;
  * @author IVAN
  */
 public class ControlEspecie {
-      public IDatos datos = new FachadaDatos();
-     
-      
+     public IDatos datos = new FachadaDatos();
         
     public List<Cuidador> RecuperaCuidadores(){
-        return null;
+        datos = FabricaDatos.dameInstancia();
+        return datos.recuperaCuidadores();
     }
 }

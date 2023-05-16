@@ -33,9 +33,9 @@ public interface IDatos
     
     public Itinerario guardaItinerario(Itinerario itinerario);
     
-    public List<Cuidador> recuperaCuidadores(Cuidador cuidador);
+    public List<Cuidador> recuperaCuidadores();
     
-    public List<Habitat> recuperaHabitat(Habitat habitat);
+    public List<Habitat> recuperaHabitats();
     
     public Especie verificaEspecie(String nombre);
     
