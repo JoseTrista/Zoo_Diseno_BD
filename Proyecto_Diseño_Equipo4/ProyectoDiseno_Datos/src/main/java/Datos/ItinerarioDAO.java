@@ -5,17 +5,47 @@
 package Datos;
 
 import Dominio.Itinerario;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author jctri
  */
-public class ItinerarioDAO {
+public class ItinerarioDAO<T> extends DAOBase<Itinerario> {
+    
+    private MongoDatabase conexion;
+    
     public Itinerario buscarnombreItinerario(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        conexion = Conexion.getInstance();
+        MongoCollection<Itinerario> itinerarioCollection = conexion.getCollection("Especie", Itinerario.class);
+        //return itinerarioCollection.find(eq("nombre", nombre)).first();
+        return null;
     }
     
     public Itinerario guardaItinerario(Itinerario itinerario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void guardar(Itinerario entidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Itinerario buscarPorID(ObjectId id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Itinerario> buscarTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public MongoCollection<Itinerario> obtenerColeccion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

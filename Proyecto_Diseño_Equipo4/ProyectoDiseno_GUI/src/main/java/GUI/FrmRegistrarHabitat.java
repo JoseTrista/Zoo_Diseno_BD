@@ -84,6 +84,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jLabel4.setText("Vegetación");
 
         cmbClima.setEnabled(false);
+        cmbClima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbClimaActionPerformed(evt);
+            }
+        });
 
         cmbVegetacion.setEnabled(false);
         cmbVegetacion.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +315,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         fi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void cmbClimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbClimaActionPerformed
 
     public void despliegaDatosRecuperados(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
         for (int i = 0; i < clima.size(); i++) {

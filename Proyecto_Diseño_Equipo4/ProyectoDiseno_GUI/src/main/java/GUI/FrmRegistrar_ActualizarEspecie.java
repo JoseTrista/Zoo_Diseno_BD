@@ -28,7 +28,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private DefaultListModel<Habitat> disponiblesListModelHabitat = new DefaultListModel<>();
     private DefaultListModel<Habitat> seleccionadosListModelHabitat = new DefaultListModel<>();
     Especie sp = new Especie();
-    List<Animal> animalesAgregados=new ArrayList<>();
+    List<Animal> animalesAgregados = new ArrayList<>();
+
     public FrmRegistrar_ActualizarEspecie() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
@@ -58,7 +59,6 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     public void despliegaDatosEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListCuidador.size(); i++) {
             disponiblesListModelCuidador.addElement(ListCuidador.get(i));
-
         }
 
         for (int i = 0; i < ListHabitat.size(); i++) {
@@ -111,6 +111,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         cmbZonas = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -197,6 +198,13 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -271,7 +279,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
-                .addGap(63, 63, 63))
+                .addGap(192, 192, 192)
+                .addComponent(btnRegresar)
+                .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,9 +341,11 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                         .addComponent(btnEliminarCuidador)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditarAnimales)
-                .addGap(18, 18, 18)
-                .addComponent(btnGuardar)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnRegresar))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,7 +358,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -408,7 +420,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private void btnEditarAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAnimalesActionPerformed
         FrmEditarAnimales fEditar = new FrmEditarAnimales(this);
         fEditar.setVisible(true);
-     this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnEditarAnimalesActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -450,6 +462,13 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        FrmInicial fi = new FrmInicial();
+        fi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     public boolean verificaCamposLlenos() {
         String nombre = txtNombreEspañol.getText();
@@ -595,6 +614,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarCuidador;
     private javax.swing.JButton btnEliminarHabitat;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<ZonaDelParque> cmbZonas;
     private javax.swing.JLabel jLabel1;

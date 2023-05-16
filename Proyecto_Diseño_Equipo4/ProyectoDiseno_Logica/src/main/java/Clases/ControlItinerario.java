@@ -8,6 +8,7 @@ import Datos.FabricaDatos;
 import Datos.FachadaDatos;
 import Datos.IDatos;
 import Dominio.Guia;
+import Dominio.Itinerario;
 import Dominio.ZonaDelParque;
 import java.util.List;
 
@@ -32,8 +33,10 @@ public class ControlItinerario {
         
     }
     
-    public void verificaNombreItinerario(){
-        
+    public void verificaNombreItinerario(String nombre){
+        Itinerario itinerario = new Itinerario();
+        itinerario = datos.verificarItinerario(nombre);
+        return;
     }
     
     public void guardaItinerario(){

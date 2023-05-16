@@ -40,5 +40,6 @@ public interface IDatos
     public Especie verificaEspecie(String nombre);
     
     public boolean guardaEspecie(Especie especie);
-
+    
+    public Itinerario verificarItinerario(String nombre);
 }

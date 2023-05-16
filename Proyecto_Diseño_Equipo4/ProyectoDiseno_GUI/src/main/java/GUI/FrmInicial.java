@@ -155,10 +155,11 @@ public class FrmInicial extends javax.swing.JFrame {
     private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
         List<Object> lista = logica.recuperaZonasyGuias();
         
-        List<Guia> listGuia = (List<Guia>) lista.get(0);
-        List<ZonaDelParque> listZona = (List<ZonaDelParque>) lista.get(1);
-        
-        FrmItinerarios frmIti = new FrmItinerarios(listGuia,listZona);
+        List<Guia> ListGuia = (List<Guia>) lista.get(0);
+        List<ZonaDelParque> ListZona = (List<ZonaDelParque>) lista.get(1);
+        System.out.println(ListGuia.size());
+        System.out.println(ListZona.size());
+        FrmItinerarios frmIti = new FrmItinerarios(ListGuia,ListZona);
         frmIti.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed
