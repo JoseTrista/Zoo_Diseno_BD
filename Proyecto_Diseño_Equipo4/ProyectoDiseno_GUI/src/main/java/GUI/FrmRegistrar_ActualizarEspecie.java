@@ -44,7 +44,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         listaDisponiblesHabitats.setModel(disponiblesListModelHabitat);
         listaSeleccionadosHabitats.setModel(seleccionadosListModelHabitat);
         recuperaCuidadoresyHabitats(ListCuidador, ListHabitat);
-        
+
     }
 
     public void recuperaCuidadoresyHabitats(List<Cuidador> ListCuidador, List<Habitat> ListHabitat) {
@@ -91,10 +91,10 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         listaSeleccionadosCuidadores = new javax.swing.JList<>();
         jScrollPane5 = new javax.swing.JScrollPane();
         listaSeleccionadosHabitats = new javax.swing.JList<>();
-        agregarCuidador = new javax.swing.JButton();
-        eliminarCuidador = new javax.swing.JButton();
-        AgregarHabitat = new javax.swing.JButton();
-        eliminarHabitat = new javax.swing.JButton();
+        btnAgregarCuidador = new javax.swing.JButton();
+        btnEliminarCuidador = new javax.swing.JButton();
+        btnAgregarHabitat = new javax.swing.JButton();
+        btnEliminarHabitat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,31 +138,51 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
         jScrollPane5.setViewportView(listaSeleccionadosHabitats);
 
-        agregarCuidador.setText("Agregar cuidador");
+        btnAgregarCuidador.setText("Agregar cuidador");
+        btnAgregarCuidador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCuidadorActionPerformed(evt);
+            }
+        });
 
-        eliminarCuidador.setText("Eliminar Cuidador");
+        btnEliminarCuidador.setText("Eliminar Cuidador");
+        btnEliminarCuidador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCuidadorActionPerformed(evt);
+            }
+        });
 
-        AgregarHabitat.setText("Agregar habitat");
+        btnAgregarHabitat.setText("Agregar habitat");
+        btnAgregarHabitat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarHabitatActionPerformed(evt);
+            }
+        });
 
-        eliminarHabitat.setText("Eliminar habitat");
+        btnEliminarHabitat.setText("Eliminar habitat");
+        btnEliminarHabitat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarHabitatActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eliminarCuidador)
-                            .addComponent(agregarCuidador))
-                        .addGap(178, 178, 178)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AgregarHabitat)
-                            .addComponent(eliminarHabitat)))
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAgregarCuidador)
+                            .addComponent(btnEliminarCuidador))
+                        .addGap(183, 183, 183)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAgregarHabitat)
+                            .addComponent(btnEliminarHabitat)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(85, 85, 85)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,15 +275,16 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregarHabitat)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(agregarCuidador)
-                            .addComponent(AgregarHabitat))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eliminarCuidador)
-                            .addComponent(eliminarHabitat, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEliminarHabitat)
+                            .addComponent(btnEliminarCuidador)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAgregarCuidador)))
                 .addGap(22, 22, 22)
                 .addComponent(btnEditarAnimales)
                 .addGap(45, 45, 45))
@@ -289,6 +310,42 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerificarActionPerformed
+
+    private void btnAgregarCuidadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuidadorActionPerformed
+        // TODO add your handling code here:
+        int i = listaDisponiblesCuidadores.getSelectedIndex();
+        if (i != -1) {
+            seleccionadosListModelCuidador.addElement(disponiblesListModelCuidador.getElementAt(i));
+            disponiblesListModelCuidador.remove(i);
+        }
+    }//GEN-LAST:event_btnAgregarCuidadorActionPerformed
+
+    private void btnAgregarHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabitatActionPerformed
+        // TODO add your handling code here:
+        int i = listaDisponiblesHabitats.getSelectedIndex();
+        if (i != -1) {
+            seleccionadosListModelHabitat.addElement(disponiblesListModelHabitat.getElementAt(i));
+            disponiblesListModelHabitat.remove(i);
+        }
+    }//GEN-LAST:event_btnAgregarHabitatActionPerformed
+
+    private void btnEliminarCuidadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuidadorActionPerformed
+        // TODO add your handling code here:
+        int i = listaSeleccionadosCuidadores.getSelectedIndex();
+        if (i != -1) {
+            disponiblesListModelCuidador.addElement(seleccionadosListModelCuidador.getElementAt(i));
+            seleccionadosListModelCuidador.remove(i);
+        }
+    }//GEN-LAST:event_btnEliminarCuidadorActionPerformed
+
+    private void btnEliminarHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHabitatActionPerformed
+        // TODO add your handling code here:
+        int i = listaSeleccionadosHabitats.getSelectedIndex();
+        if (i != -1) {
+            disponiblesListModelCuidador.addElement(seleccionadosListModelCuidador.getElementAt(i));
+            seleccionadosListModelCuidador.remove(i);
+        }
+    }//GEN-LAST:event_btnEliminarHabitatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,12 +383,12 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AgregarHabitat;
-    private javax.swing.JButton agregarCuidador;
+    private javax.swing.JButton btnAgregarCuidador;
+    private javax.swing.JButton btnAgregarHabitat;
     private javax.swing.JButton btnEditarAnimales;
+    private javax.swing.JButton btnEliminarCuidador;
+    private javax.swing.JButton btnEliminarHabitat;
     private javax.swing.JButton btnVerificar;
-    private javax.swing.JButton eliminarCuidador;
-    private javax.swing.JButton eliminarHabitat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

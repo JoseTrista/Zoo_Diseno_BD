@@ -42,21 +42,21 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="eliminarCuidador" min="-2" max="-2" attributes="0"/>
-                              <Component id="agregarCuidador" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnAgregarCuidador" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEliminarCuidador" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="AgregarHabitat" min="-2" max="-2" attributes="0"/>
-                              <Component id="eliminarHabitat" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnAgregarHabitat" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEliminarHabitat" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="jScrollPane2" min="-2" pref="48" max="-2" attributes="0"/>
@@ -178,18 +178,19 @@
                               <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnAgregarHabitat" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="agregarCuidador" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AgregarHabitat" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="eliminarCuidador" min="-2" max="-2" attributes="0"/>
-                              <Component id="eliminarHabitat" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEliminarHabitat" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEliminarCuidador" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="btnAgregarCuidador" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="btnEditarAnimales" min="-2" max="-2" attributes="0"/>
@@ -357,25 +358,37 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="agregarCuidador">
+        <Component class="javax.swing.JButton" name="btnAgregarCuidador">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar cuidador"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarCuidadorActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="eliminarCuidador">
+        <Component class="javax.swing.JButton" name="btnEliminarCuidador">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar Cuidador"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarCuidadorActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="AgregarHabitat">
+        <Component class="javax.swing.JButton" name="btnAgregarHabitat">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar habitat"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarHabitatActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="eliminarHabitat">
+        <Component class="javax.swing.JButton" name="btnEliminarHabitat">
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar habitat"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarHabitatActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

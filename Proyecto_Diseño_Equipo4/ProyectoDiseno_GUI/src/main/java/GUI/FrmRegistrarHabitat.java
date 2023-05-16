@@ -272,9 +272,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         int i = listaDisponibles.getSelectedIndex();
         if (i != -1) {
-
             seleccionadosListModel.addElement(disponiblesListModel.getElementAt(i));
-
             disponiblesListModel.remove(i);
 
         }
@@ -284,9 +282,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         int i = listaSeleccionados.getSelectedIndex();
         if (i != -1) {
-
             disponiblesListModel.addElement(seleccionadosListModel.getElementAt(i));
-
             seleccionadosListModel.remove(i);
         }
 
