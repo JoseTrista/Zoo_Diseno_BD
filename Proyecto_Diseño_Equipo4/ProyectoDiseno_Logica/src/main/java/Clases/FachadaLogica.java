@@ -1,5 +1,6 @@
 package Clases;
 
+import Dominio.Especie;
 import Dominio.Habitat;
 import Dominio.ZonaDelParque;
 import java.util.ArrayList;
@@ -68,5 +69,18 @@ public class FachadaLogica implements ILogica {
         datosARecuperar.add(ch.RecuperaHabitats());
         datosARecuperar.add(ci.recuperaZonas());
         return datosARecuperar;
+    }
+
+    @Override
+    public Especie verificaNombreEspecie(String nombre) {
+        Especie hb = new Especie();
+        hb = ce.verificaEspecieRegistrada(nombre);
+        return hb;
+    }
+
+    @Override
+    public boolean guardarEspecie(Especie especie) {
+         ce.guardarEspecie(especie);
+        return true;
     }
 }

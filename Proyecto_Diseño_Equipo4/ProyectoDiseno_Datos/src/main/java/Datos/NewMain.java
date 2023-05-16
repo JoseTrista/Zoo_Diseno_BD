@@ -1,12 +1,16 @@
 package Datos;
 
+import Dominio.Animal;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
+import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.ZonaDelParque;
 import Dominio.TipoVegetacion;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -51,27 +55,33 @@ public class NewMain {
 //        clima.guardar(clN);
 //        clima.guardar(clT);
 //        clima.guardar(clP);
-        
+
 //        GuiaDAO guia = new GuiaDAO();
 //        Guia g1 = new Guia("jose", "Amberes 314", "6442062325", new Date(120,0,13));
 //        guia.guardar(g1);
-// 
-        ZonadelParqueDAO zona = new ZonadelParqueDAO();
-        ZonaDelParque z1 = new ZonaDelParque("Mamiferos", 10);
-        ZonaDelParque z2 = new ZonaDelParque("Terrario", 15);
-        ZonaDelParque z3 = new ZonaDelParque("Aviario", 20);
-        ZonaDelParque z4 = new ZonaDelParque("Reptiles", 30);
-        ZonaDelParque z5 = new ZonaDelParque("Insectos", 40);
-        zona.guardar(z1);
-        zona.guardar(z2);
-        zona.guardar(z3);
-        zona.guardar(z4);
-        zona.guardar(z5);
-
-          CuidadorDAO cuidador = new CuidadorDAO();
-          Cuidador c1 = new Cuidador("Jesus Villanueva", "Plano oriente", "6441879625", new Date(110, 05,12));
-          
-          cuidador.guardar(c1);
+//// 
+//        ZonadelParqueDAO zona = new ZonadelParqueDAO();
+//        ZonaDelParque z1 = new ZonaDelParque("Mamiferos", 10);
+//        ZonaDelParque z2 = new ZonaDelParque("Terrario", 15);
+//        ZonaDelParque z3 = new ZonaDelParque("Aviario", 20);
+//        ZonaDelParque z4 = new ZonaDelParque("Reptiles", 30);
+//        ZonaDelParque z5 = new ZonaDelParque("Insectos", 40);
+//        zona.guardar(z1);
+//        zona.guardar(z2);
+//        zona.guardar(z3);
+//        zona.guardar(z4);
+//        zona.guardar(z5);
+//
+//        CuidadorDAO cuidador = new CuidadorDAO();
+//        Cuidador c1 = new Cuidador("Jesus Villanueva", "Plano oriente", "6441879625", new Date(110, 05, 12));
+//
+//        cuidador.guardar(c1);
+//
+//        List<Animal> animales = new ArrayList<>(); // Creas una nueva lista de animales
+//       animales.add(new Animal("Gorila1", 5, true));
+//        EspecieDAO espe = new EspecieDAO();
+//        Especie especie = new Especie("Gorilas", "Gorilitas", "Monos muy fuertes");
+//        especie.setAnimales(animales);
     }
 
 }

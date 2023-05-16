@@ -34,13 +34,13 @@ public class Especie {
      * Lista de cuidadores que estan a cargo de una especie
      */
     private List<Cuidador> cuidadores;
-    
+
+    private List<Habitat> habitats;
     /**
      * Lista de animales que pertenecen a una especie
      */
-     private List<Animal> animales;
-    
-    
+    private List<Animal> animales;
+
     /**
      *
      * Método para obtener el nombre común de la especie.
@@ -114,6 +114,7 @@ public class Especie {
     /**
      *
      * Método para establecer el identificador de la especie.
+     *
      * @param id El nuevo identificador de la especie.
      */
     public void setId(ObjectId id) {
@@ -171,11 +172,35 @@ public class Especie {
         this.nombre = nombre;
         this.nombreCientifico = nombreCientifico;
         this.descripcion = descripcion;
-         this.cuidadores = new ArrayList<>();
+        this.cuidadores = new ArrayList<>();
         this.animales = new ArrayList<>();
+        this.habitats = new ArrayList<>();
     }
 
+    public List<Habitat> getHabitats() {
+        return habitats;
+    }
 
-    
-    
+    public void setHabitats(List<Habitat> habitats) {
+        this.habitats = habitats;
+    }
+
+    public Especie(String nombre, String nombreCientifico, String descripcion, List<Animal> animales) {
+        this.nombre = nombre;
+        this.nombreCientifico = nombreCientifico;
+        this.descripcion = descripcion;
+        this.cuidadores = new ArrayList<>();
+        this.animales = animales;
+        this.habitats = new ArrayList<>();
+    }
+
+    public Especie(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

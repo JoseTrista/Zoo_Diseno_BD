@@ -21,6 +21,7 @@ public class FachadaDatos implements IDatos {
     private HabitatDAO habitat2 = new HabitatDAO();
     private GuiaDAO guia;
     private ZonadelParqueDAO zona;
+    private EspecieDAO espe;
 
     @Override
     public List<Clima> recuperarClima() {
@@ -84,12 +85,15 @@ public class FachadaDatos implements IDatos {
 
     @Override
     public Especie verificaEspecie(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      espe= new EspecieDAO();
+      return espe.buscarEspecie(nombre);
     }
 
     @Override
     public boolean guardaEspecie(Especie especie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      espe= new EspecieDAO();
+      espe.guardar(especie);
+      return true;
     }
 
     @Override

@@ -1,9 +1,15 @@
 Datos\FachadaDatos.class
+Datos\EspecieDAO.class
+Datos\ItinerarioDAO.class
+Datos\NewMain.class
 Datos\ContinenteDAO.class
 Datos\VegetacionDAO.class
+Datos\GuiaDAO.class
 Datos\Conexion.class
 Datos\DAOBase.class
 Datos\ClimaDAO.class
+Datos\ZonadelParqueDAO.class
+Datos\CuidadorDAO.class
 Datos\FabricaDatos.class
 Datos\HabitatDAO.class
 Datos\IDatos.class

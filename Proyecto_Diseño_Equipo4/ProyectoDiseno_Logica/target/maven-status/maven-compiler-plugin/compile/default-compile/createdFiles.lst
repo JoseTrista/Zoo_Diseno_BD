@@ -1,4 +1,6 @@
-Clases\FachadaLogica.class
-Clases\ControlHabitat.class
 Clases\FabricaLogica.class
+Clases\FachadaLogica.class
 Clases\ILogica.class
+Clases\ControlItinerario.class
+Clases\ControlEspecie.class
+Clases\ControlHabitat.class

@@ -1,5 +1,6 @@
 package Clases;
 
+import Dominio.Especie;
 import Dominio.Habitat;
 import Dominio.ZonaDelParque;
 import java.util.List;
@@ -13,6 +14,8 @@ public interface ILogica
     
     public boolean guardarHabitat(Habitat habitat);   
     
+      public boolean guardarEspecie(Especie especie);   
+    
     public List<Object> recuperaCuidadoresyHabitatsyZonas();
     
     public List<Object> recuperaZonasyGuias();
@@ -22,4 +25,6 @@ public interface ILogica
     public void verificaNombreItinerario();
     
     public void guardaItinerario();
+    
+   public Especie verificaNombreEspecie(String nombre);
 }

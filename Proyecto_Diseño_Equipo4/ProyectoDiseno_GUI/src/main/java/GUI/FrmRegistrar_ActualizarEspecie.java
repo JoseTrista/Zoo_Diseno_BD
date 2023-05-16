@@ -6,9 +6,12 @@ package GUI;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import Dominio.Animal;
 import Dominio.Cuidador;
+import Dominio.Especie;
 import Dominio.Habitat;
 import Dominio.ZonaDelParque;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -24,7 +27,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private DefaultListModel<Cuidador> seleccionadosListModelCuidador = new DefaultListModel<>();
     private DefaultListModel<Habitat> disponiblesListModelHabitat = new DefaultListModel<>();
     private DefaultListModel<Habitat> seleccionadosListModelHabitat = new DefaultListModel<>();
-
+    Especie sp = new Especie();
+    List<Animal> animalesAgregados=new ArrayList<>();
     public FrmRegistrar_ActualizarEspecie() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
@@ -34,6 +38,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
         listaDisponiblesHabitats.setModel(disponiblesListModelHabitat);
         listaSeleccionadosHabitats.setModel(seleccionadosListModelHabitat);
+        this.desactivaCampos();
     }
 
     public FrmRegistrar_ActualizarEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
@@ -46,19 +51,20 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         listaDisponiblesHabitats.setModel(disponiblesListModelHabitat);
         listaSeleccionadosHabitats.setModel(seleccionadosListModelHabitat);
         despliegaDatosEspecie(ListCuidador, ListHabitat, ListZona);
+        this.desactivaCampos();
 
     }
 
     public void despliegaDatosEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListCuidador.size(); i++) {
             disponiblesListModelCuidador.addElement(ListCuidador.get(i));
-            
+
         }
 
         for (int i = 0; i < ListHabitat.size(); i++) {
             disponiblesListModelHabitat.addElement(ListHabitat.get(i));
         }
-        
+
         for (int i = 0; i < ListZona.size(); i++) {
             cmbZonas.addItem(ListZona.get(i));
         }
@@ -104,6 +110,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         btnEliminarHabitat = new javax.swing.JButton();
         cmbZonas = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -183,6 +190,13 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
         jLabel9.setText("Zonas del Parque:");
 
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -254,6 +268,10 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                 .addGap(293, 293, 293)
                 .addComponent(btnEditarAnimales)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +331,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                         .addComponent(btnEliminarCuidador)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditarAnimales)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnGuardar)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,14 +357,15 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         if (this.txtVerficar.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese nombre de la especie a verificar");
         } else {
-            
-//            hb = logica.verificaNombreHabitat(txtHabitat.getText());
-//            System.out.println(hb);
-//            if (hb != null) {
-//                muestraDatosHabitat(hb);
-//            } else {
-//                activaCampos();
-//            }
+            reiniciaCuidadores();
+            reiniciaHabitats();
+            sp = logica.verificaNombreEspecie(txtVerficar.getText());
+            System.out.println(sp);
+            if (sp != null) {
+                muestraDatosEspecie(sp);
+            } else {
+                activaCampos();
+            }
         }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
@@ -385,14 +406,156 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarHabitatActionPerformed
 
     private void btnEditarAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAnimalesActionPerformed
-        FrmEditarAnimales fEditar = new FrmEditarAnimales();
+        FrmEditarAnimales fEditar = new FrmEditarAnimales(this);
         fEditar.setVisible(true);
-        this.dispose();
+     this.setVisible(false);
     }//GEN-LAST:event_btnEditarAnimalesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (verificaCamposLlenos()) {
+            if (sp == null) {
+                sp = new Especie();
+            }
+
+//             if (logica.verificaNombreEspecie(txtVerficar.getText()) != null) {
+//                muestraError();
+//                return;
+//            }
+//            
+            // logica.verificaNombreEspecie(txtVerficar.getText()!=null)
+            if (logica.verificaNombreEspecie(txtVerficar.getText()) != null) {
+                muestraError();
+                return;
+            }
+            List<Cuidador> seleccionadosCuidadores = new ArrayList<>();
+            for (int i = 0; i < seleccionadosListModelCuidador.size(); i++) {
+                seleccionadosCuidadores.add(seleccionadosListModelCuidador.get(i));
+            }
+
+            List<Habitat> seleccionadosHabitat = new ArrayList<>();
+            for (int i = 0; i < seleccionadosListModelHabitat.size(); i++) {
+                seleccionadosHabitat.add(seleccionadosListModelHabitat.get(i));
+            }
+
+            sp.setNombre(txtNombreEspañol.getText());
+            sp.setDescripcion(txtDescripcion.getText());
+            // sp.setClima2((Clima) cmbClima.getSelectedItem());
+
+            sp.setCuidadores(seleccionadosCuidadores);
+            sp.setHabitats(seleccionadosHabitat);
+            logica.guardarEspecie(sp);
+
+            muestraMensajeExitoso();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public boolean verificaCamposLlenos() {
+        String nombre = txtNombreEspañol.getText();
+        String desc = txtDescripcion.getText();
+        String nCien = txtNombreCientifico.getText();
+        ZonaDelParque zon = (ZonaDelParque) cmbZonas.getSelectedItem();
+
+        if (nombre.isEmpty() || zon == null || desc.isEmpty() || nCien.isEmpty() || seleccionadosListModelCuidador.isEmpty() || seleccionadosListModelHabitat.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void activaCampos() {
+        txtDescripcion.setEnabled(true);
+        txtNombreCientifico.setEnabled(true);
+        txtNombreEspañol.setEnabled(true);
+        cmbZonas.setEnabled(true);
+        btnAgregarCuidador.setEnabled(true);
+        btnAgregarHabitat.setEnabled(true);
+        btnEliminarCuidador.setEnabled(true);
+        btnEliminarHabitat.setEnabled(true);
+        listaDisponiblesCuidadores.setEnabled(true);
+        listaDisponiblesHabitats.setEnabled(true);
+        listaSeleccionadosCuidadores.setEnabled(true);
+        listaSeleccionadosHabitats.setEnabled(true);
+    }
+
+    public void desactivaCampos() {
+        txtDescripcion.setEnabled(false);
+        txtNombreCientifico.setEnabled(false);
+        txtNombreEspañol.setEnabled(false);
+        cmbZonas.setEnabled(false);
+        btnAgregarCuidador.setEnabled(false);
+        btnAgregarHabitat.setEnabled(false);
+        btnEliminarCuidador.setEnabled(false);
+        btnEliminarHabitat.setEnabled(false);
+        listaDisponiblesCuidadores.setEnabled(false);
+        listaDisponiblesHabitats.setEnabled(false);
+        listaSeleccionadosCuidadores.setEnabled(false);
+        listaSeleccionadosHabitats.setEnabled(false);
+    }
+
+    public void reiniciaCuidadores() {
+
+        while (!seleccionadosListModelCuidador.isEmpty()) {
+            disponiblesListModelCuidador.addElement(seleccionadosListModelCuidador.getElementAt(0));
+
+            seleccionadosListModelCuidador.remove(0);
+
+        }
+    }
+
+    public void reiniciaHabitats() {
+
+        while (!seleccionadosListModelHabitat.isEmpty()) {
+            disponiblesListModelHabitat.addElement(seleccionadosListModelHabitat.getElementAt(0));
+
+            seleccionadosListModelHabitat.remove(0);
+
+        }
+    }
+
+    public void muestraError() {
+        JOptionPane.showMessageDialog(this, "Especie existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void muestraMensajeExitoso() {
+        JOptionPane.showMessageDialog(this, "Especie Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void muestraDatosEspecie(Especie especie) {
+
+        cmbZonas.setSelectedItem(especie.getNombre());
+        txtNombreCientifico.setText(especie.getNombreCientifico());
+        txtNombreEspañol.setText(especie.getNombre());
+        txtDescripcion.setText(especie.getDescripcion());
+
+//        // Limpiar las listas de continentes disponibles y seleccionados
+//        disponiblesListModel.clear();
+//        seleccionadosListModel.clear();
+        // Agregar los continentes disponibles
+        List<Cuidador> cuidadoresEspecie = especie.getCuidadores();
+        for (Cuidador cuidador : cuidadoresEspecie) {
+            for (int i = 0; i < disponiblesListModelCuidador.size(); i++) {
+                if (disponiblesListModelCuidador.get(i).equals(cuidador)) {
+                    seleccionadosListModelCuidador.addElement(cuidador);
+                    disponiblesListModelCuidador.removeElement(cuidador);
+                }
+            }
+        }
+
+        List<Habitat> habitasEspecie = especie.getHabitats();
+        for (Habitat habitat : habitasEspecie) {
+            for (int i = 0; i < disponiblesListModelHabitat.size(); i++) {
+                if (disponiblesListModelHabitat.get(i).equals(habitat)) {
+                    seleccionadosListModelHabitat.addElement(habitat);
+                    disponiblesListModelHabitat.removeElement(habitat);
+                }
+            }
+        }
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -431,6 +594,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarAnimales;
     private javax.swing.JButton btnEliminarCuidador;
     private javax.swing.JButton btnEliminarHabitat;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JComboBox<ZonaDelParque> cmbZonas;
     private javax.swing.JLabel jLabel1;
