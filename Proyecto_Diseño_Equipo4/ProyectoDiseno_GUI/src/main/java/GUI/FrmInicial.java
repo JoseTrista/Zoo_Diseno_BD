@@ -12,6 +12,7 @@ import java.util.List;
 public class FrmInicial extends javax.swing.JFrame {
 
     ILogica logica;
+    
 
     public FrmInicial() {
         logica = FabricaLogica.crearInstancia();
@@ -136,7 +137,7 @@ public class FrmInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_selecHabitatActionPerformed
 
     private void selecRegistraroActualizarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistraroActualizarEspecieActionPerformed
-        List<Object> lista = logica.recuperaDatosHabitat();
+        List<Object> lista = logica.recuperaCuidadoresyHabitats();
         List<Cuidador> listCuidador = (List<Cuidador>) lista.get(0);
         List<Habitat> listHabitat = (List<Habitat>) lista.get(1);
 

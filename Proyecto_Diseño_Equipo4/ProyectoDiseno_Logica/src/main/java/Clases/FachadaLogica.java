@@ -60,6 +60,7 @@ public class FachadaLogica implements ILogica {
     @Override
     public List<Object> recuperaCuidadoresyHabitats() {
         ce = new ControlEspecie();
+        ch = new ControlHabitat();
         List<Object> datosARecuperar = new ArrayList<>();
         datosARecuperar.add(ce.RecuperaCuidadores());
         datosARecuperar.add(ch.RecuperaHabitats());

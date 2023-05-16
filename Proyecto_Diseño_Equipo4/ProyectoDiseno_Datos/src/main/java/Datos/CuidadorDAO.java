@@ -26,7 +26,7 @@ public class CuidadorDAO  <T> extends DAOBase<Cuidador>{
 
     @Override
     public void guardar(Cuidador entidad) {
-       MongoCollection<Cuidador> coleccionP =obtenerColeccion();
+        MongoCollection<Cuidador> coleccionP =obtenerColeccion();
         coleccionP.insertOne(entidad);
     }
 

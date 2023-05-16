@@ -64,6 +64,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         btnagregar = new javax.swing.JButton();
         btneliminar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,6 +130,13 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
         jLabel8.setText("Disponibles");
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,9 +168,15 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                                 .addGap(133, 133, 133)
                                 .addComponent(btneliminar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(74, 74, 74)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(23, 23, 23))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addComponent(jLabel5))
@@ -178,10 +192,6 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                         .addGap(144, 144, 144)
                         .addComponent(btnVerificar)))
                 .addContainerGap(68, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(selecGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +228,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnagregar)
                     .addComponent(btneliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(selecGuardar)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selecGuardar)
+                    .addComponent(btnRegresar))
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -292,6 +304,12 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     private void cmbVegetacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVegetacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbVegetacionActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        FrmInicial fi = new FrmInicial();
+        fi.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     public void despliegaDatosRecuperados(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
         for (int i = 0; i < clima.size(); i++) {
@@ -416,6 +434,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JButton btnagregar;
     private javax.swing.JButton btneliminar;
