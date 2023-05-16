@@ -46,4 +46,9 @@ public class Cuidador extends Empleados {
         super(id, nombre, direccion, telefono, fechaIngreso);
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

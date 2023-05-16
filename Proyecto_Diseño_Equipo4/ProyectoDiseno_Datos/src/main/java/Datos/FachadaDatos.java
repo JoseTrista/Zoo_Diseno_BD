@@ -19,6 +19,8 @@ public class FachadaDatos implements IDatos {
     private CuidadorDAO cuidador;
     private HabitatDAO habitat;
     private HabitatDAO habitat2 = new HabitatDAO();
+    private GuiaDAO guia;
+    private ZonadelParqueDAO zona;
 
     @Override
     public List<Clima> recuperarClima() {
@@ -54,12 +56,14 @@ public class FachadaDatos implements IDatos {
 
     @Override
     public List<Guia> recuperaGuias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        guia = new GuiaDAO();
+        return guia.recuperaGuias();
     }
 
     @Override
     public List<ZonaDelParque> recuperaZonas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        zona = new ZonadelParqueDAO();
+        return zona.recuperaZonas();
     }
 
     @Override

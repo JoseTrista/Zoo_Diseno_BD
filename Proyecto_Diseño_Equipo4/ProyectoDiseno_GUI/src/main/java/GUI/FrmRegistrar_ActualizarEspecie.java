@@ -8,8 +8,10 @@ import Clases.FabricaLogica;
 import Clases.ILogica;
 import Dominio.Cuidador;
 import Dominio.Habitat;
+import Dominio.ZonaDelParque;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,7 +36,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         listaSeleccionadosHabitats.setModel(seleccionadosListModelHabitat);
     }
 
-    public FrmRegistrar_ActualizarEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat) {
+    public FrmRegistrar_ActualizarEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
         logica = FabricaLogica.crearInstancia();
         initComponents();
 
@@ -43,17 +45,22 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
         listaDisponiblesHabitats.setModel(disponiblesListModelHabitat);
         listaSeleccionadosHabitats.setModel(seleccionadosListModelHabitat);
-        despliegaDatosEspecie(ListCuidador, ListHabitat);
+        despliegaDatosEspecie(ListCuidador, ListHabitat, ListZona);
 
     }
 
-    public void despliegaDatosEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat) {
+    public void despliegaDatosEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListCuidador.size(); i++) {
             disponiblesListModelCuidador.addElement(ListCuidador.get(i));
+            
         }
 
         for (int i = 0; i < ListHabitat.size(); i++) {
             disponiblesListModelHabitat.addElement(ListHabitat.get(i));
+        }
+        
+        for (int i = 0; i < ListZona.size(); i++) {
+            cmbZonas.addItem(ListZona.get(i));
         }
     }
 
@@ -95,6 +102,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         btnEliminarCuidador = new javax.swing.JButton();
         btnAgregarHabitat = new javax.swing.JButton();
         btnEliminarHabitat = new javax.swing.JButton();
+        cmbZonas = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -126,6 +135,11 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         jLabel7.setText("Cuidador");
 
         btnEditarAnimales.setText("EditarAnimales");
+        btnEditarAnimales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarAnimalesActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Animales agregados:");
 
@@ -167,6 +181,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("Zonas del Parque:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,13 +210,19 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgregarHabitat)
-                                    .addComponent(btnEliminarHabitat)))))
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnAgregarHabitat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarHabitat)
+                                    .addComponent(cmbZonas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(329, 329, 329)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(85, 85, 85)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -225,11 +247,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtNombreEspañol, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnVerificar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(329, 329, 329)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnVerificar)))
+                        .addGap(0, 131, Short.MAX_VALUE)))
                 .addGap(72, 72, 72))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(293, 293, 293)
@@ -253,11 +272,19 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNombreEspañol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbZonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(29, 29, 29)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -307,7 +334,18 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
-        // TODO add your handling code here:
+        if (this.txtVerficar.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de la especie a verificar");
+        } else {
+            
+//            hb = logica.verificaNombreHabitat(txtHabitat.getText());
+//            System.out.println(hb);
+//            if (hb != null) {
+//                muestraDatosHabitat(hb);
+//            } else {
+//                activaCampos();
+//            }
+        }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     private void btnAgregarCuidadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuidadorActionPerformed
@@ -341,10 +379,16 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         // TODO add your handling code here:
         int i = listaSeleccionadosHabitats.getSelectedIndex();
         if (i != -1) {
-            disponiblesListModelCuidador.addElement(seleccionadosListModelCuidador.getElementAt(i));
-            seleccionadosListModelCuidador.remove(i);
+            disponiblesListModelHabitat.addElement(seleccionadosListModelHabitat.getElementAt(i));
+            seleccionadosListModelHabitat.remove(i);
         }
     }//GEN-LAST:event_btnEliminarHabitatActionPerformed
+
+    private void btnEditarAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAnimalesActionPerformed
+        FrmEditarAnimales fEditar = new FrmEditarAnimales();
+        fEditar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEditarAnimalesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,6 +432,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarCuidador;
     private javax.swing.JButton btnEliminarHabitat;
     private javax.swing.JButton btnVerificar;
+    private javax.swing.JComboBox<ZonaDelParque> cmbZonas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -396,6 +441,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

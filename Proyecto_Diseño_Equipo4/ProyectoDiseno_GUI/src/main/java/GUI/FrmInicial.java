@@ -5,8 +5,10 @@ import Clases.ILogica;
 import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Cuidador;
+import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.TipoVegetacion;
+import Dominio.ZonaDelParque;
 import java.util.List;
 
 public class FrmInicial extends javax.swing.JFrame {
@@ -137,11 +139,12 @@ public class FrmInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_selecHabitatActionPerformed
 
     private void selecRegistraroActualizarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistraroActualizarEspecieActionPerformed
-        List<Object> lista = logica.recuperaCuidadoresyHabitats();
+        List<Object> lista = logica.recuperaCuidadoresyHabitatsyZonas();
         List<Cuidador> listCuidador = (List<Cuidador>) lista.get(0);
         List<Habitat> listHabitat = (List<Habitat>) lista.get(1);
-
-        FrmRegistrar_ActualizarEspecie frmEspecie = new FrmRegistrar_ActualizarEspecie(listCuidador, listHabitat);
+        List<ZonaDelParque> listaZona = (List<ZonaDelParque>) lista.get(2);
+        
+        FrmRegistrar_ActualizarEspecie frmEspecie = new FrmRegistrar_ActualizarEspecie(listCuidador, listHabitat, listaZona);
         frmEspecie.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
@@ -150,7 +153,12 @@ public class FrmInicial extends javax.swing.JFrame {
     }
 
     private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
-        FrmItinerarios frmIti = new FrmItinerarios();
+        List<Object> lista = logica.recuperaZonasyGuias();
+        
+        List<Guia> listGuia = (List<Guia>) lista.get(0);
+        List<ZonaDelParque> listZona = (List<ZonaDelParque>) lista.get(1);
+        
+        FrmItinerarios frmIti = new FrmItinerarios(listGuia,listZona);
         frmIti.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed

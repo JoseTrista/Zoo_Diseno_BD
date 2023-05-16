@@ -56,17 +56,17 @@ public class NewMain {
 //        Guia g1 = new Guia("jose", "Amberes 314", "6442062325", new Date(120,0,13));
 //        guia.guardar(g1);
 // 
-//        ZonadelParqueDAO zona = new ZonadelParqueDAO();
-//        ZonaDelParque z1 = new ZonaDelParque("Mamiferos", 10);
-//        ZonaDelParque z2 = new ZonaDelParque("Terrario", 15);
-//        ZonaDelParque z3 = new ZonaDelParque("Aviario", 20);
-//        ZonaDelParque z4 = new ZonaDelParque("Reptiles", 30);
-//        ZonaDelParque z5 = new ZonaDelParque("Insectos", 40);
-//        zona.guardar(z1);
-//        zona.guardar(z2);
-//        zona.guardar(z3);
-//        zona.guardar(z4);
-//        zona.guardar(z5);
+        ZonadelParqueDAO zona = new ZonadelParqueDAO();
+        ZonaDelParque z1 = new ZonaDelParque("Mamiferos", 10);
+        ZonaDelParque z2 = new ZonaDelParque("Terrario", 15);
+        ZonaDelParque z3 = new ZonaDelParque("Aviario", 20);
+        ZonaDelParque z4 = new ZonaDelParque("Reptiles", 30);
+        ZonaDelParque z5 = new ZonaDelParque("Insectos", 40);
+        zona.guardar(z1);
+        zona.guardar(z2);
+        zona.guardar(z3);
+        zona.guardar(z4);
+        zona.guardar(z5);
 
           CuidadorDAO cuidador = new CuidadorDAO();
           Cuidador c1 = new Cuidador("Jesus Villanueva", "Plano oriente", "6441879625", new Date(110, 05,12));

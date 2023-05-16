@@ -241,6 +241,6 @@ public class Habitat {
      */
     @Override
     public String toString() {
-        return "Habitat{" + "id=" + id + ", nombre=" + nombre + ", clima=" + clima + ", continentes=" + continentes + ", vegetacion=" + vegetacion + '}';
+        return nombre;
     }
 }

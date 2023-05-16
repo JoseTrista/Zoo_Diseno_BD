@@ -53,7 +53,7 @@ public class HabitatDAO<T> extends DAOBase<Habitat> {
     @Override
     public MongoCollection<Habitat> obtenerColeccion() {
         MongoDatabase db = Conexion.getInstance();
-        MongoCollection<Habitat> coleccioHabitats = db.getCollection("Habitat", Habitat.class);
+        MongoCollection<Habitat> coleccioHabitats = db.getCollection("habitat", Habitat.class);
         return coleccioHabitats;
     }
 

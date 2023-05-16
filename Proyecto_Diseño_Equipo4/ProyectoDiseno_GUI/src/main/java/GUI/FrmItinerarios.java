@@ -4,23 +4,33 @@
  */
 package GUI;
 
+import Clases.FabricaLogica;
+import Clases.ILogica;
 import Dominio.Guia;
 import Dominio.ZonaDelParque;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jctri
  */
 public class FrmItinerarios extends javax.swing.JFrame {
-
+    ILogica logica;
     /**
      * Creates new form FrmItinerarios
      */
     public FrmItinerarios() {
+        logica = FabricaLogica.crearInstancia();
         initComponents();
+        
     }
 
+    public FrmItinerarios(List<Guia> guia, List<ZonaDelParque> zona) {
+        logica = FabricaLogica.crearInstancia();
+        initComponents();
+        muestraDatosRecuperados(guia,zona);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +43,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblGuias = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -51,7 +61,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
         jCheckBox5 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblZonas = new javax.swing.JTable();
         jCheckBox7 = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
 
@@ -59,18 +69,30 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
         jLabel1.setText("Pantalla Itinerarios");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblGuias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "Guias"
+                " Nombre deGuias"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblGuias);
 
         jLabel2.setText("Nombre Itinerario:");
 
@@ -101,18 +123,30 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
         jCheckBox6.setText("Viernes");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblZonas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
-                "Zonas Zoologicos"
+                "Nombre de Zonas"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblZonas);
 
         jCheckBox7.setText("Domingo");
 
@@ -248,12 +282,16 @@ public class FrmItinerarios extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void  muestraDatosRecuperados(List<Guia> guia, List<ZonaDelParque> zona){
+        DefaultTableModel modeloTabla2 = (DefaultTableModel) this.tblZonas.getModel();
+        DefaultTableModel modeloTabla3 = (DefaultTableModel) this.tblGuias.getModel();
         for (int i = 0; i < guia.size(); i++) {
-            
+            Object[] objeto = {guia.get(i).getNombre(), true};
+            modeloTabla2.addRow(objeto);
         }
        
         for (int i = 0; i < zona.size(); i++) {
-            
+            Object[] object = {zona.get(i).getNombre(), true};
+            modeloTabla3.addRow(object);
         }
     }
     /**
@@ -310,11 +348,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable tblGuias;
+    private javax.swing.JTable tblZonas;
     // End of variables declaration//GEN-END:variables
 }

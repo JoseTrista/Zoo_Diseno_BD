@@ -114,7 +114,6 @@ public class Especie {
     /**
      *
      * Método para establecer el identificador de la especie.
-     *
      * @param id El nuevo identificador de la especie.
      */
     public void setId(ObjectId id) {
@@ -136,8 +135,6 @@ public class Especie {
     public void setAnimales(List<Animal> animales) {
         this.animales = animales;
     }
-    
-    
 
     /**
      *

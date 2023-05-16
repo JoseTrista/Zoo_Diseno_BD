@@ -98,7 +98,7 @@ public class ZonaDelParque {
 
     @Override
     public String toString() {
-        return "ZonaDelParque{" + "nombre=" + nombre + ", extension=" + extension + ", especies=" + especies + '}';
+        return nombre;
     }
 
 }

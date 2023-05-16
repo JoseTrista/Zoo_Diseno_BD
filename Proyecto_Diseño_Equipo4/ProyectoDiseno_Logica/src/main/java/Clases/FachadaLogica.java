@@ -1,6 +1,7 @@
 package Clases;
 
 import Dominio.Habitat;
+import Dominio.ZonaDelParque;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,12 +59,14 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public List<Object> recuperaCuidadoresyHabitats() {
+    public List<Object> recuperaCuidadoresyHabitatsyZonas() {
         ce = new ControlEspecie();
         ch = new ControlHabitat();
+        ci = new ControlItinerario();
         List<Object> datosARecuperar = new ArrayList<>();
         datosARecuperar.add(ce.RecuperaCuidadores());
         datosARecuperar.add(ch.RecuperaHabitats());
+        datosARecuperar.add(ci.recuperaZonas());
         return datosARecuperar;
     }
 }

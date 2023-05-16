@@ -19,7 +19,7 @@ public class Empleados {
     /**
      * Atributo que representa el nombre del empleado
      */
-    private String nombre;
+    protected String nombre;
     /**
      * Atributo que representa la direccion del empleado
      */
