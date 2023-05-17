@@ -31,7 +31,7 @@ public interface IDatos
     
     public Itinerario buscarItinerario(String nombre);
     
-    public Itinerario guardaItinerario(Itinerario itinerario);
+    public boolean guardaItinerario(Itinerario itinerario);
     
     public List<Cuidador> recuperaCuidadores();
     

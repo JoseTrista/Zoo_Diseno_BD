@@ -27,8 +27,15 @@ public class ItinerarioDAO<T> extends DAOBase<Itinerario> {
         return itinerarioCollection.find(eq("nombre", nombre)).first();
     }
 
-    public Itinerario guardaItinerario(Itinerario itinerario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean guardaItinerario(Itinerario itinerario) {
+      conexion = Conexion.getInstance();
+        MongoCollection<Itinerario> coleccion = conexion.getCollection("Itinerario", Itinerario.class);
+        coleccion.insertOne(itinerario);
+        if (itinerario.getId() != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

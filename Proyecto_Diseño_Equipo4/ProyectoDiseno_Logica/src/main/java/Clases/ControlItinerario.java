@@ -42,7 +42,9 @@ public class ControlItinerario {
         return itinerario;
     }
 
-    public void guardaItinerario() {
-
+   
+    public boolean guardarItinerario(Itinerario itinerario) {
+        datos.guardaItinerario(itinerario);
+        return true;
     }
 }

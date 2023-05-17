@@ -6,11 +6,14 @@ package GUI;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import Dominio.Dias;
 import Dominio.Guia;
+import Dominio.Horario;
 import Dominio.Itinerario;
 import Dominio.ZonaDelParque;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -27,22 +30,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
     public FrmItinerarios() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
-
-        ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("hola");
-                mostrarEspacioTexto();
-            }
-        };
-
-        cbLunes.addActionListener(listener);
-        cbMartes.addActionListener(listener);
-        cbMiercoles.addActionListener(listener);
-        cbJ.addActionListener(listener);
-        cbViernes.addActionListener(listener);
-        cbSabado.addActionListener(listener);
-        cbDomingo.addActionListener(listener);
 
         this.desactivaCampos();
     }
@@ -97,7 +84,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
         txtViernes = new javax.swing.JTextField();
         txtSabado = new javax.swing.JTextField();
         txtDomingo = new javax.swing.JTextField();
-        cbJ = new javax.swing.JCheckBox();
+        cbJu = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,23 +126,63 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
         cbLunes.setText("Lunes");
         cbLunes.setEnabled(false);
+        cbLunes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLunesActionPerformed(evt);
+            }
+        });
 
         cbMartes.setText("Martes");
         cbMartes.setEnabled(false);
+        cbMartes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMartesActionPerformed(evt);
+            }
+        });
 
         cbSabado.setText("Sabado");
         cbSabado.setEnabled(false);
+        cbSabado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSabadoActionPerformed(evt);
+            }
+        });
 
-        cbMiercoles.setText("Miecoles");
+        cbMiercoles.setText("Miercoles");
         cbMiercoles.setEnabled(false);
+        cbMiercoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMiercolesActionPerformed(evt);
+            }
+        });
 
         cbViernes.setText("Viernes");
         cbViernes.setEnabled(false);
+        cbViernes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbViernesActionPerformed(evt);
+            }
+        });
 
         cbDomingo.setText("Domingo");
         cbDomingo.setEnabled(false);
+        cbDomingo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDomingoActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setEnabled(false);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        cmbGuia.setEnabled(false);
+
+        cmbZonas.setEnabled(false);
 
         jLabel7.setText("Guias: ");
 
@@ -171,6 +198,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
         txtLunes.setEnabled(false);
 
         txtMartes.setEnabled(false);
+        txtMartes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMartesActionPerformed(evt);
+            }
+        });
 
         txtMiercoles.setEnabled(false);
 
@@ -182,8 +214,13 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
         txtDomingo.setEnabled(false);
 
-        cbJ.setText("Jueves");
-        cbJ.setEnabled(false);
+        cbJu.setText("Jueves");
+        cbJu.setEnabled(false);
+        cbJu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbJuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout cbJuevesLayout = new javax.swing.GroupLayout(cbJueves);
         cbJueves.setLayout(cbJuevesLayout);
@@ -208,8 +245,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
                                         .addGroup(cbJuevesLayout.createSequentialGroup()
                                             .addComponent(jLabel4)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(12, 12, 12)))
+                                            .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(cbJuevesLayout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -238,24 +274,24 @@ public class FrmItinerarios extends javax.swing.JFrame {
                                 .addComponent(btnRegresar))
                             .addGroup(cbJuevesLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(cbJuevesLayout.createSequentialGroup()
+                                            .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(txtMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(cbJuevesLayout.createSequentialGroup()
                                             .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cbJuevesLayout.createSequentialGroup()
-                                            .addComponent(cbJ, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtJueves, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txtLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(cbJuevesLayout.createSequentialGroup()
+                                        .addComponent(cbJu, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtJueves, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(63, 63, 63)
                                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +374,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtJueves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbJ))
+                    .addComponent(cbJu))
                 .addGap(36, 36, 36))
         );
 
@@ -386,6 +422,74 @@ public class FrmItinerarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaximoVisitantesAncestorAdded
 
+    private void cbLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLunesActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbLunesActionPerformed
+
+    private void txtMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMartesActionPerformed
+
+    }//GEN-LAST:event_txtMartesActionPerformed
+
+    private void cbMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMartesActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbMartesActionPerformed
+
+    private void cbMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMiercolesActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbMiercolesActionPerformed
+
+    private void cbViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbViernesActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbViernesActionPerformed
+
+    private void cbSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSabadoActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbSabadoActionPerformed
+
+    private void cbDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDomingoActionPerformed
+        mostrarEspacioTexto();
+    }//GEN-LAST:event_cbDomingoActionPerformed
+
+    private void cbJuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJuActionPerformed
+        mostrarEspacioTexto();
+
+    }//GEN-LAST:event_cbJuActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        if (verificaCamposLlenos()) {
+            if (it == null) {
+                it = new Itinerario();
+            }
+            if (logica.verificaNombreItinerario(txtItinerarios.getText()) != null) {
+                muestraError();
+                return;
+            } else {
+//               
+
+                it.setNombre(txtItinerarios.getText());
+                it.setMaximoVisitante(Integer.parseInt(txtMaximoVisitantes.getText()));
+                List<Horario> ho = new ArrayList<>();
+                Horario horar = new Horario(txtLunes.getText(), Dias.Lunes);
+                Horario horar2 = new Horario(txtMartes.getText(), Dias.Martes);
+                Horario horar3 = new Horario(txtMiercoles.getText(), Dias.Miercoles);
+                Horario horar4 = new Horario(txtJueves.getText(), Dias.Jueves);
+                Horario horar5 = new Horario(txtViernes.getText(), Dias.Viernes);
+                Horario horar6 = new Horario(txtSabado.getText(), Dias.Sabado);
+                Horario horar7 = new Horario(txtDomingo.getText(), Dias.Domingo);
+                
+                it.setHorarios(ho);
+                
+                logica.guardaItinerario(it);
+          //   it.setZonas((List<ZonaDelParque>) cmbZonas.getSelectedItem());
+                muestraMensajeExitoso();
+                
+            }
+
+        } else {
+            System.out.println("baja");
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
     public void muestraDatosRecuperados(List<Guia> ListGuia, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListGuia.size(); i++) {
             System.out.println(i);
@@ -405,6 +509,15 @@ public class FrmItinerarios extends javax.swing.JFrame {
         txtMaximoVisitantes.setText(String.valueOf(itinerario.getMaximoVisitante()));
     }
 
+    public void muestraError() {
+        JOptionPane.showMessageDialog(this, "Itinerario existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+     public void muestraMensajeExitoso() {
+        JOptionPane.showMessageDialog(this, "Itinerario Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    
     public void desactivaCampos() {
         txtDuracion.setEnabled(false);
         txtLongitud.setEnabled(false);
@@ -414,10 +527,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
         cbLunes.setEnabled(false);
         cbMartes.setEnabled(false);
         cbMiercoles.setEnabled(false);
-        cbJueves.setEnabled(false);
+        cbJu.setEnabled(false);
         cbViernes.setEnabled(false);
         cbSabado.setEnabled(false);
         cbDomingo.setEnabled(false);
+        btnRegistrar.setEnabled(false);
     }
 
     public void activaCajasVerificacion() {
@@ -429,10 +543,26 @@ public class FrmItinerarios extends javax.swing.JFrame {
         cbLunes.setEnabled(true);
         cbMartes.setEnabled(true);
         cbMiercoles.setEnabled(true);
-        cbJ.setEnabled(true);
+        cbJu.setEnabled(true);
         cbViernes.setEnabled(true);
         cbSabado.setEnabled(true);
         cbDomingo.setEnabled(true);
+        btnRegistrar.setEnabled(true);
+    }
+
+    public boolean verificaCamposLlenos() {
+        String nombre = txtItinerarios.getText();
+        String duracion = txtDuracion.getText();
+        String longitud = txtLongitud.getText();
+        Guia guiaaa = (Guia) cmbGuia.getSelectedItem();
+        ZonaDelParque zonass = (ZonaDelParque) cmbZonas.getSelectedItem();
+
+        if (nombre.isEmpty() || guiaaa == null || duracion.isEmpty() || longitud.isEmpty() || zonass == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void mostrarEspacioTexto() {
@@ -440,36 +570,43 @@ public class FrmItinerarios extends javax.swing.JFrame {
             txtLunes.setEnabled(true);
         } else {
             txtLunes.setEnabled(false);
+            txtLunes.setText("");
         }
         if (cbMartes.isSelected()) {
             txtMartes.setEnabled(true);
         } else {
             txtMartes.setEnabled(false);
+            txtMartes.setText("");
         }
         if (cbMiercoles.isSelected()) {
             txtMiercoles.setEnabled(true);
         } else {
             txtMiercoles.setEnabled(false);
+            txtMiercoles.setText("");
         }
-        if (cbJ.isSelected()) {
-            cbJ.setEnabled(true);
+        if (cbJu.isSelected()) {
+            txtJueves.setEnabled(true);
         } else {
-            cbJ.setEnabled(false);
+            txtJueves.setEnabled(false);
+            txtJueves.setText("");
         }
         if (cbViernes.isSelected()) {
             txtViernes.setEnabled(true);
         } else {
             txtViernes.setEnabled(false);
+            txtViernes.setText("");
         }
         if (cbSabado.isSelected()) {
             txtSabado.setEnabled(true);
         } else {
             txtSabado.setEnabled(false);
+            txtSabado.setText("");
         }
         if (cbDomingo.isSelected()) {
             txtDomingo.setEnabled(true);
         } else {
             txtDomingo.setEnabled(false);
+            txtDomingo.setText("");
         }
     }
 
@@ -513,7 +650,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JCheckBox cbDomingo;
-    private javax.swing.JCheckBox cbJ;
+    private javax.swing.JCheckBox cbJu;
     private javax.swing.JPanel cbJueves;
     private javax.swing.JCheckBox cbLunes;
     private javax.swing.JCheckBox cbMartes;

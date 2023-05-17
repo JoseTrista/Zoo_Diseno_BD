@@ -49,8 +49,9 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public void guardaItinerario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean  guardaItinerario(Itinerario itinerario) {
+      ci.guardarItinerario(itinerario);
+        return true;
     }
 
     @Override

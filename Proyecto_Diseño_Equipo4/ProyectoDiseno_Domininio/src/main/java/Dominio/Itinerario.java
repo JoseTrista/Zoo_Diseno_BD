@@ -17,7 +17,18 @@ public class Itinerario {
     private int especiesVisita;
     private List<ZonaDelParque> zonas;
     private List<Recorrido> recorridos;
+    private List<Horario> horarios;
 
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
+
+  
+    
     public ObjectId getId() {
         return id;
     }
@@ -67,6 +78,7 @@ public class Itinerario {
     }
 
     public Itinerario() {
+        this.horarios=new ArrayList<>();
     }
 
     public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita, List<ZonaDelParque> zonas) {
@@ -84,6 +96,7 @@ public class Itinerario {
         this.especiesVisita = especiesVisita;
         this.zonas = new ArrayList<>();
         this.recorridos = new ArrayList<>();
+        this.horarios=new ArrayList<>();
     }
 
     @Override

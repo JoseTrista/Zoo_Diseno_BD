@@ -5,24 +5,17 @@
 package Dominio;
 
 import java.util.Objects;
-import org.bson.types.ObjectId;
+
 
 /**
  *
  * @author IVAN
  */
 public class Horario {
-     private ObjectId id;
+   
      private String horaInicio;
      private Dias dia;
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
 
     public String getHoraInicio() {
         return horaInicio;
@@ -42,13 +35,14 @@ public class Horario {
 
     public Horario() {
     }
-    
 
-    public Horario(ObjectId id, String horaInicio, Dias dia) {
-        this.id = id;
+    public Horario(String horaInicio, Dias dia) {
         this.horaInicio = horaInicio;
         this.dia = dia;
     }
+    
+
+   
 
     @Override
     public int hashCode() {
@@ -71,9 +65,7 @@ public class Horario {
         if (!Objects.equals(this.horaInicio, other.horaInicio)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
+       
         if (this.dia != other.dia) {
             return false;
         }

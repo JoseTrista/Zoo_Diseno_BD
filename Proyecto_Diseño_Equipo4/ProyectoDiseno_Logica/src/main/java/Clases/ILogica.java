@@ -25,7 +25,7 @@ public interface ILogica
     
     public Itinerario verificaNombreItinerario(String nombre);
     
-    public void guardaItinerario();
+    public boolean guardaItinerario(Itinerario itinerario);
     
    public Especie verificaNombreEspecie(String nombre);
 }

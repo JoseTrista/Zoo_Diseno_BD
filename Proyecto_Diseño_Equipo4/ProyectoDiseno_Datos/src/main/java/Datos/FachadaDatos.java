@@ -19,7 +19,7 @@ public class FachadaDatos implements IDatos {
     private CuidadorDAO cuidador;
     private HabitatDAO habitat;
     private HabitatDAO habitat2 = new HabitatDAO();
-    private Itinerario itinerario;
+    private ItinerarioDAO itinerarioa;
     private GuiaDAO guia;
     private ZonadelParqueDAO zona;
     private EspecieDAO espe;
@@ -79,8 +79,10 @@ public class FachadaDatos implements IDatos {
     }
 
     @Override
-    public Itinerario guardaItinerario(Itinerario itinerario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean guardaItinerario(Itinerario itinerario) {
+      itinerarioa=new ItinerarioDAO();
+      itinerarioa.guardaItinerario(itinerario);
+      return true;
     }
 
     @Override
