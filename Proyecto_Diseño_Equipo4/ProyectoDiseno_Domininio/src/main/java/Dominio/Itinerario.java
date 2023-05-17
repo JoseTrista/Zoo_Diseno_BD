@@ -1,4 +1,3 @@
-
 package Dominio;
 
 import java.util.ArrayList;
@@ -11,10 +10,13 @@ import org.bson.types.ObjectId;
  * @author IVAN
  */
 public class Itinerario {
+
     private ObjectId id;
+    private String nombre;
     private int maximoVisitante;
     private int especiesVisita;
     private List<ZonaDelParque> zonas;
+    private List<Recorrido> recorridos;
 
     public ObjectId getId() {
         return id;
@@ -22,6 +24,14 @@ public class Itinerario {
 
     public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getMaximoVisitante() {
@@ -48,19 +58,43 @@ public class Itinerario {
         this.zonas = zonas;
     }
 
+    public List<Recorrido> getRecorridos() {
+        return recorridos;
+    }
+
+    public void setRecorridos(List<Recorrido> recorridos) {
+        this.recorridos = recorridos;
+    }
+
     public Itinerario() {
     }
 
-    public Itinerario(ObjectId id, int maximoVisitante, int especiesVisita) {
+    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita, List<ZonaDelParque> zonas) {
         this.id = id;
+        this.nombre = nombre;
         this.maximoVisitante = maximoVisitante;
         this.especiesVisita = especiesVisita;
-       this.zonas = new ArrayList<>();
+        this.zonas = zonas;
+    }
+
+    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita) {
+        this.id = id;
+        this.nombre = nombre;
+        this.maximoVisitante = maximoVisitante;
+        this.especiesVisita = especiesVisita;
+        this.zonas = new ArrayList<>();
+        this.recorridos = new ArrayList<>();
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.nombre);
+        hash = 29 * hash + this.maximoVisitante;
+        hash = 29 * hash + this.especiesVisita;
+        hash = 29 * hash + Objects.hashCode(this.zonas);
+        hash = 29 * hash + Objects.hashCode(this.recorridos);
         return hash;
     }
 
@@ -82,19 +116,22 @@ public class Itinerario {
         if (this.especiesVisita != other.especiesVisita) {
             return false;
         }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.zonas, other.zonas)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.recorridos, other.recorridos);
     }
 
     @Override
     public String toString() {
-        return "Itinerario{" + "id=" + id + ", maximoVisitante=" + maximoVisitante + ", especiesVisita=" + especiesVisita + ", zonas=" + zonas + '}';
+        return "Itinerario{" + "id=" + id + ", nombre=" + nombre + ", maximoVisitante=" + maximoVisitante + ", especiesVisita=" + especiesVisita + ", zonas=" + zonas + ", recorridos=" + recorridos + '}';
     }
-    
-    
+
+
 }

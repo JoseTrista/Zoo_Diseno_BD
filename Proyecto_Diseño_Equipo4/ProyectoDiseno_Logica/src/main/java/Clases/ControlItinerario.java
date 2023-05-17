@@ -17,29 +17,32 @@ import java.util.List;
  * @author Equipo4
  */
 public class ControlItinerario {
+
     public IDatos datos = new FachadaDatos();
-    
-    public List<ZonaDelParque> recuperaZonas(){
-       datos=FabricaDatos.dameInstancia();
-       return datos.recuperaZonas();
+
+    public List<ZonaDelParque> recuperaZonas() {
+        datos = FabricaDatos.dameInstancia();
+        return datos.recuperaZonas();
     }
-    
-    public List<Guia> recuperaGuias(){
-       datos=FabricaDatos.dameInstancia();
-       return datos.recuperaGuias();
+
+    public List<Guia> recuperaGuias() {
+        datos = FabricaDatos.dameInstancia();
+        return datos.recuperaGuias();
     }
-    
-    public void buscarItinerario(){
-        
-    }
-    
-    public void verificaNombreItinerario(String nombre){
+
+    public Itinerario buscarItinerario(String nombre) {
         Itinerario itinerario = new Itinerario();
         itinerario = datos.verificarItinerario(nombre);
-        return;
+        return itinerario;
     }
-    
-    public void guardaItinerario(){
-        
+
+    public Itinerario verificaNombreItinerario(String nombre) {
+        Itinerario itinerario = new Itinerario();
+        itinerario = datos.verificarItinerario(nombre);
+        return itinerario;
+    }
+
+    public void guardaItinerario() {
+
     }
 }

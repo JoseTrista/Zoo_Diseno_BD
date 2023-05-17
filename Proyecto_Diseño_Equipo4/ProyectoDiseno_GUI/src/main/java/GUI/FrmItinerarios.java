@@ -9,6 +9,8 @@ import Clases.ILogica;
 import Dominio.Guia;
 import Dominio.Itinerario;
 import Dominio.ZonaDelParque;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,23 @@ public class FrmItinerarios extends javax.swing.JFrame {
     public FrmItinerarios() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
+
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("hola");
+                mostrarEspacioTexto();
+            }
+        };
+
+        cbLunes.addActionListener(listener);
+        cbMartes.addActionListener(listener);
+        cbMiercoles.addActionListener(listener);
+        cbJ.addActionListener(listener);
+        cbViernes.addActionListener(listener);
+        cbSabado.addActionListener(listener);
+        cbDomingo.addActionListener(listener);
+
         this.desactivaCampos();
     }
 
@@ -63,7 +82,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         cbMartes = new javax.swing.JCheckBox();
         cbSabado = new javax.swing.JCheckBox();
         cbMiercoles = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
         cbViernes = new javax.swing.JCheckBox();
         cbDomingo = new javax.swing.JCheckBox();
         btnRegistrar = new javax.swing.JButton();
@@ -72,8 +90,18 @@ public class FrmItinerarios extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
+        txtLunes = new javax.swing.JTextField();
+        txtMartes = new javax.swing.JTextField();
+        txtMiercoles = new javax.swing.JTextField();
+        txtJueves = new javax.swing.JTextField();
+        txtViernes = new javax.swing.JTextField();
+        txtSabado = new javax.swing.JTextField();
+        txtDomingo = new javax.swing.JTextField();
+        cbJ = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        cbJueves.setEnabled(false);
 
         jLabel1.setText("Pantalla Itinerarios");
 
@@ -94,6 +122,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
         jLabel6.setText("Máximo número de visitantes:");
 
+        txtDuracion.setEnabled(false);
+
+        txtLongitud.setEnabled(false);
+
+        txtMaximoVisitantes.setEnabled(false);
         txtMaximoVisitantes.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 txtMaximoVisitantesAncestorAdded(evt);
@@ -105,18 +138,22 @@ public class FrmItinerarios extends javax.swing.JFrame {
         });
 
         cbLunes.setText("Lunes");
+        cbLunes.setEnabled(false);
 
         cbMartes.setText("Martes");
+        cbMartes.setEnabled(false);
 
         cbSabado.setText("Sabado");
+        cbSabado.setEnabled(false);
 
         cbMiercoles.setText("Miecoles");
-
-        jCheckBox5.setText("Jueves");
+        cbMiercoles.setEnabled(false);
 
         cbViernes.setText("Viernes");
+        cbViernes.setEnabled(false);
 
         cbDomingo.setText("Domingo");
+        cbDomingo.setEnabled(false);
 
         btnRegistrar.setText("Registrar");
 
@@ -131,6 +168,23 @@ public class FrmItinerarios extends javax.swing.JFrame {
             }
         });
 
+        txtLunes.setEnabled(false);
+
+        txtMartes.setEnabled(false);
+
+        txtMiercoles.setEnabled(false);
+
+        txtJueves.setEnabled(false);
+
+        txtViernes.setEnabled(false);
+
+        txtSabado.setEnabled(false);
+
+        txtDomingo.setEnabled(false);
+
+        cbJ.setText("Jueves");
+        cbJ.setEnabled(false);
+
         javax.swing.GroupLayout cbJuevesLayout = new javax.swing.GroupLayout(cbJueves);
         cbJueves.setLayout(cbJuevesLayout);
         cbJuevesLayout.setHorizontalGroup(
@@ -138,138 +192,167 @@ public class FrmItinerarios extends javax.swing.JFrame {
             .addGroup(cbJuevesLayout.createSequentialGroup()
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cbJuevesLayout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
                         .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(cbJuevesLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(cbJuevesLayout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(cbJuevesLayout.createSequentialGroup()
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtMaximoVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(cbJuevesLayout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(12, 12, 12)))
+                                    .addGroup(cbJuevesLayout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar)
-                                .addGap(18, 18, 18)
-                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(109, 109, 109))
                             .addGroup(cbJuevesLayout.createSequentialGroup()
-                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                                        .addGap(169, 169, 169)
-                                        .addComponent(jLabel3))
-                                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                                        .addGap(27, 27, 27)
-                                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                .addComponent(jLabel5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18))
-                                            .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                .addComponent(cbViernes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(cbSabado, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(cbDomingo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                .addComponent(cbMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                                                        .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtMaximoVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbZonas, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(cbJuevesLayout.createSequentialGroup()
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(cbJuevesLayout.createSequentialGroup()
+                                .addGap(201, 201, 201)
+                                .addComponent(jLabel1))
+                            .addGroup(cbJuevesLayout.createSequentialGroup()
+                                .addGap(538, 538, 538)
+                                .addComponent(btnRegistrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRegresar))
+                            .addGroup(cbJuevesLayout.createSequentialGroup()
                                 .addGap(30, 30, 30)
                                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbZonas, 0, 186, Short.MAX_VALUE)
-                                    .addComponent(cmbGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cbJuevesLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegistrar)
-                    .addComponent(btnRegresar))
-                .addGap(34, 34, 34))
+                                    .addGroup(cbJuevesLayout.createSequentialGroup()
+                                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbMiercoles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtMartes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(cbJuevesLayout.createSequentialGroup()
+                                            .addComponent(cbLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtLunes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cbJuevesLayout.createSequentialGroup()
+                                            .addComponent(cbJ, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtJueves, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(63, 63, 63)
+                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cbSabado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbDomingo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbViernes, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtViernes)
+                                    .addComponent(txtSabado)
+                                    .addComponent(txtDomingo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(93, 93, 93))
         );
         cbJuevesLayout.setVerticalGroup(
             cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cbJuevesLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnBuscar)
+                    .addComponent(cmbGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cbJuevesLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 20, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(cbJuevesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel7)
+                            .addComponent(txtLongitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtMaximoVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33))
+                    .addGroup(cbJuevesLayout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbZonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 37, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnRegistrar)
+                            .addComponent(btnRegresar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(cbJuevesLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbLunes)
-                            .addComponent(cbMartes)))
-                    .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtMaximoVisitantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRegistrar)))
+                            .addComponent(txtLunes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMartes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbMartes))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMiercoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbMiercoles)))
+                    .addGroup(cbJuevesLayout.createSequentialGroup()
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtViernes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbViernes))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSabado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbSabado))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtDomingo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbDomingo))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbMiercoles)
-                    .addComponent(jCheckBox5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(cbJuevesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbViernes)
-                    .addComponent(cbSabado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbDomingo)
-                .addGap(146, 146, 146)
-                .addComponent(btnRegresar)
-                .addGap(23, 23, 23))
+                    .addComponent(txtJueves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbJ))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(cbJueves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(cbJueves, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbJueves, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(cbJueves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 5, Short.MAX_VALUE))
         );
 
         pack();
@@ -281,12 +364,13 @@ public class FrmItinerarios extends javax.swing.JFrame {
         if (this.txtItinerarios.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese nombre de el Itinerario a verificar");
         } else {
-            //it = logica.verificaNombreItinerario(txtItinerarios.getText());
+            it = logica.verificaNombreItinerario(txtItinerarios.getText());
             System.out.println(it);
             if (it != null) {
                 //mue(it);
             } else {
-                activaCampos();
+                JOptionPane.showMessageDialog(this, "No existe el Itinerario, se abren campos");
+                activaCajasVerificacion();
             }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -313,13 +397,12 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    public void muestraDatosItinerarios(Itinerario itinerario) {
-
+    public void muestraDetallesItinerarios(Itinerario itinerario) {
         //cmbGuia.setSelectedItem(itinerario.get);
-        //cmbZonas.setSelectedItem(itinerario.getZonas());
-        //txtNombreCientifico.setText(itinerario.getNombreCientifico());
-        //txtNombreEspañol.setText(itinerario.getNombre());
-        //txtDescripcion.setText(itinerario.getDescripcion());
+        cmbZonas.setSelectedItem(itinerario.getZonas());
+        txtItinerarios.setText(itinerario.getNombre());
+        //txtDuracion.setText(itinerario.getRecorridos());
+        txtMaximoVisitantes.setText(String.valueOf(itinerario.getMaximoVisitante()));
     }
 
     public void desactivaCampos() {
@@ -337,7 +420,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
         cbDomingo.setEnabled(false);
     }
 
-    public void activaCampos() {
+    public void activaCajasVerificacion() {
         txtDuracion.setEnabled(true);
         txtLongitud.setEnabled(true);
         txtMaximoVisitantes.setEnabled(true);
@@ -346,10 +429,48 @@ public class FrmItinerarios extends javax.swing.JFrame {
         cbLunes.setEnabled(true);
         cbMartes.setEnabled(true);
         cbMiercoles.setEnabled(true);
-        cbJueves.setEnabled(true);
+        cbJ.setEnabled(true);
         cbViernes.setEnabled(true);
         cbSabado.setEnabled(true);
         cbDomingo.setEnabled(true);
+    }
+
+    public void mostrarEspacioTexto() {
+        if (cbLunes.isSelected()) {
+            txtLunes.setEnabled(true);
+        } else {
+            txtLunes.setEnabled(false);
+        }
+        if (cbMartes.isSelected()) {
+            txtMartes.setEnabled(true);
+        } else {
+            txtMartes.setEnabled(false);
+        }
+        if (cbMiercoles.isSelected()) {
+            txtMiercoles.setEnabled(true);
+        } else {
+            txtMiercoles.setEnabled(false);
+        }
+        if (cbJ.isSelected()) {
+            cbJ.setEnabled(true);
+        } else {
+            cbJ.setEnabled(false);
+        }
+        if (cbViernes.isSelected()) {
+            txtViernes.setEnabled(true);
+        } else {
+            txtViernes.setEnabled(false);
+        }
+        if (cbSabado.isSelected()) {
+            txtSabado.setEnabled(true);
+        } else {
+            txtSabado.setEnabled(false);
+        }
+        if (cbDomingo.isSelected()) {
+            txtDomingo.setEnabled(true);
+        } else {
+            txtDomingo.setEnabled(false);
+        }
     }
 
     /**
@@ -392,6 +513,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JCheckBox cbDomingo;
+    private javax.swing.JCheckBox cbJ;
     private javax.swing.JPanel cbJueves;
     private javax.swing.JCheckBox cbLunes;
     private javax.swing.JCheckBox cbMartes;
@@ -400,7 +522,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private javax.swing.JCheckBox cbViernes;
     private javax.swing.JComboBox<Guia> cmbGuia;
     private javax.swing.JComboBox<ZonaDelParque> cmbZonas;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -409,9 +530,16 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField txtDomingo;
     private javax.swing.JTextField txtDuracion;
     private javax.swing.JTextField txtItinerarios;
+    private javax.swing.JTextField txtJueves;
     private javax.swing.JTextField txtLongitud;
+    private javax.swing.JTextField txtLunes;
+    private javax.swing.JTextField txtMartes;
     private javax.swing.JTextField txtMaximoVisitantes;
+    private javax.swing.JTextField txtMiercoles;
+    private javax.swing.JTextField txtSabado;
+    private javax.swing.JTextField txtViernes;
     // End of variables declaration//GEN-END:variables
 }

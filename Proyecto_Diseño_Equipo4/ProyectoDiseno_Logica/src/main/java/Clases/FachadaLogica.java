@@ -2,6 +2,7 @@ package Clases;
 
 import Dominio.Especie;
 import Dominio.Habitat;
+import Dominio.Itinerario;
 import Dominio.ZonaDelParque;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,14 +36,16 @@ public class FachadaLogica implements ILogica {
         return datosARecuperar;
     }
 
-    @Override
+    //@Override
     public void buscarItinerario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void verificaNombreItinerario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Itinerario verificaNombreItinerario(String nombre) {
+        Itinerario it = new Itinerario();
+        it = ci.verificaNombreItinerario(nombre);
+        return it;
     }
 
     @Override
@@ -80,7 +83,12 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public boolean guardarEspecie(Especie especie) {
-         ce.guardarEspecie(especie);
+        ce.guardarEspecie(especie);
         return true;
+    }
+
+    @Override
+    public void buscarItinerario(String nombre) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
