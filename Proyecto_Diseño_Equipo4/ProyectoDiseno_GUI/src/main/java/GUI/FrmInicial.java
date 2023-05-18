@@ -11,11 +11,18 @@ import Dominio.TipoVegetacion;
 import Dominio.ZonaDelParque;
 import java.util.List;
 
+/**
+ * Frame Inicial
+ * @author Equipo04
+ */
 public class FrmInicial extends javax.swing.JFrame {
 
     ILogica logica;
     
 
+    /**
+     * Constructor por default para el frame FrmInicial.
+     */
     public FrmInicial() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
@@ -157,6 +164,10 @@ public class FrmInicial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón que nos redireccionará al frame FrmRegistrarHabitat con todos los datos para su construcción.
+     * @param evt Evento que acciona el botón.
+     */
     private void selecHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecHabitatActionPerformed
         List<Object> lista = logica.recuperaDatosHabitat();
         List<Continente> continente = (List<Continente>) lista.get(1);
@@ -169,6 +180,10 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecHabitatActionPerformed
 
+    /**
+     * Botón que nos redireccionará al frame FrmRegistrar_ActualizarEspecie con todos los datos para su construcción.
+     * @param evt Evento que acciona el botón.
+     */
     private void selecRegistraroActualizarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistraroActualizarEspecieActionPerformed
         List<Object> lista = logica.recuperaCuidadoresyHabitatsyZonas();
         List<Cuidador> listCuidador = (List<Cuidador>) lista.get(0);
@@ -180,9 +195,16 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecRegistraroActualizarEspecieActionPerformed
 
+    /**
+     * Método para mostrar un mensaje de error respecto al Inicio.
+     */
     public void muestraError() {
     }
 
+    /**
+     * Botón que nos redireccionará al frame FrmItinerarios con todos los datos para su construcción.
+     * @param evt Evento que acciona el botón.
+     */
     private void selecRegistrarActualizarItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarActualizarItinerarioActionPerformed
         List<Object> lista = logica.recuperaZonasyGuias();
         
@@ -195,6 +217,10 @@ public class FrmInicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed
 
+    /**
+     * Botón que nos redireccionará al frame FrmRegistrarQueja con todos los datos para su construcción.
+     * @param evt Evento que acciona el botón.
+     */
     private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
         /*
         FrmRegistrarQueja frmQueja = new FrmRegistrarQueja();
