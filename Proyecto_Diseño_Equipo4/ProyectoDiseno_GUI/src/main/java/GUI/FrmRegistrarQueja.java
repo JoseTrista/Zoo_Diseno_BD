@@ -5,16 +5,20 @@
  */
 package GUI;
 
+import Clases.FabricaLogica;
+import Clases.ILogica;
+
 /**
  *
  * @author JDSan
  */
 public class FrmRegistrarQueja extends javax.swing.JFrame {
-
+    ILogica logica;
     /**
      * Creates new form FrmRegistrarQueja
      */
     public FrmRegistrarQueja() {
+        logica = FabricaLogica.crearInstancia();
         initComponents();
     }
 

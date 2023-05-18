@@ -24,12 +24,14 @@ public class ControlEspecie {
     }
     
      public Especie verificaEspecieRegistrada(String nombre) {
+        datos = FabricaDatos.dameInstancia();
         Especie especie = new Especie();
         especie = datos.verificaEspecie(nombre);
         return especie;
     }
      
        public boolean guardarEspecie(Especie especie) {
+        datos = FabricaDatos.dameInstancia();
         datos.guardaEspecie(especie);
         return true;
     }

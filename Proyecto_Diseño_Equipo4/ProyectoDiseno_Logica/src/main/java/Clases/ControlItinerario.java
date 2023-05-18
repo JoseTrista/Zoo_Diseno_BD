@@ -31,12 +31,14 @@ public class ControlItinerario {
     }
 
     public Itinerario buscarItinerario(String nombre) {
+        datos = FabricaDatos.dameInstancia();
         Itinerario itinerario = new Itinerario();
         itinerario = datos.verificarItinerario(nombre);
         return itinerario;
     }
 
     public Itinerario verificaNombreItinerario(String nombre) {
+        datos = FabricaDatos.dameInstancia();
         Itinerario itinerario = new Itinerario();
         itinerario = datos.verificarItinerario(nombre);
         return itinerario;
@@ -44,6 +46,7 @@ public class ControlItinerario {
 
    
     public boolean guardarItinerario(Itinerario itinerario) {
+        datos = FabricaDatos.dameInstancia();
         datos.guardaItinerario(itinerario);
         return true;
     }

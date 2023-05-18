@@ -14,12 +14,14 @@ public class ControlHabitat {
     public IDatos datos = new FachadaDatos();
 
     public Habitat verificaHabitat(String nombre) {
+        datos = FabricaDatos.dameInstancia();
         Habitat habitat = new Habitat();
         habitat = datos.verificarHabitat(nombre);
         return habitat;
     }
 
     public boolean guardarHabitat(Habitat habitat) {
+        datos = FabricaDatos.dameInstancia();
         datos.guardaHabitat(habitat);
         return true;
     }
