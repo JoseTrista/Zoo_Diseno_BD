@@ -7,9 +7,12 @@ package Datos;
 import Dominio.Especie;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
@@ -23,8 +26,13 @@ public class EspecieDAO<T> extends DAOBase<Especie> {
     public Especie buscarEspecie(String nombre) {
         conexion = Conexion.getInstance();
         MongoCollection<Especie> especieCollection = conexion.getCollection("Especie", Especie.class);
-        return especieCollection.find(eq("nombre", nombre)).first();
+
+        Pattern pattern = Pattern.compile(nombre, Pattern.CASE_INSENSITIVE);
+        Bson filtro = Filters.regex("nombre", pattern);
+
+        return especieCollection.find(filtro).first();
     }
+
 
     @Override
     public void guardar(Especie entidad) {
