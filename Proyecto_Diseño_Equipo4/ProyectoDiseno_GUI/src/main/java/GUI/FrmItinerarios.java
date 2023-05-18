@@ -515,7 +515,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
             it = logica.verificaNombreItinerario(txtItinerarios.getText());
             System.out.println(it);
             if (it != null) {
-                //mue(it);
+                muestraDetallesItinerarios(it);
             } else {
                 JOptionPane.showMessageDialog(this, "No existe el Itinerario, se abren campos");
                 activaCajasVerificacion();
@@ -611,10 +611,23 @@ public class FrmItinerarios extends javax.swing.JFrame {
     }
 
     public void muestraDetallesItinerarios(Itinerario itinerario) {
-        //cmbGuia.setSelectedItem(itinerario.get);
+//        cmbGuia.setSelectedItem(itinerario);
         txtItinerarios.setText(itinerario.getNombre());
-        //txtDuracion.setText(itinerario.getRecorridos());
+//        txtDuracion.setText(itinerario.getDuracion());
         txtMaximoVisitantes.setText(String.valueOf(itinerario.getMaximoVisitante()));
+        List<ZonaDelParque> zonasItinerario = itinerario.getZonas();
+        for (ZonaDelParque zona : zonasItinerario) {
+            for (int i = 0; i < disponiblesListModelZonas.size(); i++) {
+                if (disponiblesListModelZonas.get(i).equals(zona)) {
+                    seleccionadosListModelZonas.addElement(zona);
+                    disponiblesListModelZonas.removeElement(zona);
+                }
+            }
+        }
+        txtDuracion.setEnabled(false);
+        txtLongitud.setEnabled(false);
+        txtMaximoVisitantes.setEnabled(false);
+        cmbGuia.setEnabled(false);
     }
 
     public void muestraError() {

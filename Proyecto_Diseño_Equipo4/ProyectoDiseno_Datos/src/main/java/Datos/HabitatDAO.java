@@ -3,9 +3,12 @@ package Datos;
 import Dominio.Habitat;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 public class HabitatDAO<T> extends DAOBase<Habitat> {
@@ -15,7 +18,11 @@ public class HabitatDAO<T> extends DAOBase<Habitat> {
     public Habitat buscaHabitat(String nombre) {
         conexion = Conexion.getInstance();
         MongoCollection<Habitat> habitatCollection = conexion.getCollection("habitat", Habitat.class);
-        return habitatCollection.find(eq("nombre", nombre)).first();
+        
+        Pattern pattern = Pattern.compile(nombre, Pattern.CASE_INSENSITIVE);
+        Bson filtro = Filters.regex("nombre", pattern);
+
+        return habitatCollection.find(filtro).first();
     }
 
     public boolean guardarHabitat(Habitat habitat) {
