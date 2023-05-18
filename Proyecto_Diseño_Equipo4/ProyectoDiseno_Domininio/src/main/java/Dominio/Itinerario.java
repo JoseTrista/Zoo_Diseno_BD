@@ -15,20 +15,11 @@ public class Itinerario {
     private String nombre;
     private int maximoVisitante;
     private int especiesVisita;
+    private int duracion;
+    private int longitud;
     private List<ZonaDelParque> zonas;
     private List<Recorrido> recorridos;
-    private List<Horario> horarios;
 
-    public List<Horario> getHorarios() {
-        return horarios;
-    }
-
-    public void setHorarios(List<Horario> horarios) {
-        this.horarios = horarios;
-    }
-
-  
-    
     public ObjectId getId() {
         return id;
     }
@@ -61,6 +52,14 @@ public class Itinerario {
         this.especiesVisita = especiesVisita;
     }
 
+    public int getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(int longitud) {
+        this.longitud = longitud;
+    }
+
     public List<ZonaDelParque> getZonas() {
         return zonas;
     }
@@ -77,74 +76,36 @@ public class Itinerario {
         this.recorridos = recorridos;
     }
 
-    public Itinerario() {
-        this.horarios=new ArrayList<>();
+    public int getDuracion() {
+        return duracion;
     }
 
-    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita, List<ZonaDelParque> zonas) {
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    public Itinerario() {
+    }
+
+    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita, int duracion, int longitud, List<ZonaDelParque> zonas) {
         this.id = id;
         this.nombre = nombre;
         this.maximoVisitante = maximoVisitante;
         this.especiesVisita = especiesVisita;
+        this.duracion = duracion;
+        this.longitud = longitud;
         this.zonas = zonas;
     }
 
-    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita) {
+    public Itinerario(ObjectId id, String nombre, int maximoVisitante, int especiesVisita, int duracion, int longitud) {
         this.id = id;
         this.nombre = nombre;
         this.maximoVisitante = maximoVisitante;
         this.especiesVisita = especiesVisita;
+        this.duracion = duracion;
+        this.longitud = longitud;
         this.zonas = new ArrayList<>();
         this.recorridos = new ArrayList<>();
-        this.horarios=new ArrayList<>();
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.nombre);
-        hash = 29 * hash + this.maximoVisitante;
-        hash = 29 * hash + this.especiesVisita;
-        hash = 29 * hash + Objects.hashCode(this.zonas);
-        hash = 29 * hash + Objects.hashCode(this.recorridos);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Itinerario other = (Itinerario) obj;
-        if (this.maximoVisitante != other.maximoVisitante) {
-            return false;
-        }
-        if (this.especiesVisita != other.especiesVisita) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.zonas, other.zonas)) {
-            return false;
-        }
-        return Objects.equals(this.recorridos, other.recorridos);
-    }
-
-    @Override
-    public String toString() {
-        return "Itinerario{" + "id=" + id + ", nombre=" + nombre + ", maximoVisitante=" + maximoVisitante + ", especiesVisita=" + especiesVisita + ", zonas=" + zonas + ", recorridos=" + recorridos + '}';
-    }
-
 
 }

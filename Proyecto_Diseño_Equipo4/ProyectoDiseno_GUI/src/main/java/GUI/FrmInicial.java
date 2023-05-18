@@ -196,9 +196,10 @@ public class FrmInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_selecRegistrarActualizarItinerarioActionPerformed
 
     private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
+        /*
         FrmRegistrarQueja frmQueja = new FrmRegistrarQueja();
         frmQueja.setVisible(true);
-        this.dispose();
+        this.dispose();*/
     }//GEN-LAST:event_selecRegistrarQuejaActionPerformed
 
     /**

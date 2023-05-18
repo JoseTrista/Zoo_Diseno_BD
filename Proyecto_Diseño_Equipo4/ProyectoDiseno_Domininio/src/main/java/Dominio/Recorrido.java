@@ -1,7 +1,9 @@
 
 package Dominio;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import org.bson.types.ObjectId;
 
@@ -10,9 +12,9 @@ import org.bson.types.ObjectId;
  * @author IVAN
  */
 public class Recorrido {
-     private ObjectId id;
-    private double longitud;
-    private Date fechaHora;
+    private ObjectId id;
+    private Horario horarios;
+    private Guia guia;
 
     public ObjectId getId() {
         return id;
@@ -22,34 +24,36 @@ public class Recorrido {
         this.id = id;
     }
 
-    public double getLongitud() {
-        return longitud;
+    public Horario getHorarios() {
+        return horarios;
     }
 
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
+    public void setHorarios(Horario horarios) {
+        this.horarios = horarios;
     }
 
-    public Date getFechaHora() {
-        return fechaHora;
+    public Guia getGuia() {
+        return guia;
     }
 
-    public void setFechaHora(Date fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setGuia(Guia guia) {
+        this.guia = guia;
     }
 
     public Recorrido() {
     }
 
-    public Recorrido(ObjectId id, double longitud, Date fechaHora) {
-        this.id = id;
-        this.longitud = longitud;
-        this.fechaHora = fechaHora;
+    public Recorrido(Horario horarios, Guia guia) {
+        this.horarios = horarios;
+        this.guia = guia;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.horarios);
+        hash = 83 * hash + Objects.hashCode(this.guia);
         return hash;
     }
 
@@ -65,22 +69,18 @@ public class Recorrido {
             return false;
         }
         final Recorrido other = (Recorrido) obj;
-        if (Double.doubleToLongBits(this.longitud) != Double.doubleToLongBits(other.longitud)) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.fechaHora, other.fechaHora)) {
+        if (!Objects.equals(this.horarios, other.horarios)) {
             return false;
         }
-        return true;
+        return Objects.equals(this.guia, other.guia);
     }
 
     @Override
     public String toString() {
-        return "Recorrido{" + "id=" + id + ", longitud=" + longitud + ", fechaHora=" + fechaHora + '}';
+        return "Recorrido{" + "id=" + id + ", horarios=" + horarios + ", guia=" + guia + '}';
     }
-    
     
 }

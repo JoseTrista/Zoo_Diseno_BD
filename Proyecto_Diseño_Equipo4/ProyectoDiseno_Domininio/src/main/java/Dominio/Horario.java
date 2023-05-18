@@ -16,7 +16,6 @@ public class Horario {
      private String horaInicio;
      private Dias dia;
 
-
     public String getHoraInicio() {
         return horaInicio;
     }
@@ -36,12 +35,10 @@ public class Horario {
     public Horario() {
     }
 
-    public Horario(String horaInicio, Dias dia) {
-        this.horaInicio = horaInicio;
+    public Horario(Dias dia, String horaInicio) {
         this.dia = dia;
+        this.horaInicio = horaInicio;
     }
-    
-
    
 
     @Override
