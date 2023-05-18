@@ -12,6 +12,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
+/**
+ * Frame para RegistrarHábitat.
+ * @author Equipo04
+ */
 public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
     ILogica logica;
@@ -19,6 +23,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     private DefaultListModel<Continente> seleccionadosListModel = new DefaultListModel<>();
     Habitat hb = new Habitat();
 
+    
+    /**
+     * Constructor por default para el frame FrmRegistrarHábitat.
+     */
     public FrmRegistrarHabitat() {
 
         logica = FabricaLogica.crearInstancia();
@@ -30,6 +38,12 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Constructor con parámetros para el frame RegistrarHábitat.
+     * @param clima Lista con todos los climas que se tengan registrados.
+     * @param continentes Lista con todos los continentes que se tengan registrados.
+     * @param vege Lista con todas las vegetaciones que se tengan registrados.
+     */
     public FrmRegistrarHabitat(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
 
         logica = FabricaLogica.crearInstancia();
@@ -116,21 +130,11 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jLabel3.setText("Clima:");
 
         cmbClima.setEnabled(false);
-        cmbClima.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbClimaActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Vegetación:");
 
         cmbVegetacion.setEnabled(false);
-        cmbVegetacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbVegetacionActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Continentes");
@@ -192,7 +196,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -291,7 +295,6 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
                                 .addGap(44, 44, 44)
                                 .addComponent(btnRegresar)
                                 .addGap(24, 24, 24)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnagregar)
                             .addComponent(btneliminar))))
@@ -315,6 +318,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para verificar que los campos han sido llenados.De ser así se guardarán los datos, de lo contrario saltará un error.
+     * @param evt Evento que acciona el botón.
+     */
     private void selecGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecGuardarActionPerformed
         if (verificaCamposLlenos()) {
             if (hb == null) {
@@ -342,6 +349,12 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
     }//GEN-LAST:event_selecGuardarActionPerformed
 
 
+    /**
+     * Botón para verificar el nombre ingresado por el usuario en el campo txtHabitat
+     * .De haber un registro que coincida con lo escrito, saltará una pantalla con la información del hábitat,
+     * de lo contrario se habilitarán los campos para rellenar la información de registro.
+     * @param evt Evento que acciona el botón.
+     */
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         if (this.txtHabitat.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese nombre de el habitat a verificar");
@@ -357,6 +370,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVerificarActionPerformed
 
+    /**
+     * Botón para pasar un registro de continente de la lista "Disponibles" a "Seleccionados".
+     * @param evt Evento que acciona el botón.
+     */
     private void btnagregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarActionPerformed
         int i = listaDisponibles.getSelectedIndex();
         if (i != -1) {
@@ -367,6 +384,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnagregarActionPerformed
 
+    /**
+     * Botón para eliminar un registro de continente de la lista "Seleccionados" a "Disponibles".
+     * @param evt Evento que acciona el botón.
+     */
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
         int i = listaSeleccionados.getSelectedIndex();
         if (i != -1) {
@@ -377,20 +398,23 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btneliminarActionPerformed
 
-    private void cmbVegetacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVegetacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbVegetacionActionPerformed
 
+    /**
+     * Botón que te permite regresar al frame FrmInicial.
+     * @param evt Evento que acciona el botón.
+     */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         FrmInicial fi = new FrmInicial();
         fi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void cmbClimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClimaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbClimaActionPerformed
-
+    /**
+     * Método que añadirá a los comboBox de Clima, Vegetación y Continentes los datos recuperados en las listas de sus respectivos objetos.
+     * @param clima Lista con todos los objetos tipo Clima registrados.
+     * @param continentes Lista con todos los objetos tipo Continente registrados.
+     * @param vege Lista con todos los objetos tipo TipoVegetacion registrados.
+     */
     public void despliegaDatosRecuperados(List<Clima> clima, List<Continente> continentes, List<TipoVegetacion> vege) {
         for (int i = 0; i < clima.size(); i++) {
             cmbClima.addItem(clima.get(i));
@@ -404,6 +428,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para mostrar los datos de un hábitat que ya haya sido registrado. 
+     * @param habitat Objeto tipo Habitat del cual se mostrarán los datos.
+     */
     public void muestraDatosHabitat(Habitat habitat) {
         cmbClima.setSelectedItem(habitat.getClima2());
         cmbVegetacion.setSelectedItem(habitat.getVegetacion2());
@@ -438,6 +466,9 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         selecGuardar.setEnabled(false);
     }
 
+    /**
+     * Método que activará los campos para rellenar del frame.
+     */
     public void activaCampos() {
         cmbClima.setEnabled(true);
         cmbVegetacion.setEnabled(true);
@@ -448,6 +479,10 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         selecGuardar.setEnabled(true);
     }
 
+    /**
+     * Método que verificará si todos los campos rellenables tienen algún registro en ellos.
+     * @return De estar llenos todos los campos, se regresará un boolean con valor True, de lo contrario se regresará un False y un mensaje de error.
+     */
     public boolean verificaCamposLlenos() {
         String nombre = txtHabitat.getText();
         Clima clima = (Clima) cmbClima.getSelectedItem();
@@ -460,14 +495,23 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para mostrar un mensaje de error respecto al Hábitat.
+     */
     public void muestraError() {
         JOptionPane.showMessageDialog(this, "Habitat existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    
+    /**
+     * Método para mostrar un mensaje de éxito respecto al Hábitat.
+     */
     public void muestraMensajeExitoso() {
         JOptionPane.showMessageDialog(this, "Habitat Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Método que retornará a la posición inicial la lista de continenes de "Disponibles" y vaciará la lista "Seleccionados".
+     */
     public void reiniciaContinentes() {
        
        while(!seleccionadosListModel.isEmpty()){
@@ -478,40 +522,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
        }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarHabitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarHabitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarHabitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegistrarHabitat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //       new FrmRegistrarHabitat().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
