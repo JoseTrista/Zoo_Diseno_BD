@@ -30,9 +30,10 @@ public interface ILogica {
     public Especie verificaNombreEspecie(String nombre);
 
     public List<Itinerario> recuperaItinerarios();
-
-
+    
     public List<Guia> recuperaGuia();
 
+    public void recuperaHoras();
+    
     public boolean guardaQueja(QuejaRecorrido quejas);
 }

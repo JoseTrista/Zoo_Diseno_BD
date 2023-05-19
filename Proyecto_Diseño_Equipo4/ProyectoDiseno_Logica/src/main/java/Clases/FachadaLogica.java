@@ -110,4 +110,9 @@ public class FachadaLogica implements ILogica {
     public boolean guardaQueja(QuejaRecorrido quejas) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void recuperaHoras() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

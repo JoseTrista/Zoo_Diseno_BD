@@ -4,6 +4,7 @@
  */
 package Datos;
 
+import Dominio.Itinerario;
 import Dominio.QuejaRecorrido;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -23,6 +24,22 @@ public class QuejaDAO <T> extends DAOBase<QuejaRecorrido>
 
     public void recuperaQuejas() {
         conexion = Conexion.getInstance();
+    }
+    
+    public Itinerario recuperaItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void recuperaFechas() {
+        
+    }
+    
+    public void recuperaHoras() {
+        
+    }
+    
+    public boolean guardarQueja() {
+        return true;
     }
     
     @Override

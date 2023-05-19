@@ -8,6 +8,7 @@ import Dominio.Especie;
 import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.Itinerario;
+import Dominio.QuejaRecorrido;
 import Dominio.TipoVegetacion;
 import Dominio.ZonaDelParque;
 import java.util.List;
@@ -44,4 +45,11 @@ public interface IDatos
     public Itinerario verificarItinerario(String nombre);
     
     public Itinerario recuperaItinerario();
+    
+    public void recuperaFechas();
+    
+    public void recuperaHoras();
+    
+    public boolean guardarQueja();
+    
 }
