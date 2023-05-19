@@ -8,6 +8,7 @@ package GUI;
 import Clases.FabricaLogica;
 import Clases.ILogica;
 import Dominio.Itinerario;
+import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,18 +16,17 @@ import javax.swing.DefaultListModel;
  * @author JDSan
  */
 public class FrmRegistrarQueja extends javax.swing.JFrame {
+
     ILogica logica;
-    
-    private DefaultListModel<Itinerario> listaItinerarios = new DefaultListModel<>();
-    
-    
+
     /**
      * Creates new form FrmRegistrarQueja
      */
-    public FrmRegistrarQueja() {
+    public FrmRegistrarQueja(List<Itinerario> itinerario) {
         logica = FabricaLogica.crearInstancia();
-        
+
         initComponents();
+        despliegaDatosRecuperados(itinerario);
     }
 
     /**
@@ -64,13 +64,10 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
 
         jLabel1.setText("Registrar quejas");
 
-        cmbItinerarios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel2.setText("Lista de nombres de itinerarios ejecutados en el último mes");
 
         jLabel3.setText("Lista de fechas del itinerario");
 
-        cmbFechaItinerario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbFechaItinerario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbFechaItinerarioActionPerformed(evt);
@@ -82,8 +79,6 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
         jLabel5.setText("No establecido");
 
         jLabel6.setText("Horarios del itinerario");
-
-        cmbHorariosFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("Queja");
 
@@ -155,14 +150,13 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(cmbItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)))
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(3, 3, 3)))
                         .addGap(100, 100, 100))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(115, 115, 115))))
+                        .addComponent(jLabel10)
+                        .addGap(308, 308, 308))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addComponent(jButton1)
@@ -218,19 +212,27 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbFechaItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFechaItinerarioActionPerformed
-        
-        
-        
-        
-        
+
     }//GEN-LAST:event_cmbFechaItinerarioActionPerformed
 
-    
+    public void despliegaDatosRecuperados(List<Itinerario> itinerario) {
+        for (int i = 0; i < itinerario.size(); i++) {
+            cmbItinerarios.addItem(itinerario.get(i));
+        }
+
+        for (int i = 0; i < itinerario.size(); i++) {
+            cmbFechaItinerario.addItem(itinerario.get(i));
+        }
+
+        for (int i = 0; i < itinerario.size(); i++) {
+            cmbHorariosFecha.addItem(itinerario.get(i));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cmbFechaItinerario;
-    private javax.swing.JComboBox<String> cmbHorariosFecha;
-    private javax.swing.JComboBox<String> cmbItinerarios;
+    private javax.swing.JComboBox<Itinerario> cmbFechaItinerario;
+    private javax.swing.JComboBox<Itinerario> cmbHorariosFecha;
+    private javax.swing.JComboBox<Itinerario> cmbItinerarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

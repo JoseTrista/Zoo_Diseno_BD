@@ -7,6 +7,7 @@ import Dominio.Continente;
 import Dominio.Cuidador;
 import Dominio.Guia;
 import Dominio.Habitat;
+import Dominio.Itinerario;
 import Dominio.TipoVegetacion;
 import Dominio.ZonaDelParque;
 import java.util.List;
@@ -222,10 +223,11 @@ public class FrmInicial extends javax.swing.JFrame {
      * @param evt Evento que acciona el botón.
      */
     private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
-        /*
-        FrmRegistrarQueja frmQueja = new FrmRegistrarQueja();
+        List<Itinerario> lista = logica.recuperaItinerarios();
+        List<Itinerario> listItinerario = (List<Itinerario>) lista.get(0);
+        FrmRegistrarQueja frmQueja = new FrmRegistrarQueja(listItinerario);
         frmQueja.setVisible(true);
-        this.dispose();*/
+        this.dispose();
     }//GEN-LAST:event_selecRegistrarQuejaActionPerformed
 
     /**

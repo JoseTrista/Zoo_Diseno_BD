@@ -6,6 +6,8 @@ import Dominio.Clima;
 import Dominio.Continente;
 import Dominio.Habitat;
 import Dominio.TipoVegetacion;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -86,6 +88,12 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtHabitat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHabitatKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -196,7 +204,7 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -408,6 +416,24 @@ public class FrmRegistrarHabitat extends javax.swing.JFrame {
         fi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtHabitatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHabitatKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_SPACE) {
+            super.processKeyEvent(evt);
+        } else {
+            evt.consume();
+        }
+        txtHabitat.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (txtHabitat.getText().length() >= 20) {
+                    e.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_txtHabitatKeyTyped
 
     /**
      * Método que añadirá a los comboBox de Clima, Vegetación y Continentes los datos recuperados en las listas de sus respectivos objetos.

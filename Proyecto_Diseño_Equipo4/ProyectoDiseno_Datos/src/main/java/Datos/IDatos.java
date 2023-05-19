@@ -44,7 +44,7 @@ public interface IDatos
     
     public Itinerario verificarItinerario(String nombre);
     
-    public Itinerario recuperaItinerario();
+    public List<Itinerario> recuperaItinerario();
     
     public void recuperaFechas();
     
