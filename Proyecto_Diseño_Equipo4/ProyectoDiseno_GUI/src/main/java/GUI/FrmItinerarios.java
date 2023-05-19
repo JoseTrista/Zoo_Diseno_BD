@@ -15,6 +15,8 @@ import Dominio.Recorrido;
 import Dominio.ZonaDelParque;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Frame para Itinerarios.
- * @author Equipo04
+ *
+ * @author jctri
  */
 public class FrmItinerarios extends javax.swing.JFrame {
 
@@ -33,21 +35,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
     private DefaultListModel<ZonaDelParque> disponiblesListModelZonas = new DefaultListModel<>();
     private DefaultListModel<ZonaDelParque> seleccionadosListModelZonas = new DefaultListModel<>();
 
-    /**
-     * Constructor por default para el frame FrmItinerarios.
-     */
     public FrmItinerarios() {
         logica = FabricaLogica.crearInstancia();
         initComponents();
-
-        this.desactivaCampos();
     }
 
-    /**
-     * Constructor con parámetros para el frame Itinerarios.
-     * @param ListGuia Lista con todos los Guías que se tengan registrados.
-     * @param ListZona Lista con todos las Zonas que se tengan registradas.
-     */
     public FrmItinerarios(List<Guia> ListGuia, List<ZonaDelParque> ListZona) {
         logica = FabricaLogica.crearInstancia();
         initComponents();
@@ -55,6 +47,7 @@ public class FrmItinerarios extends javax.swing.JFrame {
         listaDisponiblesZonas.setModel(disponiblesListModelZonas);
         listaSeleccionadosZonas.setModel(seleccionadosListModelZonas);
         muestraDatosRecuperados(ListGuia, ListZona);
+        this.desactivaCampos();
 
     }
 
@@ -127,15 +120,31 @@ public class FrmItinerarios extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Nombre Itinerario:");
 
+        txtItinerarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtItinerariosKeyTyped(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Duración recorrido:");
 
         txtDuracion.setEnabled(false);
+        txtDuracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDuracionKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Longitud:");
 
         txtLongitud.setEnabled(false);
+        txtLongitud.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLongitudKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Máximo número de visitantes:");
@@ -148,6 +157,11 @@ public class FrmItinerarios extends javax.swing.JFrame {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        txtMaximoVisitantes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaximoVisitantesKeyTyped(evt);
             }
         });
 
@@ -515,21 +529,16 @@ public class FrmItinerarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Botón para verificar el nombre ingresado por el usuario en el campo txtItinerarios
-     * .De haber un registro que coincida con lo escrito, saltará una pantalla con la información del Itinerario,
-     * de lo contrario se habilitarán los campos para rellenar la información de registro.
-     * @param evt Evento que acciona el botón.
-     */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         if (this.txtItinerarios.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese nombre del Itinerario a verificar");
+            JOptionPane.showMessageDialog(this, "Ingrese nombre de el Itinerario a verificar");
         } else {
             it = logica.verificaNombreItinerario(txtItinerarios.getText());
             System.out.println(it);
             if (it != null) {
                 muestraDetallesItinerarios(it);
+                this.desactivaCampos();
             } else {
                 JOptionPane.showMessageDialog(this, "No existe el Itinerario, se abren campos");
                 activaCajasVerificacion();
@@ -537,17 +546,12 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    /**
-     * Botón que te permite regresar al frame FrmInicial.
-     * @param evt Evento que acciona el botón.
-     */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
         FrmInicial fi = new FrmInicial();
         fi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
-
 
     private void txtMaximoVisitantesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_txtMaximoVisitantesAncestorAdded
         // TODO add your handling code here:
@@ -557,75 +561,43 @@ public class FrmItinerarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtMartesActionPerformed
 
-    /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
     private void cbMartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMartesActionPerformed
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbMartesActionPerformed
 
-    /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
     private void cbMiercolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMiercolesActionPerformed
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbMiercolesActionPerformed
-    
-    /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
+
     private void cbViernesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbViernesActionPerformed
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbViernesActionPerformed
 
-    /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
     private void cbSabadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSabadoActionPerformed
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbSabadoActionPerformed
 
-   /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
     private void cbDomingoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDomingoActionPerformed
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbDomingoActionPerformed
 
-   /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
     private void cbJuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbJuActionPerformed
         mostrarEspacioTexto();
 
     }//GEN-LAST:event_cbJuActionPerformed
 
-    /**
-     * Botón para registrar los datos obtenidos y verificar que todos estén llenos.De haber un error de escritura o algún campo faltante, soltará un error, de lo contrario se registrará el Itinerario
-     * @param evt Evento que acciona el botón.
-     */
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         if (verificaCamposLlenos()) {
             if (validarRecorridos()) {
                 registrarItinerario();
             } else {
-                JOptionPane.showMessageDialog(this, "Formato inválido en Horas HH:MM");
+                JOptionPane.showMessageDialog(this, "Formato invalido en Horas HH:MM");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Hay campos vacios!");
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    /**
-     * Botón para pasar un registro de Zonas de la lista "Disponibles" a "Seleccionados".
-     * @param evt Evento que acciona el botón.
-     */
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         // TODO add your handling code here:
         int i = listaDisponiblesZonas.getSelectedIndex();
@@ -635,10 +607,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-    /**
-     * Botón para eliminar un registro de continente de la lista "Seleccionados" a "Disponibles".
-     * @param evt Evento que acciona el botón.
-     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int i = listaSeleccionadosZonas.getSelectedIndex();
@@ -647,21 +615,87 @@ public class FrmItinerarios extends javax.swing.JFrame {
             seleccionadosListModelZonas.remove(i);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-   
-    /**
-     * Botón que de ser presionado se activará el método mostrarEspacioTexto
-     * @param evt Evento que acciona el botón.
-     */
+
     private void cbLunesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLunesActionPerformed
         // TODO add your handling code here:
         mostrarEspacioTexto();
     }//GEN-LAST:event_cbLunesActionPerformed
 
-    /**
-     * Método que añadirá a la lista de Zonas y al comboBox de Guía los datos recuperados en las listas de sus respectivos objetos.
-     * @param ListGuia Lista con todos los objetos tipo Guia registrados.
-     * @param ListZona Lista con todos los objetos tipo ZonaDelParque registrados.
-     */
+    private void txtItinerariosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtItinerariosKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_SPACE) {
+            super.processKeyEvent(evt);
+        } else {
+            evt.consume();
+        }
+        txtItinerarios.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (txtItinerarios.getText().length() >= 20) {
+                    e.consume();
+                }
+            }
+        });
+    }//GEN-LAST:event_txtItinerariosKeyTyped
+
+    private void txtDuracionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDuracionKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        } else {
+            String currentText = txtDuracion.getText();
+            String newText = currentText + c;
+            try {
+                int number = Integer.parseInt(newText);
+                if (number < 1 || number > 90) {
+                    evt.consume();
+                }
+            } catch (NumberFormatException ex) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtDuracionKeyTyped
+
+    private void txtLongitudKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLongitudKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        } else {
+            String currentText = txtLongitud.getText();
+            String newText = currentText + c;
+            try {
+                int number = Integer.parseInt(newText);
+                if (number < 1 || number > 1500) {
+                    evt.consume();
+                }
+            } catch (NumberFormatException ex) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtLongitudKeyTyped
+
+    private void txtMaximoVisitantesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaximoVisitantesKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        } else {
+            String currentText = txtMaximoVisitantes.getText();
+            String newText = currentText + c;
+            try {
+                int number = Integer.parseInt(newText);
+                if (number < 1 || number > 30) {
+                    evt.consume();
+                }
+            } catch (NumberFormatException ex) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtMaximoVisitantesKeyTyped
+
     public void muestraDatosRecuperados(List<Guia> ListGuia, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListGuia.size(); i++) {
             System.out.println(i);
@@ -674,47 +708,55 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método para mostrar los datos de un hábitat que ya haya sido registrado. 
-     * @param itinerario Objeto tipo Itinerario del cual se mostrarán los datos.
-     */
     public void muestraDetallesItinerarios(Itinerario itinerario) {
-//        cmbGuia.setSelectedItem(itinerario);
-        txtItinerarios.setText(itinerario.getNombre());
-//        txtDuracion.setText(itinerario.getDuracion());
         txtMaximoVisitantes.setText(String.valueOf(itinerario.getMaximoVisitante()));
-        List<ZonaDelParque> zonasItinerario = itinerario.getZonas();
-        for (ZonaDelParque zona : zonasItinerario) {
-            for (int i = 0; i < disponiblesListModelZonas.size(); i++) {
-                if (disponiblesListModelZonas.get(i).equals(zona)) {
-                    seleccionadosListModelZonas.addElement(zona);
-                    disponiblesListModelZonas.removeElement(zona);
-                }
+        txtDuracion.setText(String.valueOf(itinerario.getDuracion()));
+        txtLongitud.setText(String.valueOf(itinerario.getLongitud()));
+        cmbGuia.setSelectedItem(itinerario.getRecorridos().get(0).getGuia());
+        
+        for (Recorrido r : itinerario.getRecorridos()) {
+            if (r.getHorarios().getDia().equals(Dias.Lunes)) {
+                txtLunes.setText(r.getHorarios().getHoraInicio());
             }
+            if (r.getHorarios().getDia().equals(Dias.Martes)) {
+                txtMartes.setText(r.getHorarios().getHoraInicio());
+            }
+            if (r.getHorarios().getDia().equals(Dias.Miercoles)) {
+                txtMiercoles.setText(r.getHorarios().getHoraInicio());
+            }
+            if (r.getHorarios().getDia().equals(Dias.Jueves)) {
+                txtJueves.setText(r.getHorarios().getHoraInicio());
+            }
+            if (r.getHorarios().getDia().equals(Dias.Viernes)) {
+                txtViernes.setText(r.getHorarios().getHoraInicio());
+            }
+            if (r.getHorarios().getDia().equals(Dias.Sabado)) {
+                txtSabado.setText(r.getHorarios().getHoraInicio());
+            }
+            if (r.getHorarios().getDia().equals(Dias.Domingo)) {
+                txtDomingo.setText(r.getHorarios().getHoraInicio());
+            }
+
         }
-        txtDuracion.setEnabled(false);
-        txtLongitud.setEnabled(false);
-        txtMaximoVisitantes.setEnabled(false);
-        cmbGuia.setEnabled(false);
+        
+        for (ZonaDelParque c :itinerario.getZonas()) {
+             for (int i = 0; i < disponiblesListModelZonas.size(); i++) {
+                 if (disponiblesListModelZonas.get(i).equals(c)) {
+                     seleccionadosListModelZonas.addElement(c);
+                     disponiblesListModelZonas.remove(i);
+                 }
+             }
+        }
     }
 
-    /**
-     * Método para mostrar un mensaje de error respecto al Itinerario.
-     */
     public void muestraError() {
         JOptionPane.showMessageDialog(this, "Itinerario existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /**
-     * Método para mostrar un mensaje de éxito respecto al Itinerario.
-     */
     public void muestraMensajeExitoso() {
         JOptionPane.showMessageDialog(this, "Itinerario Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    /**
-     * Método que desactivará los campos para rellenar del frame.
-     */
     public void desactivaCampos() {
         txtDuracion.setEnabled(false);
         txtLongitud.setEnabled(false);
@@ -734,9 +776,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         btnEliminar.setEnabled(false);
     }
 
-    /**
-     * Método que activará los campos para rellenar del frame.
-     */
     public void activaCajasVerificacion() {
         txtDuracion.setEnabled(true);
         txtLongitud.setEnabled(true);
@@ -756,10 +795,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         btnEliminar.setEnabled(true);
     }
 
-    /**
-     * Método que verificará si todos los campos rellenables tienen algún registro en ellos.
-     * @return De estar llenos todos los campos, se regresará un boolean con valor True, de lo contrario se regresará un False y un mensaje de error.
-     */
     public boolean verificaCamposLlenos() {
         String nombre = txtItinerarios.getText();
         String duracion = txtDuracion.getText();
@@ -774,9 +809,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método que activará el textfield dependiendo del checkbox seleccionado.
-     */
     public void mostrarEspacioTexto() {
         if (cbLunes.isSelected()) {
             txtLunes.setEnabled(true);
@@ -822,10 +854,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método para validar el formato de las horas en los distintos campos de los días.
-     * @return Un boolean tipo True si el formato es correcto, false si hay alguna falla
-     */
     public boolean validarRecorridos() {
         try {
             // Intenta analizar la cadena de texto como una hora en formato "HH:mm"
@@ -862,9 +890,6 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método que añadirá un nuevo registro a la lista de Itinerarios.
-     */
     public void registrarItinerario() {
         Itinerario itinerario = new Itinerario();
         itinerario.setNombre(txtItinerarios.getText());
@@ -929,7 +954,40 @@ public class FrmItinerarios extends javax.swing.JFrame {
         }
     }
 
-    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmItinerarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmItinerarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmItinerarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmItinerarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FrmItinerarios().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

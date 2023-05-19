@@ -45,12 +45,15 @@ public class ControlItinerario {
         return itinerario;
     }
 
-   
     public boolean guardarItinerario(Itinerario itinerario) {
         datos = FabricaDatos.dameInstancia();
         datos.guardaItinerario(itinerario);
         return true;
     }
-    
-  
+
+    public List<Itinerario> RecuperaItinerario() {
+        datos = FabricaDatos.dameInstancia();
+        return datos.recuperaItinerario();
+    }
+
 }

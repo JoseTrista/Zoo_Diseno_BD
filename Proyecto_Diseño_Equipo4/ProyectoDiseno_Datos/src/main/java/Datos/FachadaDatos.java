@@ -48,11 +48,10 @@ public class FachadaDatos implements IDatos {
         hb = habitat2.buscaHabitat(nombre);
         return hb;
     }
-    
-    public Itinerario verificarItinerario(String nombre){
-        //Itinerario it = new ItinerarioDAO();
-        //return it.(nombre);
-        return null;
+
+    public Itinerario verificarItinerario(String nombre) {
+        itinerarioa = new ItinerarioDAO();
+        return itinerarioa.buscarnombreItinerario(nombre);
     }
 
     @Override
@@ -80,9 +79,9 @@ public class FachadaDatos implements IDatos {
 
     @Override
     public boolean guardaItinerario(Itinerario itinerario) {
-      itinerarioa=new ItinerarioDAO();
-      itinerarioa.guardaItinerario(itinerario);
-      return true;
+        itinerarioa = new ItinerarioDAO();
+        itinerarioa.guardaItinerario(itinerario);
+        return true;
     }
 
     @Override
@@ -93,15 +92,15 @@ public class FachadaDatos implements IDatos {
 
     @Override
     public Especie verificaEspecie(String nombre) {
-      espe= new EspecieDAO();
-      return espe.buscarEspecie(nombre);
+        espe = new EspecieDAO();
+        return espe.buscarEspecie(nombre);
     }
 
     @Override
     public boolean guardaEspecie(Especie especie) {
-      espe= new EspecieDAO();
-      espe.guardar(especie);
-      return true;
+        espe = new EspecieDAO();
+        espe.guardar(especie);
+        return true;
     }
 
     @Override
@@ -111,8 +110,9 @@ public class FachadaDatos implements IDatos {
     }
 
     @Override
-    public Itinerario recuperaItinerario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Itinerario> recuperaItinerario() {
+        itinerarioa = new ItinerarioDAO();
+        return itinerarioa.buscarTodos();
     }
 
     @Override

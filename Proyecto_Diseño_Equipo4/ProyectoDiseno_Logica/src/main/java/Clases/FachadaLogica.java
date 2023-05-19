@@ -51,8 +51,8 @@ public class FachadaLogica implements ILogica {
     }
 
     @Override
-    public boolean  guardaItinerario(Itinerario itinerario) {
-      ci.guardarItinerario(itinerario);
+    public boolean guardaItinerario(Itinerario itinerario) {
+        ci.guardarItinerario(itinerario);
         return true;
     }
 
@@ -92,13 +92,15 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public void buscarItinerario(String nombre) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public List<Itinerario> recuperaItinerarios() {
-       List<Itinerario> a=new ArrayList<>();
-        return a;
+        ci = new ControlItinerario();
+        List<Itinerario> datosARecuperar = new ArrayList<>();
+        datosARecuperar.add((Itinerario) ci.RecuperaItinerario());
+        return datosARecuperar;
     }
 
     @Override
