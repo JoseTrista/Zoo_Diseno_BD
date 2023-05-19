@@ -24,7 +24,6 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
      */
     public FrmRegistrarQueja(List<Itinerario> itinerario) {
         logica = FabricaLogica.crearInstancia();
-
         initComponents();
         despliegaDatosRecuperados(itinerario);
     }
