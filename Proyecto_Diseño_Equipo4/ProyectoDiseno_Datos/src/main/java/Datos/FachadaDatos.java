@@ -50,9 +50,8 @@ public class FachadaDatos implements IDatos {
     }
 
     public Itinerario verificarItinerario(String nombre) {
-        //Itinerario it = new ItinerarioDAO();
-        //return it.(nombre);
-        return null;
+        itinerarioa = new ItinerarioDAO();
+        return itinerarioa.buscarnombreItinerario(nombre);
     }
 
     @Override

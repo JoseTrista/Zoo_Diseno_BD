@@ -21,9 +21,9 @@ public class DlgAnimales extends javax.swing.JDialog {
     /**
      * Creates new form DlgAnimales
      */
+    JButton btnEliminar = new JButton("Eliminar");
     private int row, columna;
-    
-    
+
     private List<Animal> listAnimal;
 
     public DlgAnimales(java.awt.Frame parent, boolean modal, List<Animal> listAnimal) {
@@ -58,8 +58,8 @@ public class DlgAnimales extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAnimales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        btnAgregar1 = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -138,7 +138,7 @@ public class DlgAnimales extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Edad", "¿Macho?"
+                "Nombre", "Edad", "Sexo"
             }
         ) {
             Class[] types = new Class [] {
@@ -147,11 +147,6 @@ public class DlgAnimales extends javax.swing.JDialog {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-        });
-        tblAnimales.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblAnimalesMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblAnimales);
@@ -165,21 +160,21 @@ public class DlgAnimales extends javax.swing.JDialog {
             }
         });
 
-        btnEliminar.setBackground(new java.awt.Color(153, 153, 153));
-        btnEliminar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
         btnRegresar.setBackground(new java.awt.Color(153, 153, 153));
         btnRegresar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
+            }
+        });
+
+        btnAgregar1.setBackground(new java.awt.Color(153, 153, 153));
+        btnAgregar1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        btnAgregar1.setText("Eliminar");
+        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregar1ActionPerformed(evt);
             }
         });
 
@@ -214,9 +209,9 @@ public class DlgAnimales extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(190, 190, 190)
                         .addComponent(btnAgregar)
-                        .addGap(34, 34, 34)
-                        .addComponent(btnEliminar)
-                        .addGap(28, 28, 28)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnAgregar1)
+                        .addGap(31, 31, 31)
                         .addComponent(btnRegresar)
                         .addGap(30, 30, 30))))
         );
@@ -242,8 +237,8 @@ public class DlgAnimales extends javax.swing.JDialog {
                     .addComponent(chMacho)
                     .addComponent(chHembra)
                     .addComponent(btnAgregar)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnRegresar))
+                    .addComponent(btnRegresar)
+                    .addComponent(btnAgregar1))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -281,14 +276,6 @@ public class DlgAnimales extends javax.swing.JDialog {
     private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombre1ActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        /*if (tblAnimales.getSelectedRow() != -1) {
-            int i = tblAnimales.getSelectedRow();
-            listAnimal.remove(i);
-        }*/
-
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtNombre1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre1KeyTyped
         // TODO add your handling code here:
@@ -331,32 +318,23 @@ public class DlgAnimales extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void tblAnimalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAnimalesMouseClicked
+    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
         // TODO add your handling code here:
-        
-        columna = tblAnimales.getColumnModel().getColumnIndexAtX(evt.getX());
-        row = evt.getY() / tblAnimales.getRowHeight();
-        if (columna <= tblAnimales.getColumnCount() && columna >= 0 && row <= tblAnimales.getRowCount() && row >= 0) {
-            Object objeto = tblAnimales.getValueAt(row, columna);
-            if (objeto instanceof JButton) {
-                ((JButton) objeto).doClick();
-                JButton botones = (JButton) objeto;
-                if (botones.equals(btnEliminar)) {
-                    listAnimal.remove(row);
-                    llenarTabla();
-                }
-            }
+        if (tblAnimales.getSelectedRow() != -1) {
+            int i = tblAnimales.getSelectedRow();
+            listAnimal.remove(i);
+            llenarTabla();
         }
-    }//GEN-LAST:event_tblAnimalesMouseClicked
+    }//GEN-LAST:event_btnAgregar1ActionPerformed
 
     public void agregarAnimal() {
         Animal a = new Animal();
         a.setEdad(Integer.parseInt(txtEdad.getText()));
         a.setNombre(txtNombre1.getText());
         if (chHembra.isSelected()) {
-            a.setSexo(true);
-        } else {
             a.setSexo(false);
+        } else {
+            a.setSexo(true);
         }
         listAnimal.add(a);
         txtEdad.setText("");
@@ -372,7 +350,11 @@ public class DlgAnimales extends javax.swing.JDialog {
             Object[] datos = new Object[defa.getColumnCount()];
             datos[0] = animal.getNombre();
             datos[1] = animal.getEdad();
-            datos[2] = animal.isSexo();
+            if (animal.isSexo()) {
+                datos[2] = "Macho";
+            } else {
+                datos[2] = "Hembra";
+            }
             defa.addRow(datos);
         }
 
@@ -427,7 +409,7 @@ public class DlgAnimales extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnAgregar1;
     private javax.swing.JButton btnRegresar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chHembra;

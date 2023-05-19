@@ -314,6 +314,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtItinerarios">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtItinerariosKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -327,6 +330,9 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDuracionKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -340,6 +346,9 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtLongitudKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -355,6 +364,7 @@
           </Properties>
           <Events>
             <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="txtMaximoVisitantesAncestorAdded"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMaximoVisitantesKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLunes">
@@ -557,11 +567,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="225" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <EmptySpace pref="645" max="32767" attributes="0"/>
-=======
-                      <EmptySpace pref="643" max="32767" attributes="0"/>
->>>>>>> c9db9e1efd1e30dc01a92ff1ce0194386ae88e82
+                      <EmptySpace pref="649" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
