@@ -61,7 +61,7 @@ public class FrmInicial extends javax.swing.JFrame {
 
         selecRegistraroActualizarEspecie.setBackground(new java.awt.Color(153, 153, 153));
         selecRegistraroActualizarEspecie.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        selecRegistraroActualizarEspecie.setText("Registrar/Actualizar Especie");
+        selecRegistraroActualizarEspecie.setText("Registrar Especie");
         selecRegistraroActualizarEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecRegistraroActualizarEspecieActionPerformed(evt);
@@ -70,7 +70,7 @@ public class FrmInicial extends javax.swing.JFrame {
 
         selecRegistrarActualizarItinerario.setBackground(new java.awt.Color(153, 153, 153));
         selecRegistrarActualizarItinerario.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        selecRegistrarActualizarItinerario.setText("Registra / Actualizar itinerario");
+        selecRegistrarActualizarItinerario.setText("Registrar Itinerario");
         selecRegistrarActualizarItinerario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecRegistrarActualizarItinerarioActionPerformed(evt);
@@ -79,7 +79,7 @@ public class FrmInicial extends javax.swing.JFrame {
 
         selecRegistrarQueja.setBackground(new java.awt.Color(153, 153, 153));
         selecRegistrarQueja.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
-        selecRegistrarQueja.setText("Registrar queja");
+        selecRegistrarQueja.setText("Registrar Queja");
         selecRegistrarQueja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecRegistrarQuejaActionPerformed(evt);
@@ -95,7 +95,7 @@ public class FrmInicial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selecRegistrarActualizarItinerario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(selecRegistrarActualizarItinerario, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(selecRegistraroActualizarEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(selecRegistrarQueja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(selecHabitat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -117,7 +117,7 @@ public class FrmInicial extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(selecRegistrarQueja, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -150,14 +150,14 @@ public class FrmInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();

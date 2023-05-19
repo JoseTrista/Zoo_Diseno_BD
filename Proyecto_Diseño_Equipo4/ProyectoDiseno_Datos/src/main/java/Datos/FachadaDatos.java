@@ -110,4 +110,9 @@ public class FachadaDatos implements IDatos {
         return habitat.buscarTodos();
     }
 
+    @Override
+    public Itinerario recuperaItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

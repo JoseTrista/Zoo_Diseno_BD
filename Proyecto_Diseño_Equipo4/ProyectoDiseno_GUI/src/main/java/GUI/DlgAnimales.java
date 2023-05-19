@@ -6,6 +6,8 @@ package GUI;
 
 import Dominio.Animal;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +25,7 @@ public class DlgAnimales extends javax.swing.JDialog {
         super(parent, modal);
         this.listAnimal = listAnimal;
         initComponents();
+        llenarTabla();
     }
 
     /**
@@ -36,18 +39,20 @@ public class DlgAnimales extends javax.swing.JDialog {
 
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtNombre1 = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
-        txtSexo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAnimales = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        chMacho = new javax.swing.JCheckBox();
+        chHembra = new javax.swing.JCheckBox();
 
         jButton3.setText("jButton3");
 
@@ -63,26 +68,31 @@ public class DlgAnimales extends javax.swing.JDialog {
 
         jLabel4.setText("Sexo:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        txtNombre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombre1ActionPerformed(evt);
+            }
+        });
+
+        tblAnimales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "Edad", "Sexo", "Seleccionado"
+                "Nombre", "Edad", "Sexo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAnimales);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +102,11 @@ public class DlgAnimales extends javax.swing.JDialog {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,39 +115,55 @@ public class DlgAnimales extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(chMacho);
+        chMacho.setText("Macho");
+
+        buttonGroup1.add(chHembra);
+        chHembra.setText("Hembra");
+        chHembra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chHembraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(txtEdad)
-                    .addComponent(txtSexo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(268, 268, 268)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(txtEdad)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chMacho)
+                        .addGap(38, 38, 38)
+                        .addComponent(chHembra))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAgregar)
-                        .addGap(37, 37, 37)
+                        .addGap(58, 58, 58)
                         .addComponent(btnEliminar)
-                        .addGap(82, 82, 82))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
                         .addComponent(btnRegresar)
-                        .addGap(136, 136, 136))))
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,27 +171,34 @@ public class DlgAnimales extends javax.swing.JDialog {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregar)
-                    .addComponent(btnEliminar))
-                .addGap(31, 31, 31)
-                .addComponent(btnRegresar)
-                .addContainerGap(61, Short.MAX_VALUE))
+                            .addComponent(btnAgregar)
+                            .addComponent(btnRegresar)
+                            .addComponent(btnEliminar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chMacho)
+                            .addComponent(chHembra))))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,12 +210,71 @@ public class DlgAnimales extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-        Animal animal = new Animal();
-        listAnimal.add(animal);
+
+        
+        if(validar()){
+            agregarAnimal();
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    /**
+    private void chHembraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chHembraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chHembraActionPerformed
+
+    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombre1ActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+   if(tblAnimales.getSelectedRow()!=-1){
+       int i=tblAnimales.getSelectedRow();
+       listAnimal.remove(i);
+   }
+   
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    
+     public void agregarAnimal() {
+        Animal a = new Animal();
+        a.setEdad(Integer.parseInt(txtEdad.getText()));
+        a.setNombre(txtNombre1.getText());
+        if (chHembra.isSelected()) {
+            a.setSexo(true);
+        } else {
+            a.setSexo(false);
+        }
+        listAnimal.add(a);
+        txtEdad.setText("");
+        txtNombre1.setText("");
+        llenarTabla();
+    }
+
+    public void llenarTabla() {
+
+        DefaultTableModel defa = (DefaultTableModel) tblAnimales.getModel();
+        defa.setRowCount(0);
+        for (Animal animal : listAnimal) {
+            Object[] datos = new Object[defa.getColumnCount()];
+            datos[0] = animal.getNombre();
+            datos[1] = animal.getEdad();
+            datos[2] = animal.isSexo();
+            defa.addRow(datos);
+        }
+
+    }
+    
+    public boolean validar() {
+        if (txtNombre1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre");
+            return false;
+        }
+        if (txtEdad.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese Una Edad");
+            return false;
+        }
+        return true;
+    }
+ /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -207,6 +304,7 @@ public class DlgAnimales extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                //
             }
         });
     }
@@ -215,6 +313,9 @@ public class DlgAnimales extends javax.swing.JDialog {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox chHembra;
+    private javax.swing.JCheckBox chMacho;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -222,9 +323,8 @@ public class DlgAnimales extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblAnimales;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtSexo;
+    private javax.swing.JTextField txtNombre1;
     // End of variables declaration//GEN-END:variables
 }

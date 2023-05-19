@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Frame para Registrar o Actualizar Especie
+ *
  * @author Equipo04
  */
 public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
@@ -45,11 +46,13 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         this.desactivaCampos();
     }
 
-    
     /**
      * Constructor con parámetros para el frame FrmRegistrar_ActualizarEspecie.
-     * @param ListCuidador Lista con todos los Cuidadores que se tengan registrados.
-     * @param ListHabitat Lista con todos los Habitats que se tengan registrados.
+     *
+     * @param ListCuidador Lista con todos los Cuidadores que se tengan
+     * registrados.
+     * @param ListHabitat Lista con todos los Habitats que se tengan
+     * registrados.
      * @param ListZona Lista con todas las Zonas que se tengan registradas.
      */
     public FrmRegistrar_ActualizarEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
@@ -67,10 +70,14 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }
 
     /**
-     * Método que añadirá al comboBox de Zonas del parque y las listas de Cuidador y Hábitat sus datos.
-     * @param ListCuidador Lista con todos los objetos tipo Cuidador registrados.
+     * Método que añadirá al comboBox de Zonas del parque y las listas de
+     * Cuidador y Hábitat sus datos.
+     *
+     * @param ListCuidador Lista con todos los objetos tipo Cuidador
+     * registrados.
      * @param ListHabitat Lista con todos los objetos tipo Habitat registrados.
-     * @param ListZona Lista con todos los objetos tipo ZonaDelParque registrados.
+     * @param ListZona Lista con todos los objetos tipo ZonaDelParque
+     * registrados.
      */
     public void despliegaDatosEspecie(List<Cuidador> ListCuidador, List<Habitat> ListHabitat, List<ZonaDelParque> ListZona) {
         for (int i = 0; i < ListCuidador.size(); i++) {
@@ -86,7 +93,6 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         }
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -270,13 +276,11 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVerificar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditarAnimales))
-                    .addComponent(jLabel9)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,17 +291,26 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmbZonas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cmbZonas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVerificar)
+                            .addComponent(jLabel9)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtVerficar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVerificar))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtVerficar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVerificar)
+                        .addGap(8, 8, 8)))
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,13 +408,16 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Botón para verificar los datos escritos en txtVerificar.De haber un registro que coincida, se mostrarán sus datos, de lo contrario se habilitarán los campos para rellenar.
+     * Botón para verificar los datos escritos en txtVerificar.De haber un
+     * registro que coincida, se mostrarán sus datos, de lo contrario se
+     * habilitarán los campos para rellenar.
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         if (this.txtVerficar.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese nombre de la especie a verificar");
-        }else{
+        } else {
             reiniciaCuidadores();
             reiniciaHabitats();
             sp = logica.verificaNombreEspecie(txtVerficar.getText());
@@ -419,7 +435,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerificarActionPerformed
 
     /**
-     * Botón para pasar un registro de Cuidador de la lista "Disponibles" a "Seleccionados".
+     * Botón para pasar un registro de Cuidador de la lista "Disponibles" a
+     * "Seleccionados".
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnAgregarCuidadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuidadorActionPerformed
@@ -432,7 +450,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarCuidadorActionPerformed
 
     /**
-     * Botón para pasar un registro de Hábitat de la lista "Disponibles" a "Seleccionados".
+     * Botón para pasar un registro de Hábitat de la lista "Disponibles" a
+     * "Seleccionados".
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnAgregarHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarHabitatActionPerformed
@@ -445,7 +465,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarHabitatActionPerformed
 
     /**
-     * Botón para eliminar un registro de Cuidador de la lista "Seleccionados" a "Disponibles".
+     * Botón para eliminar un registro de Cuidador de la lista "Seleccionados" a
+     * "Disponibles".
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnEliminarCuidadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuidadorActionPerformed
@@ -458,7 +480,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarCuidadorActionPerformed
 
     /**
-     * Botón para eliminar un registro de Habitat de la lista "Seleccionados" a "Disponibles".
+     * Botón para eliminar un registro de Habitat de la lista "Seleccionados" a
+     * "Disponibles".
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnEliminarHabitatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarHabitatActionPerformed
@@ -471,7 +495,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarHabitatActionPerformed
 
     /**
-     * Botón para verificar que los campos han sido llenados.De ser así se guardarán los datos, de lo contrario saltará un error.
+     * Botón para verificar que los campos han sido llenados.De ser así se
+     * guardarán los datos, de lo contrario saltará un error.
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -507,9 +533,14 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
             sp.setCuidadores(seleccionadosCuidadores);
             sp.setHabitats(seleccionadosHabitat);
+            sp.setAnimales(animalesAgregados);
             logica.guardarEspecie(sp);
 
             muestraMensajeExitoso();
+            
+            FrmInicial a= new FrmInicial();
+            this.dispose();
+            a.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
         }
@@ -517,6 +548,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
 
     /**
      * Botón que te permite regresar al frame FrmInicial.
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -527,7 +559,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
-     * Botón que te permite crear y acceder a una nueva instancia del JDialog DlgAnimales
+     * Botón que te permite crear y acceder a una nueva instancia del JDialog
+     * DlgAnimales
+     *
      * @param evt Evento que acciona el botón.
      */
     private void btnEditarAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAnimalesActionPerformed
@@ -539,16 +573,19 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarAnimalesActionPerformed
 
     /**
-     * Método que verificará si todos los campos rellenables tienen algún registro en ellos.
-     * @return De estar llenos todos los campos, se regresará un boolean con valor True, de lo contrario se regresará un False.
+     * Método que verificará si todos los campos rellenables tienen algún
+     * registro en ellos.
+     *
+     * @return De estar llenos todos los campos, se regresará un boolean con
+     * valor True, de lo contrario se regresará un False.
      */
     public boolean verificaCamposLlenos() {
-        
+
         String desc = txtDescripcion.getText();
         String nCien = txtNombreCientifico.getText();
         ZonaDelParque zon = (ZonaDelParque) cmbZonas.getSelectedItem();
 
-        if ( zon == null || desc.isEmpty() || nCien.isEmpty() || seleccionadosListModelCuidador.isEmpty() || seleccionadosListModelHabitat.isEmpty()) {
+        if (zon == null || desc.isEmpty() || nCien.isEmpty() || seleccionadosListModelCuidador.isEmpty() || seleccionadosListModelHabitat.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos requeridos");
             return false;
         } else {
@@ -562,7 +599,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     public void activaCampos() {
         txtDescripcion.setEnabled(true);
         txtNombreCientifico.setEnabled(true);
-        
+
         cmbZonas.setEnabled(true);
         btnAgregarCuidador.setEnabled(true);
         btnAgregarHabitat.setEnabled(true);
@@ -580,7 +617,7 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     public void desactivaCampos() {
         txtDescripcion.setEnabled(false);
         txtNombreCientifico.setEnabled(false);
-        
+
         cmbZonas.setEnabled(false);
         btnAgregarCuidador.setEnabled(false);
         btnAgregarHabitat.setEnabled(false);
@@ -592,9 +629,9 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         listaSeleccionadosHabitats.setEnabled(false);
     }
 
-    
     /**
-     * Método que retornará a la posición inicial la lista de Cuidadores de "Disponibles" y vaciará la lista "Seleccionados".
+     * Método que retornará a la posición inicial la lista de Cuidadores de
+     * "Disponibles" y vaciará la lista "Seleccionados".
      */
     public void reiniciaCuidadores() {
 
@@ -607,7 +644,8 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }
 
     /**
-     * * Método que retornará a la posición inicial la lista de Habitat de "Disponibles" y vaciará la lista "Seleccionados".
+     * * Método que retornará a la posición inicial la lista de Habitat de
+     * "Disponibles" y vaciará la lista "Seleccionados".
      */
     public void reiniciaHabitats() {
 
@@ -620,28 +658,31 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
     }
 
     /**
-     * Método para mostrar un mensaje de error respecto al Registrar_ActualizarEspecie.
+     * Método para mostrar un mensaje de error respecto al
+     * Registrar_ActualizarEspecie.
      */
     public void muestraError() {
         JOptionPane.showMessageDialog(this, "Especie existente", "Mensaje error", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
-     * Método para mostrar un mensaje de éxito respecto al Registrar_ActualizarEspecie.
+     * Método para mostrar un mensaje de éxito respecto al
+     * Registrar_ActualizarEspecie.
      */
     public void muestraMensajeExitoso() {
         JOptionPane.showMessageDialog(this, "Especie Registrada", "Mensaje Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
-     * Método para mostrar los datos de una Especie que ya haya sido registrado. 
+     * Método para mostrar los datos de una Especie que ya haya sido registrado.
+     *
      * @param especie Objeto tipo Especie del cual se mostrarán los datos.
      */
     public void muestraDatosEspecie(Especie especie) {
 
         cmbZonas.setSelectedItem(especie.getNombre());
         txtNombreCientifico.setText(especie.getNombreCientifico());
-        
+        animalesAgregados=especie.getAnimales();
         txtDescripcion.setText(especie.getDescripcion());
 
 //        // Limpiar las listas de continentes disponibles y seleccionados
@@ -669,7 +710,6 @@ public class FrmRegistrar_ActualizarEspecie extends javax.swing.JFrame {
         }
 
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

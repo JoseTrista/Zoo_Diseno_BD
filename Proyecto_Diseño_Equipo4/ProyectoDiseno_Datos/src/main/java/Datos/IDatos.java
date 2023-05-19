@@ -42,4 +42,6 @@ public interface IDatos
     public boolean guardaEspecie(Especie especie);
     
     public Itinerario verificarItinerario(String nombre);
+    
+    public Itinerario recuperaItinerario();
 }

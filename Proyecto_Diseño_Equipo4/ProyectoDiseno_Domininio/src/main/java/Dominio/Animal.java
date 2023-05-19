@@ -193,7 +193,7 @@ public class Animal {
      */
     @Override
     public String toString() {
-        return "Animal{" + "id=" + id + ", nombre=" + nombre + ", edad=" + edad + ", sexo=" + sexo + '}';
+        return  nombre;
     }
 
 }

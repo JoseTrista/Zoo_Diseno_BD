@@ -1,8 +1,10 @@
 package Clases;
 
 import Dominio.Especie;
+import Dominio.Guia;
 import Dominio.Habitat;
 import Dominio.Itinerario;
+import Dominio.QuejaRecorrido;
 import Dominio.ZonaDelParque;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +92,22 @@ public class FachadaLogica implements ILogica {
 
     @Override
     public void buscarItinerario(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           }
+
+    @Override
+    public List<Itinerario> recuperaItinerarios() {
+       List<Itinerario> a=new ArrayList<>();
+        return a;
+    }
+
+    @Override
+    public List<Guia> recuperaGuia() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean guardaQueja(QuejaRecorrido quejas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -1,7 +1,7 @@
+GUI\DlgAnimales$5.class
 GUI\FrmRegistrar_ActualizarEspecie$2.class
 GUI\FrmItinerarios$8.class
 GUI\FrmRegistrarHabitat$1.class
-GUI\FrmRegistrar_ActualizarEspecie$9.class
 GUI\FrmItinerarios.class
 GUI\FrmInicial$3.class
 GUI\DlgAnimales$2.class
@@ -16,7 +16,6 @@ GUI\FrmRegistrarHabitat.class
 GUI\FrmItinerarios$9.class
 GUI\FrmRegistrar_ActualizarEspecie$8.class
 GUI\FrmItinerarios$2.class
-GUI\FrmRegistrarHabitat$7.class
 GUI\FrmRegistrarHabitat$3.class
 GUI\FrmRegistrar_ActualizarEspecie$4.class
 GUI\FrmItinerarios$13.class
@@ -25,7 +24,6 @@ GUI\FrmRegistrar_ActualizarEspecie$1.class
 GUI\FrmItinerarios$5.class
 GUI\DlgAnimales.class
 GUI\FrmItinerarios$3.class
-GUI\FrmRegistrarHabitat$6.class
 GUI\FrmRegistrar_ActualizarEspecie$7.class
 GUI\FrmItinerarios$12.class
 GUI\FrmRegistrarQueja.class
@@ -33,16 +31,15 @@ GUI\FrmItinerarios$6.class
 GUI\FrmInicial$2.class
 GUI\FrmInicial$5.class
 GUI\DlgAnimales$4.class
-GUI\FrmItinerarios$15.class
 GUI\FrmInicial$4.class
 GUI\FrmRegistrar_ActualizarEspecie$3.class
 GUI\FrmRegistrar_ActualizarEspecie.class
 GUI\FrmRegistrarQueja$1.class
+GUI\DlgAnimales$6.class
 GUI\FrmRegistrarHabitat$2.class
 GUI\FrmInicial.class
 GUI\FrmItinerarios$7.class
 GUI\DlgAnimales$3.class
 GUI\FrmInicial$1.class
-GUI\FrmRegistrarHabitat$8.class
 GUI\FrmRegistrar_ActualizarEspecie$6.class
 GUI\FrmRegistrarHabitat$5.class
