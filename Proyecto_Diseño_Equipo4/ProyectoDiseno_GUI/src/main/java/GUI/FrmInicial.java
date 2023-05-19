@@ -224,8 +224,7 @@ public class FrmInicial extends javax.swing.JFrame {
      */
     private void selecRegistrarQuejaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecRegistrarQuejaActionPerformed
         List<Itinerario> lista = logica.recuperaItinerarios();
-        List<Itinerario> listItinerario = (List<Itinerario>) lista.get(0);
-        FrmRegistrarQueja frmQueja = new FrmRegistrarQueja(listItinerario);
+        FrmRegistrarQueja frmQueja = new FrmRegistrarQueja(lista);
         frmQueja.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_selecRegistrarQuejaActionPerformed

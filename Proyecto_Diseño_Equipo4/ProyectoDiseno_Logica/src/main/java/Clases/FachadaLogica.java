@@ -98,11 +98,12 @@ public class FachadaLogica implements ILogica {
     @Override
     public List<Itinerario> recuperaItinerarios() {
         ci = new ControlItinerario();
-        List<Itinerario> datosARecuperar = new ArrayList<>();
-        datosARecuperar.add((Itinerario) ci.RecuperaItinerario());
-        return datosARecuperar;
+        return ci.RecuperaItinerario();
     }
-
+    @Override
+    public boolean actualizarItinerario(Itinerario itinerario) {
+        return ci.actualizarItinerario(itinerario);
+    }
     @Override
     public List<Guia> recuperaGuia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

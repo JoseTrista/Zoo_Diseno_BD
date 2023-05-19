@@ -113,8 +113,12 @@ public class FachadaDatos implements IDatos {
     public List<Itinerario> recuperaItinerario() {
         itinerarioa = new ItinerarioDAO();
         return itinerarioa.buscarTodos();
+    }   
+    @Override
+    public boolean actualizarItinerario(Itinerario itinerario) {
+        itinerarioa = new ItinerarioDAO();
+        return this.itinerarioa.actualizarItinerario(itinerario);
     }
-
     @Override
     public void recuperaFechas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -31,7 +31,7 @@ public interface IDatos
     public List<ZonaDelParque> recuperaZonas();
     
     public Itinerario buscarItinerario(String nombre);
-    
+    public boolean actualizarItinerario(Itinerario itinerario);
     public boolean guardaItinerario(Itinerario itinerario);
     
     public List<Cuidador> recuperaCuidadores();

@@ -7,9 +7,18 @@ package GUI;
 
 import Clases.FabricaLogica;
 import Clases.ILogica;
+import Dominio.Dias;
+import Dominio.Horario;
 import Dominio.Itinerario;
+import Dominio.QuejaRecorrido;
+import Dominio.Recorrido;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,7 +34,7 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
     public FrmRegistrarQueja(List<Itinerario> itinerario) {
         logica = FabricaLogica.crearInstancia();
         initComponents();
-        despliegaDatosRecuperados(itinerario);
+        LlenarItinerarios(itinerario);
     }
 
     /**
@@ -43,25 +52,30 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmbFechaItinerario = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblGuia = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cmbHorariosFecha = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDescripcion = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtTelefono = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Registrar quejas");
+
+        cmbItinerarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbItinerariosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Lista de nombres de itinerarios ejecutados en el último mes");
 
@@ -75,25 +89,41 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre del guía que realizó el recorrido");
 
-        jLabel5.setText("No establecido");
+        lblGuia.setText("No establecido");
 
         jLabel6.setText("Horarios del itinerario");
 
+        cmbHorariosFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbHorariosFechaActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Queja");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane1.setViewportView(txtDescripcion);
 
-        jLabel8.setText("Nombre(s) completo(s)");
-
-        jLabel9.setText("Primer apellido");
-
-        jLabel10.setText("Segundo apellido");
+        jLabel8.setText("Nombre");
 
         jLabel11.setText("Escribe tu correo electrónico");
 
         jButton1.setText("Registrar queja");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Telefono");
+
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,71 +139,61 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(235, 235, 235))))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel11)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jButton2)
+                .addGap(106, 106, 106)
+                .addComponent(jLabel1)
+                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 108, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(cmbFechaItinerario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbHorariosFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(170, 170, 170)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(cmbItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(3, 3, 3)))
-                        .addGap(100, 100, 100))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(308, 308, 308))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(170, 170, 170)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(cmbItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(lblGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(cmbFechaItinerario, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(cmbHorariosFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(75, 75, 75)
+                            .addComponent(jLabel11))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(91, 91, 91)
+                            .addComponent(jButton1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel12))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTelefono)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))))
+                .addGap(100, 100, 100))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2))
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbItinerarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblGuia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -189,66 +209,183 @@ public class FrmRegistrarQueja extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(83, 83, 83))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbFechaItinerarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFechaItinerarioActionPerformed
+        Itinerario selectedValue = (Itinerario) cmbItinerarios.getSelectedItem();
+        Recorrido selectedValue2 = (Recorrido) cmbFechaItinerario.getSelectedItem();
+
+        if (selectedValue != null && selectedValue2 != null) {
+            lblGuia.setText(selectedValue2.getGuia().toString());
+            LlenarHorarios(selectedValue.getRecorridos(), selectedValue2.getHorarios().getDia());
+//                modeloListaHorario.removeAllElements();  
+        }
 
     }//GEN-LAST:event_cmbFechaItinerarioActionPerformed
 
-    public void despliegaDatosRecuperados(List<Itinerario> itinerario) {
-        for (int i = 0; i < itinerario.size(); i++) {
-            cmbItinerarios.addItem(itinerario.get(i));
+    private void cmbItinerariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbItinerariosActionPerformed
+        Itinerario i = (Itinerario) cmbItinerarios.getSelectedItem();
+        if (i != null) {
+            cmbFechaItinerario.removeAllItems();
+            LlenarRecorridos(i.getRecorridos());
         }
 
-        for (int i = 0; i < itinerario.size(); i++) {
-            cmbFechaItinerario.addItem(itinerario.get(i));
+    }//GEN-LAST:event_cmbItinerariosActionPerformed
+
+    private void cmbHorariosFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbHorariosFechaActionPerformed
+
+    }//GEN-LAST:event_cmbHorariosFechaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        FrmInicial f = new FrmInicial();
+        f.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!validarTelefono()) {
+            JOptionPane.showMessageDialog(this, "Formato de Telefono Invalido");
+            return;
+        }
+        if (!validarCorreo()) {
+            JOptionPane.showMessageDialog(this, "Formato de Correo Invalido");
+            return;
+        }
+        if (!validarCampos()) {
+            return;
+        }
+        guardarQueja();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void guardarQueja() {
+        Itinerario itinerarioqueja = new Itinerario();
+        Recorrido recorridoQueja = new Recorrido();
+        QuejaRecorrido q = new QuejaRecorrido();
+        q.setCorreo(txtCorreo.getText());
+        q.setDescripcion(txtDescripcion.getText());
+        q.setTelefonoVisitante(Integer.parseInt(txtTelefono.getText()));
+        
+        for (int i = 0; i < cmbItinerarios.getItemCount(); i++) {
+            Recorrido reco = (Recorrido) cmbFechaItinerario.getSelectedItem();
+            Horario hora = (Horario) cmbHorariosFecha.getSelectedItem();
+            Itinerario itinerario = (Itinerario) cmbItinerarios.getSelectedItem();
+            if (itinerario.getRecorridos().contains(reco)) {
+                if (reco.getHorarios().equals(hora)) {
+                    itinerarioqueja = itinerario;
+                    recorridoQueja = reco;
+                }
+            }
+        }
+        
+        if (!txtNombre.getText().isEmpty()) {
+            q.setNombreCompletoVisitante(txtNombre.getText());
+        } else {
+            q.setNombreCompletoVisitante("ANONYMUS");
+        }
+        for (int i = 0; i < itinerarioqueja.getRecorridos().size(); i++) {
+            if (itinerarioqueja.getRecorridos().get(i).equals(recorridoQueja)) {
+                itinerarioqueja.getRecorridos().get(i).addQuejas(q);
+            }
+
         }
 
-        for (int i = 0; i < itinerario.size(); i++) {
-            cmbHorariosFecha.addItem(itinerario.get(i));
+        if (logica.actualizarItinerario(itinerarioqueja)) {
+            JOptionPane.showMessageDialog(this, "Registro de Queja Exitoso");
+            FrmInicial f = new FrmInicial();
+            f.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo Agregar La queja");
+        }
+
+    }
+    public void LlenarItinerarios(List<Itinerario> itinerarios) {
+        for (int i = 0; i < itinerarios.size(); i++) {
+            cmbItinerarios.addItem(itinerarios.get(i));
         }
     }
 
+    public void LlenarRecorridos(List<Recorrido> recorrido) {
+        cmbFechaItinerario.removeAllItems();
+        List<Dias> dias = new ArrayList<>();
+        for (int i = 0; i < recorrido.size(); i++) {
+            if (!dias.contains(recorrido.get(i).getHorarios().getDia())) {
+                cmbFechaItinerario.addItem(recorrido.get(i));
+                dias.add(recorrido.get(i).getHorarios().getDia());
+            }
+
+        }
+    }
+
+    public void LlenarHorarios(List<Recorrido> recorrido, Dias dia) {
+        cmbHorariosFecha.removeAllItems();
+        for (int i = 0; i < recorrido.size(); i++) {
+            if (recorrido.get(i).getHorarios().getDia().equals(dia)) {
+                cmbHorariosFecha.addItem(recorrido.get(i).getHorarios());
+            }
+
+        }
+    }
+    public boolean validarCampos() {
+        if (cmbHorariosFecha.getSelectedItem()==null) {
+            JOptionPane.showMessageDialog(this, "No se A selecionado una hora");
+            return false;
+        }
+        if (txtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Escribe una Descripcio de tu queja");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarTelefono() {
+        CharSequence cadena = txtTelefono.getText();
+        Pattern pattern = Pattern.compile("^\\((\\d{3})\\)-?(\\d{3})-?(\\d{4})$|^\\((\\d{3})\\)(\\d{7})$|^\\d{10}$");
+        Matcher matcher = pattern.matcher(cadena);
+        return matcher.matches();
+    }
+
+    public boolean validarCorreo() {
+        String patron = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(patron);
+        Matcher matcher = pattern.matcher(txtCorreo.getText());
+        return matcher.matches();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Itinerario> cmbFechaItinerario;
-    private javax.swing.JComboBox<Itinerario> cmbHorariosFecha;
+    private javax.swing.JComboBox<Recorrido> cmbFechaItinerario;
+    private javax.swing.JComboBox<Horario> cmbHorariosFecha;
     private javax.swing.JComboBox<Itinerario> cmbItinerarios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblGuia;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextArea txtDescripcion;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

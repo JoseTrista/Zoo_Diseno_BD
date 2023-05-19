@@ -18,7 +18,9 @@ public interface ILogica {
     public boolean guardarEspecie(Especie especie);
 
     public List<Object> recuperaCuidadoresyHabitatsyZonas();
-
+    
+    public boolean actualizarItinerario(Itinerario itinerario);
+    
     public List<Object> recuperaZonasyGuias();
 
     public void buscarItinerario(String nombre);

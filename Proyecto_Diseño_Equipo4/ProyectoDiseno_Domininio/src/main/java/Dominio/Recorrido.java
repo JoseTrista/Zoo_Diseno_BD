@@ -15,6 +15,7 @@ public class Recorrido {
     private ObjectId id;
     private Horario horarios;
     private Guia guia;
+    private List<QuejaRecorrido> quejas;
 
     public ObjectId getId() {
         return id;
@@ -41,13 +42,25 @@ public class Recorrido {
     }
 
     public Recorrido() {
+        quejas = new ArrayList<>();
     }
 
     public Recorrido(Horario horarios, Guia guia) {
         this.horarios = horarios;
         this.guia = guia;
+        quejas = new ArrayList<>();
     }
 
+    public List<QuejaRecorrido> getQuejas() {
+        return quejas;
+    }
+
+    public void setQuejas(List<QuejaRecorrido> quejas) {
+        this.quejas = quejas;
+    }
+    public void addQuejas(QuejaRecorrido queja){
+        this.quejas.add(queja);
+    }
     @Override
     public int hashCode() {
         int hash = 7;
@@ -80,7 +93,7 @@ public class Recorrido {
 
     @Override
     public String toString() {
-        return "Recorrido{" + "id=" + id + ", horarios=" + horarios + ", guia=" + guia + '}';
+        return horarios.getDia().toString();
     }
     
 }

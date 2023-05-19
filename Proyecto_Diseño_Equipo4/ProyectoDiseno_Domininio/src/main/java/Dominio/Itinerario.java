@@ -108,4 +108,9 @@ public class Itinerario {
         this.recorridos = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }

@@ -54,6 +54,10 @@ public class ControlItinerario {
     public List<Itinerario> RecuperaItinerario() {
         datos = FabricaDatos.dameInstancia();
         return datos.recuperaItinerario();
+    }   
+    public boolean actualizarItinerario(Itinerario iti){
+        datos=FabricaDatos.dameInstancia();
+        return datos.actualizarItinerario(iti); 
     }
-
+    
 }

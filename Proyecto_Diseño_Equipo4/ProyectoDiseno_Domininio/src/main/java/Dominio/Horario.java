@@ -68,6 +68,11 @@ public class Horario {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return horaInicio;
+    }
      
      
 }
